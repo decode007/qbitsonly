@@ -10,12 +10,12 @@
 }
 
 :root {
-  /* Color Palette */
-  --primary: #00d4ff;
-  --primary-light: #33ddff;
-  --primary-dark: #0099cc;
-  --secondary: #9b59b6;
-  --accent: #ff6b6b;
+  /* Color Palette - More Vibrant! */
+  --primary: #00f0ff;
+  --primary-light: #33f3ff;
+  --primary-dark: #00b8cc;
+  --secondary: #a855f7;
+  --accent: #ff4757;
   
   --bg-primary: #0a0e27;
   --bg-secondary: #121736;
@@ -219,10 +219,17 @@ nav a.active::after {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 24px;
-  background: linear-gradient(135deg, var(--text-primary), var(--primary));
+  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .hero-subtitle {
@@ -403,9 +410,10 @@ nav a.active::after {
 }
 
 .feature-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px) scale(1.02);
   border-color: var(--primary);
-  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 240, 255, 0.4);
+  background: linear-gradient(135deg, var(--bg-card), rgba(0, 240, 255, 0.05));
 }
 
 .feature-icon {

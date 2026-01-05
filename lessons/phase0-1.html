@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Destroy your classical assumptions before learning quantum mechanics. What you MUST unlearn." />
+  <title>Phase 0.1: Destroy Your Assumptions | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Phase 0</span>
+        <span class="lesson-tag">Lesson 00</span>
+        <span class="lesson-tag">Mental Model Reset</span>
+      </div>
+      <h1>Destroy Your Assumptions</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        What you MUST unlearn before learning anything quantum
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <div class="info-box" style="background: rgba(255, 107, 107, 0.1); border-left-color: var(--accent);">
+        <h4>⚠️ Critical Warning</h4>
+        <p>
+          If you skip this lesson, you'll waste MONTHS asking questions like:
+          <em>"But where is the bit actually stored?"</em>
+        </p>
+        <p style="margin-top: 12px;">
+          <strong>These questions have no meaning in quantum mechanics.</strong>
+        </p>
+      </div>
+
+      <h2>Goal: Mental Model Reset</h2>
+      <p>
+        Your brain is wired for classical physics. That makes sense—you live in a classical world. 
+        But quantum mechanics operates under fundamentally different rules.
+      </p>
+      <p>
+        Before we can build quantum intuition, we need to <strong>destroy your classical assumptions</strong>.
+      </p>
+
+      <h2>❌ What You MUST Unlearn</h2>
+
+      <h3>1. Information is stored in "things"</h3>
+      
+      <div style="overflow-x: auto; margin: 32px 0;">
+        <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: var(--bg-tertiary);">
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Classical View</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Quantum Reality</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">
+                • Voltage in a wire<br>
+                • Charge in a capacitor<br>
+                • Bits in memory<br>
+                • Information stored IN something
+              </td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">
+                • Information is the STATE of a system<br>
+                • Not stored in a physical location<br>
+                • A qubit does not CONTAIN data<br>
+                • <strong>A qubit IS the data</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box">
+        <h4>💡 The Shift</h4>
+        <p>
+          Stop asking: <em>"Where is it?"</em><br>
+          Start asking: <em>"What state is the system in?"</em>
+        </p>
+      </div>
+
+      <h3>2. Measurement is passive</h3>
+
+      <p><strong>Classical thinking:</strong></p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Read memory → memory unchanged</li>
+        <li>Check temperature → thermometer doesn't affect it</li>
+        <li>Observation is passive</li>
+      </ul>
+
+      <p><strong>Quantum reality:</strong></p>
+      <ul style="color: var(--primary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Measure → <strong>state collapses</strong></li>
+        <li>Measurement <strong>creates</strong> the classical outcome</li>
+        <li>Before measurement, there is <strong>no classical answer</strong></li>
+      </ul>
+
+      <div class="info-box" style="background: rgba(255, 107, 107, 0.1); border-left-color: var(--accent);">
+        <h4>🤯 Mind-Bender</h4>
+        <p>
+          Measurement is not:<br>
+          ❌ Reading<br>
+          ❌ Copying<br>
+          ❌ Observing
+        </p>
+        <p style="margin-top: 12px;">
+          It is:<br>
+          ✅ <strong>An irreversible physical interaction</strong>
+        </p>
+      </div>
+
+      <h3>3. Probability = ignorance</h3>
+
+      <p><strong>Classical probability:</strong></p>
+      <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px; margin: 16px 0;"><code>A coin is flipped.
+Before you look: 50% heads, 50% tails
+
+But the coin IS ALREADY heads or tails.
+You just don't know yet.</code></pre>
+
+      <p><strong>Quantum probability:</strong></p>
+      <pre style="background: var(--bg-card); padding: 16px; border-radius: 8px; margin: 16px 0; border-left: 4px solid var(--primary);"><code>A qubit is prepared in superposition.
+Before measurement: 50% |0⟩, 50% |1⟩
+
+The outcome DOES NOT EXIST before measurement.
+It's not that you don't know—it DOESN'T HAVE A VALUE.</code></pre>
+
+      <div class="info-box">
+        <h4>🎯 This is THE hardest shift</h4>
+        <p>
+          Quantum probability is not about what you don't know.<br>
+          It's about what <strong>doesn't exist yet</strong>.
+        </p>
+      </div>
+
+      <h2>✅ What You Must LEARN Instead</h2>
+
+      <h3>1. Quantum state ≠ value</h3>
+
+      <p>A quantum state does NOT tell you:</p>
+      <ul style="color: var(--text-muted); margin-left: 24px; margin-bottom: 16px; line-height: 1.8;">
+        <li><strike>"What is stored?"</strike></li>
+        <li><strike>"What's the value?"</strike></li>
+      </ul>
+
+      <p>A quantum state DOES tell you:</p>
+      <ul style="color: var(--primary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>✅ "What can happen?"</li>
+        <li>✅ "With what probability?"</li>
+        <li>✅ "Under which measurement?"</li>
+      </ul>
+
+      <h3>2. Superposition ≠ "both 0 and 1"</h3>
+
+      <p style="color: var(--accent); font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">
+        ❌ Wrong: "The qubit is both 0 and 1 at the same time"
+      </p>
+
+      <p style="color: var(--primary); font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">
+        ✅ Correct: "The qubit is in a DIRECTION, not a value"
+      </p>
+
+      <p>Think of it like this:</p>
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 8px; margin: 24px 0;">
+        <p style="margin-bottom: 12px;"><strong>Classical bit:</strong> A coin lying flat (heads or tails)</p>
+        <p><strong>Quantum qubit:</strong> A spinning coin in 3D space</p>
+        <ul style="margin-top: 12px; margin-left: 24px; color: var(--text-secondary);">
+          <li>North pole = |0⟩</li>
+          <li>South pole = |1⟩</li>
+          <li>Anywhere else = superposition</li>
+        </ul>
+      </div>
+
+      <p>Values (0 or 1) only appear when you <strong>measure</strong> (stop the spin).</p>
+
+      <h3>3. Collapse is physical</h3>
+
+      <p>
+        Measurement doesn't reveal a hidden value.<br>
+        Measurement <strong>forces the system to pick</strong> a classical outcome.
+      </p>
+
+      <div style="background: var(--bg-tertiary); padding: 32px; border-radius: 12px; margin: 32px 0; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 16px;">📊 → 💥 → 0️⃣ or 1️⃣</div>
+        <p style="color: var(--text-secondary);">
+          Superposition → Measurement → Classical outcome<br>
+          <span style="color: var(--text-muted); font-size: 0.875rem;">(No going back)</span>
+        </p>
+      </div>
+
+      <h2>Why This Matters</h2>
+
+      <p>
+        If you learn quantum mechanics without resetting your classical intuition, you'll:
+      </p>
+      <ul style="color: var(--accent); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Constantly ask meaningless questions</li>
+        <li>Get confused by perfectly clear explanations</li>
+        <li>Think quantum computing is "just probability"</li>
+        <li>Miss the entire point</li>
+      </ul>
+
+      <p>
+        But if you <strong>destroy your classical assumptions first</strong>, quantum mechanics will actually make sense.
+      </p>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>Information is not stored "in" something—it IS the state</li>
+          <li>Measurement is a physical interaction, not observation</li>
+          <li>Quantum probability is about non-existent outcomes, not ignorance</li>
+          <li>A quantum state describes possibilities, not values</li>
+          <li>Superposition is a direction, not "both at once"</li>
+        </ul>
+      </div>
+
+      <h2>Next: Why a Qubit ≠ a Faster Bit</h2>
+      <p>
+        Now that you've unlearned classical thinking, we can properly explain what a qubit actually is—
+        and why it's not just "a bit that can be 0 and 1 simultaneously."
+      </p>
+
+      <div class="lesson-nav">
+        <a href="../index.html#lessons" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Back to Lessons</span>
+        </a>
+        <a href="phase0-2.html" class="lesson-nav-btn">
+          <span>Next: Why a Qubit ≠ Faster Bit</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+
