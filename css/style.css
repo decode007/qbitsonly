@@ -84,6 +84,13 @@ header .container {
   font-size: 1.5rem;
   color: var(--primary);
   text-decoration: none;
+  transition: opacity 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
 }
 
 .qubit-icon {
