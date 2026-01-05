@@ -1,33 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson 1 - Wave Particle Duality</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about wave-particle duality and the double-slit experiment - the foundation of quantum mechanics." />
+  <title>Lesson 1: Wave-Particle Duality | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
   <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>QbitsOnly</h1>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="lesson1.html">Lesson 1</a>
-    </nav>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
   </header>
 
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Module 1</span>
+        <span class="lesson-tag">Lesson 1</span>
+        <span class="lesson-tag">15 min read</span>
+      </div>
+      <h1>Wave-Particle Duality</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        Understanding the quantum nature of reality through the famous double-slit experiment
+      </p>
+    </div>
+  </div>
+
   <main>
-    <h2>Lesson 1: Wave-Particle Duality</h2>
-    <p>
-      Light and electrons behave both as particles and waves. This was famously shown in the
-      <strong>Double Slit Experiment</strong>, where even individual particles create an interference pattern.
-    </p>
-    <p>
-      In quantum computing, this wave behavior leads to the concept of <strong>superposition</strong> — a core property of qubits.
-    </p>
-    <img src="../assets/images/double-slit.png" alt="Double Slit Diagram" style="max-width:50%;" />
+    <div class="lesson-content">
+      <h2>Introduction</h2>
+      <p>
+        Welcome to your first lesson in quantum computing! Before we dive into qubits and quantum gates, 
+        we need to understand one of the most profound discoveries in physics: <strong>wave-particle duality</strong>.
+      </p>
+      <p>
+        This concept is the foundation of quantum mechanics and explains why quantum computers can do things 
+        that classical computers cannot.
+      </p>
+
+      <div class="info-box">
+        <h4>💡 Key Insight</h4>
+        <p>
+          Particles like electrons and photons don't behave like everyday objects. They exhibit properties 
+          of both particles (localized, discrete) and waves (spread out, continuous) simultaneously.
+        </p>
+      </div>
+
+      <h2>The Classical View</h2>
+      <p>
+        In classical physics, we categorize things into two distinct groups:
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>Particles:</strong> Localized objects with definite position (like a baseball)</li>
+        <li><strong>Waves:</strong> Extended patterns that spread through space (like water waves)</li>
+      </ul>
+      <p>
+        These seemed like fundamentally different things. A baseball is a particle — you can point to where it is. 
+        A wave on the ocean is spread out — it doesn't have a single location.
+      </p>
+
+      <h2>The Double-Slit Experiment</h2>
+      <p>
+        The <strong>double-slit experiment</strong> is one of the most important experiments in physics. 
+        It reveals the bizarre quantum nature of reality.
+      </p>
+
+      <h3>The Setup</h3>
+      <p>
+        Imagine you have:
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>A source that shoots particles (like electrons or photons)</li>
+        <li>A barrier with two narrow slits</li>
+        <li>A detection screen behind the slits</li>
+      </ul>
+
+      <h3>What You'd Expect (Classical Intuition)</h3>
+      <p>
+        If particles are like tiny bullets, you'd expect them to pass through one slit or the other, 
+        creating two bright bands on the screen corresponding to the two slits.
+      </p>
+
+      <h3>What Actually Happens</h3>
+      <p>
+        Instead, you see an <strong>interference pattern</strong> — multiple bright and dark bands! 
+        This is the signature of waves interfering with each other, not particles traveling in straight lines.
+      </p>
+
+      <div class="info-box" style="background: rgba(255, 107, 107, 0.1); border-left-color: var(--accent);">
+        <h4>🤯 The Strange Part</h4>
+        <p>
+          This happens even when you send particles <strong>one at a time</strong>! Each individual particle 
+          somehow "knows" about both slits and interferes with itself, as if it went through both slits simultaneously.
+        </p>
+      </div>
+
+      <h3>The Observer Effect</h3>
+      <p>
+        Here's where it gets even weirder: If you try to detect which slit the particle goes through, 
+        the interference pattern <strong>disappears</strong>, and you get two bands (particle behavior).
+      </p>
+      <p>
+        The act of measurement fundamentally changes the outcome! When unobserved, particles behave like waves. 
+        When observed, they behave like particles.
+      </p>
+
+      <h2>What This Means for Quantum Computing</h2>
+      <p>
+        Wave-particle duality leads to a fundamental principle in quantum mechanics: <strong>superposition</strong>.
+      </p>
+      <p>
+        In the double-slit experiment, before measurement, the particle exists in a superposition of states — 
+        it's simultaneously at both slits. This is analogous to how a qubit can be in a superposition of 
+        both 0 and 1 at the same time.
+      </p>
+      <p>
+        This property is what gives quantum computers their power. While a classical bit is always either 0 or 1, 
+        a qubit in superposition is both, allowing quantum computers to explore many possibilities simultaneously.
+      </p>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>Quantum particles exhibit both wave and particle properties</li>
+          <li>The double-slit experiment demonstrates quantum interference</li>
+          <li>Measurement affects quantum systems (observer effect)</li>
+          <li>Wave-like behavior enables superposition — the basis of quantum computing</li>
+        </ul>
+      </div>
+
+      <h2>Visualizing the Double-Slit Experiment</h2>
+      <p>
+        Below is a conceptual representation of the double-slit experiment showing the interference pattern:
+      </p>
+
+      <div style="background: var(--bg-card); padding: 48px; border-radius: 12px; margin: 32px 0; text-align: center;">
+        <svg width="600" height="300" viewBox="0 0 600 300" style="max-width: 100%; height: auto;">
+          <!-- Source -->
+          <circle cx="50" cy="150" r="15" fill="var(--primary)" opacity="0.8"/>
+          <text x="50" y="190" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Source</text>
+          
+          <!-- Barrier with slits -->
+          <line x1="200" y1="50" x2="200" y2="120" stroke="var(--text-secondary)" stroke-width="8"/>
+          <line x1="200" y1="180" x2="200" y2="250" stroke="var(--text-secondary)" stroke-width="8"/>
+          <text x="200" y="30" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Barrier</text>
+          
+          <!-- Waves emanating -->
+          <path d="M 50 150 Q 100 130, 200 140" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.4" stroke-dasharray="5,5"/>
+          <path d="M 50 150 Q 100 170, 200 160" stroke="var(--primary)" stroke-width="2" fill="none" opacity="0.4" stroke-dasharray="5,5"/>
+          
+          <!-- Screen -->
+          <line x1="400" y1="50" x2="400" y2="250" stroke="var(--text-secondary)" stroke-width="4"/>
+          <text x="400" y="30" fill="var(--text-secondary)" font-size="12" text-anchor="middle">Screen</text>
+          
+          <!-- Interference pattern -->
+          <rect x="410" y="140" width="40" height="20" fill="var(--primary)" opacity="0.9"/>
+          <rect x="410" y="110" width="30" height="20" fill="var(--primary)" opacity="0.5"/>
+          <rect x="410" y="170" width="30" height="20" fill="var(--primary)" opacity="0.5"/>
+          <rect x="410" y="85" width="20" height="15" fill="var(--primary)" opacity="0.2"/>
+          <rect x="410" y="200" width="20" height="15" fill="var(--primary)" opacity="0.2"/>
+          
+          <!-- Waves between slits and screen -->
+          <path d="M 200 140 Q 300 100, 400 110" stroke="var(--secondary)" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M 200 140 Q 300 140, 400 150" stroke="var(--secondary)" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M 200 160 Q 300 150, 400 150" stroke="var(--secondary)" stroke-width="1" fill="none" opacity="0.3"/>
+          <path d="M 200 160 Q 300 200, 400 190" stroke="var(--secondary)" stroke-width="1" fill="none" opacity="0.3"/>
+          
+          <!-- Labels -->
+          <text x="480" y="155" fill="var(--primary)" font-size="11">Interference</text>
+          <text x="480" y="170" fill="var(--primary)" font-size="11">Pattern</text>
+        </svg>
+        <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.875rem;">
+          Conceptual diagram: Particles pass through both slits and create an interference pattern
+        </p>
+      </div>
+
+      <h2>Try It Yourself</h2>
+      <p>
+        Want to explore quantum behavior hands-on? Head over to our 
+        <a href="../quirk.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Quantum Playground</a> 
+        to experiment with quantum circuits that use superposition!
+      </p>
+
+      <div class="lesson-nav">
+        <a href="../index.html#lessons" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Back to Lessons</span>
+        </a>
+        <a href="lesson2.html" class="lesson-nav-btn">
+          <span>Next: What is a Qubit?</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 QbitsOnly.com</p>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
   </footer>
+
+  <script src="../js/main.js"></script>
 </body>
 </html>

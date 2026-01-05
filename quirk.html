@@ -1,27 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Quirk Quantum Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Experiment with quantum circuits using the Quirk quantum circuit simulator." />
+  <title>Quantum Circuit Playground | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <h1>QbitsOnly</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="quirk.html">Quirk Playground</a>
-    </nav>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#lessons">Lessons</a>
+        <a href="quirk.html" class="active">Playground</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <h2>Quantum Circuit Playground</h2>
-    <p>Experiment with quantum circuits using the Quirk simulator below:</p>
-    <iframe src="https://algassert.com/quirk" width="100%" height="600px"></iframe>
+  <main class="playground">
+    <div class="container">
+      <div class="playground-intro">
+        <h2>Quantum Circuit Playground</h2>
+        <p>
+          Experiment with real quantum circuits using the Quirk simulator. Drag gates onto qubits, 
+          see probability distributions, and observe quantum phenomena in real-time!
+        </p>
+      </div>
+
+      <div class="info-box" style="margin-bottom: 32px;">
+        <h4>💡 Quick Start Guide</h4>
+        <ul style="margin-left: 20px; margin-top: 12px; color: var(--text-secondary);">
+          <li><strong>Drag gates</strong> from the toolbox onto the circuit</li>
+          <li><strong>Hadamard (H)</strong> creates superposition</li>
+          <li><strong>X gate</strong> flips |0⟩ ↔ |1⟩ (quantum NOT)</li>
+          <li><strong>CNOT</strong> creates entanglement between qubits</li>
+          <li><strong>Watch the right panel</strong> to see probabilities change in real-time</li>
+        </ul>
+      </div>
+
+      <div class="simulator-frame">
+        <iframe 
+          src="https://algassert.com/quirk" 
+          title="Quirk Quantum Circuit Simulator"
+          allow="clipboard-write"
+        ></iframe>
+      </div>
+
+      <div style="margin-top: 48px;">
+        <h3 style="font-size: 2rem; margin-bottom: 24px; text-align: center;">Try These Experiments</h3>
+        
+        <div class="features-grid">
+          <div class="feature-card">
+            <h4 style="color: var(--primary);">🎲 Superposition</h4>
+            <p>Apply a Hadamard (H) gate to a qubit starting in |0⟩. You'll see it enters a 50/50 superposition!</p>
+          </div>
+          
+          <div class="feature-card">
+            <h4 style="color: var(--primary);">🔗 Entanglement</h4>
+            <p>Create a Bell state: Apply H to the first qubit, then a CNOT from qubit 1 to qubit 2. The qubits are now entangled!</p>
+          </div>
+          
+          <div class="feature-card">
+            <h4 style="color: var(--primary);">🔄 Quantum Interference</h4>
+            <p>Apply H, then X, then H again to a qubit. The result is always |1⟩ — quantum interference at work!</p>
+          </div>
+          
+          <div class="feature-card">
+            <h4 style="color: var(--primary);">📊 Measurement</h4>
+            <p>Add a measurement gate to collapse superposition. Run the circuit multiple times to see probabilistic outcomes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-box" style="margin-top: 64px;">
+        <h4>Want to Learn More?</h4>
+        <p>
+          Head back to our lessons to understand the theory behind these quantum gates and how to build 
+          powerful quantum algorithms.
+        </p>
+        <a class="btn btn-primary" href="index.html#lessons">Explore Lessons</a>
+      </div>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 QbitsOnly.com</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="logo">
+            <div class="qubit-icon small"></div>
+            <h4>QbitsOnly</h4>
+          </div>
+          <p>Learn quantum computing from scratch</p>
+        </div>
+        <div class="footer-section">
+          <h5>Learn</h5>
+          <ul>
+            <li><a href="index.html#lessons">All Lessons</a></li>
+            <li><a href="quirk.html">Playground</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="https://qiskit.org/" target="_blank" rel="noopener">Qiskit</a></li>
+            <li><a href="https://quantum-computing.ibm.com/" target="_blank" rel="noopener">IBM Quantum</a></li>
+            <li><a href="https://algassert.com/quirk" target="_blank" rel="noopener">Quirk Simulator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://github.com/decode007/qbitsonly" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

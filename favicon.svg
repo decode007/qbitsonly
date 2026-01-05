@@ -1,0 +1,25 @@
+<!-- Favicon SVG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="qgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="45" fill="url(#qgrad)" />
+  
+  <!-- Inner circle -->
+  <circle cx="50" cy="50" r="30" fill="#0a0e27" />
+  
+  <!-- Orbit ring -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.5" />
+  
+  <!-- Quantum state representation (small dots) -->
+  <circle cx="50" cy="12" r="3" fill="#00d4ff" />
+  <circle cx="88" cy="50" r="3" fill="#00d4ff" />
+  <circle cx="50" cy="88" r="3" fill="#9b59b6" />
+  <circle cx="12" cy="50" r="3" fill="#9b59b6" />
+</svg>
+

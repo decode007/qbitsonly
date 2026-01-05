@@ -1,0 +1,36 @@
+{
+  "name": "qbitsonly",
+  "version": "1.0.0",
+  "description": "Learn quantum computing from scratch - free interactive quantum education platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "lint:css": "stylelint 'css/**/*.css'",
+    "format": "prettier --write '**/*.{html,css,js,md}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/decode007/qbitsonly.git"
+  },
+  "keywords": [
+    "quantum-computing",
+    "education",
+    "qubits",
+    "quantum-mechanics",
+    "interactive-learning",
+    "quantum-algorithms",
+    "physics"
+  ],
+  "author": "QbitsOnly Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/decode007/qbitsonly/issues"
+  },
+  "homepage": "https://qbitsonly.com",
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "stylelint": "^16.1.0"
+  }
+}
+

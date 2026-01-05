@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /.git/
+
+Sitemap: https://qbitsonly.com/sitemap.txt
+

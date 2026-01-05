@@ -3,30 +3,311 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QbitsOnly - Learn Quantum Computing</title>
+  <meta name="description" content="Learn quantum computing from scratch. Free interactive lessons on qubits, superposition, entanglement, and quantum algorithms." />
+  <meta name="keywords" content="quantum computing, qubits, quantum mechanics, superposition, entanglement, quantum algorithms, learn quantum" />
+  <meta name="author" content="QbitsOnly" />
+  <meta property="og:title" content="QbitsOnly - Master Quantum Computing" />
+  <meta property="og:description" content="Learn quantum computing from scratch with interactive lessons and hands-on exercises." />
+  <meta property="og:type" content="website" />
+  <title>QbitsOnly - Learn Quantum Computing from Scratch</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
     <h1>QbitsOnly</h1>
+      </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="lessons/lesson1.html">Lessons</a>
+        <a href="index.html" class="active">Home</a>
+        <a href="#lessons">Lessons</a>
       <a href="quirk.html">Playground</a>
-      <a href="https://github.com/decode007/qbitsonly" target="_blank">GitHub</a>
+        <a href="#about">About</a>
     </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero">
-      <h2>Learn Quantum Computing from Scratch</h2>
-      <p>From wave-particle duality to running your first quantum circuit.</p>
-      <a class="cta" href="lessons/lesson1.html">Start Learning</a>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">Free • Interactive • Beginner-Friendly</div>
+          <h2>Master Quantum Computing<br/>From First Principles</h2>
+          <p class="hero-subtitle">
+            Discover the fascinating world of quantum mechanics, qubits, and quantum algorithms. 
+            No physics degree required — just curiosity.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#lessons">Start Learning</a>
+            <a class="btn btn-secondary" href="quirk.html">Try Simulator</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Lessons</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Free</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">Interactive</span>
+              <span class="stat-label">Learning</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="quantum-sphere">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+            <div class="qubit-core"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h3 class="section-title">Why Learn Quantum Computing?</h3>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h4>Future-Proof Skill</h4>
+            <p>Quantum computers are revolutionizing cryptography, AI, drug discovery, and optimization problems.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h4>Think Differently</h4>
+            <p>Quantum mechanics challenges classical intuition and opens new ways of problem-solving.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💼</div>
+            <h4>Career Opportunity</h4>
+            <p>Join companies like IBM, Google, Microsoft, and startups building quantum technologies.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔬</div>
+            <h4>Hands-On Learning</h4>
+            <p>Build and simulate real quantum circuits with interactive tools and exercises.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section id="lessons" class="lessons">
+      <div class="container">
+        <h3 class="section-title">Learning Path</h3>
+        <p class="section-subtitle">Progress from quantum foundations to advanced algorithms</p>
+        
+        <div class="lessons-grid">
+          <!-- Foundations Module -->
+          <div class="lesson-module">
+            <div class="module-header">
+              <span class="module-badge">Module 1</span>
+              <h4>Quantum Foundations</h4>
+            </div>
+            <div class="lesson-list">
+              <a href="lessons/lesson1.html" class="lesson-item">
+                <span class="lesson-number">01</span>
+                <div class="lesson-content">
+                  <h5>Wave-Particle Duality</h5>
+                  <p>Understanding the quantum nature of reality</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson2.html" class="lesson-item">
+                <span class="lesson-number">02</span>
+                <div class="lesson-content">
+                  <h5>What is a Qubit?</h5>
+                  <p>The fundamental unit of quantum information</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson3.html" class="lesson-item">
+                <span class="lesson-number">03</span>
+                <div class="lesson-content">
+                  <h5>Superposition Explained</h5>
+                  <p>Being in multiple states simultaneously</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson4.html" class="lesson-item">
+                <span class="lesson-number">04</span>
+                <div class="lesson-content">
+                  <h5>Quantum Measurement</h5>
+                  <p>How observation affects quantum states</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quantum Gates Module -->
+          <div class="lesson-module">
+            <div class="module-header">
+              <span class="module-badge">Module 2</span>
+              <h4>Quantum Gates & Circuits</h4>
+            </div>
+            <div class="lesson-list">
+              <a href="lessons/lesson5.html" class="lesson-item">
+                <span class="lesson-number">05</span>
+                <div class="lesson-content">
+                  <h5>Single-Qubit Gates</h5>
+                  <p>X, Y, Z, Hadamard, and rotation gates</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson6.html" class="lesson-item">
+                <span class="lesson-number">06</span>
+                <div class="lesson-content">
+                  <h5>Multi-Qubit Gates</h5>
+                  <p>CNOT, SWAP, and controlled operations</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson7.html" class="lesson-item">
+                <span class="lesson-number">07</span>
+                <div class="lesson-content">
+                  <h5>Quantum Entanglement</h5>
+                  <p>Spooky action at a distance</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Algorithms Module -->
+          <div class="lesson-module">
+            <div class="module-header">
+              <span class="module-badge">Module 3</span>
+              <h4>Quantum Algorithms</h4>
+            </div>
+            <div class="lesson-list">
+              <a href="lessons/lesson8.html" class="lesson-item">
+                <span class="lesson-number">08</span>
+                <div class="lesson-content">
+                  <h5>Deutsch-Jozsa Algorithm</h5>
+                  <p>Your first quantum algorithm</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson9.html" class="lesson-item">
+                <span class="lesson-number">09</span>
+                <div class="lesson-content">
+                  <h5>Grover's Search</h5>
+                  <p>Quantum speedup for search problems</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+              <a href="lessons/lesson10.html" class="lesson-item">
+                <span class="lesson-number">10</span>
+                <div class="lesson-content">
+                  <h5>Shor's Algorithm</h5>
+                  <p>Breaking RSA encryption</p>
+                </div>
+                <span class="lesson-status">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-box">
+          <h4>Ready to Begin Your Quantum Journey?</h4>
+          <p>Start with the fundamentals and build your way up to advanced algorithms.</p>
+          <a class="btn btn-primary" href="lessons/lesson1.html">Start with Lesson 1</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <h3>About QbitsOnly</h3>
+          <p>
+            QbitsOnly is a free, open-source quantum computing education platform designed 
+            for beginners with no prior knowledge of quantum mechanics or advanced mathematics.
+          </p>
+          <p>
+            Our mission is to make quantum computing accessible to everyone through clear 
+            explanations, interactive visualizations, and hands-on practice with real quantum simulators.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <span class="check-icon">✓</span>
+              <span>100% Free Forever</span>
+            </div>
+            <div class="about-feature">
+              <span class="check-icon">✓</span>
+              <span>No Prerequisites Required</span>
+            </div>
+            <div class="about-feature">
+              <span class="check-icon">✓</span>
+              <span>Self-Paced Learning</span>
+            </div>
+            <div class="about-feature">
+              <span class="check-icon">✓</span>
+              <span>Interactive Simulators</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 QbitsOnly.com | Built with ❤️</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="logo">
+            <div class="qubit-icon small"></div>
+            <h4>QbitsOnly</h4>
+          </div>
+          <p>Learn quantum computing from scratch</p>
+        </div>
+        <div class="footer-section">
+          <h5>Learn</h5>
+          <ul>
+            <li><a href="#lessons">All Lessons</a></li>
+            <li><a href="quirk.html">Playground</a></li>
+            <li><a href="notebooks/intro_to_qubits.ipynb">Notebooks</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h5>Resources</h5>
+          <ul>
+            <li><a href="https://qiskit.org/" target="_blank" rel="noopener">Qiskit</a></li>
+            <li><a href="https://quantum-computing.ibm.com/" target="_blank" rel="noopener">IBM Quantum</a></li>
+            <li><a href="https://algassert.com/quirk" target="_blank" rel="noopener">Quirk Simulator</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://github.com/decode007/qbitsonly" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
   </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>

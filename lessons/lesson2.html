@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Understand what a qubit is and how it differs from classical bits in quantum computing." />
+  <title>Lesson 2: What is a Qubit? | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Module 1</span>
+        <span class="lesson-tag">Lesson 2</span>
+        <span class="lesson-tag">12 min read</span>
+      </div>
+      <h1>What is a Qubit?</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        The fundamental unit of quantum information and how it differs from classical bits
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <h2>From Bits to Qubits</h2>
+      <p>
+        In classical computing, information is stored in <strong>bits</strong>. A bit is the smallest unit 
+        of information and can be in one of two states: <strong>0</strong> or <strong>1</strong>.
+      </p>
+      <p>
+        Everything in your computer — text, images, videos, programs — is ultimately represented as a 
+        sequence of 0s and 1s. This binary system is simple, reliable, and forms the foundation of all 
+        modern computing.
+      </p>
+
+      <h2>Enter the Qubit</h2>
+      <p>
+        A <strong>qubit</strong> (quantum bit) is the quantum equivalent of a classical bit. Like a bit, 
+        a qubit can be in state <strong>|0⟩</strong> or <strong>|1⟩</strong> (we use special notation with 
+        brackets, called "ket" notation).
+      </p>
+      <p>
+        But here's the revolutionary difference: <strong>a qubit can also be in a superposition of both 
+        states simultaneously</strong>.
+      </p>
+
+      <div class="info-box">
+        <h4>💡 Key Concept</h4>
+        <p>
+          While a classical bit must be either 0 or 1, a qubit can be in a quantum superposition: 
+          a combination of both |0⟩ and |1⟩ at the same time, until it is measured.
+        </p>
+      </div>
+
+      <h2>The Qubit State</h2>
+      <p>
+        Mathematically, we can write a qubit's state as:
+      </p>
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 8px; margin: 24px 0; text-align: center; font-size: 1.5rem; font-family: var(--font-mono);">
+        |ψ⟩ = α|0⟩ + β|1⟩
+      </div>
+      <p>
+        Where:
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>|ψ⟩</strong> represents the qubit's state</li>
+        <li><strong>α</strong> (alpha) and <strong>β</strong> (beta) are complex numbers called probability amplitudes</li>
+        <li><strong>|α|² + |β|²  = 1</strong> (the probabilities must sum to 100%)</li>
+      </ul>
+
+      <h2>The Bloch Sphere</h2>
+      <p>
+        One beautiful way to visualize a qubit is using the <strong>Bloch sphere</strong>. Every possible 
+        qubit state corresponds to a point on the surface of a sphere.
+      </p>
+      <div style="background: var(--bg-card); padding: 48px; border-radius: 12px; margin: 32px 0; text-align: center;">
+        <svg width="300" height="300" viewBox="0 0 300 300" style="max-width: 100%; height: auto;">
+          <!-- Sphere -->
+          <circle cx="150" cy="150" r="100" fill="none" stroke="var(--border)" stroke-width="2"/>
+          <ellipse cx="150" cy="150" rx="100" ry="30" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.3"/>
+          <ellipse cx="150" cy="150" rx="30" ry="100" fill="none" stroke="var(--border)" stroke-width="1" opacity="0.3"/>
+          
+          <!-- Axes -->
+          <line x1="150" y1="250" x2="150" y2="50" stroke="var(--text-secondary)" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="50" y1="150" x2="250" y2="150" stroke="var(--text-secondary)" stroke-width="2" opacity="0.5"/>
+          <line x1="150" y1="150" x2="220" y2="200" stroke="var(--text-secondary)" stroke-width="2" opacity="0.5"/>
+          
+          <!-- State labels -->
+          <text x="150" y="40" fill="var(--primary)" font-size="20" font-weight="bold" text-anchor="middle">|0⟩</text>
+          <text x="150" y="275" fill="var(--primary)" font-size="20" font-weight="bold" text-anchor="middle">|1⟩</text>
+          <text x="260" y="155" fill="var(--secondary)" font-size="16" text-anchor="start">|+⟩</text>
+          <text x="35" y="155" fill="var(--secondary)" font-size="16" text-anchor="end">|-⟩</text>
+          
+          <!-- Sample state vector -->
+          <line x1="150" y1="150" x2="190" y2="90" stroke="var(--accent)" stroke-width="3"/>
+          <circle cx="190" cy="90" r="5" fill="var(--accent)"/>
+          <text x="200" y="85" fill="var(--accent)" font-size="14">|ψ⟩</text>
+          
+          <!-- Axis labels -->
+          <text x="155" y="30" fill="var(--text-muted)" font-size="12">Z</text>
+          <text x="260" y="145" fill="var(--text-muted)" font-size="12">X</text>
+          <text x="230" y="210" fill="var(--text-muted)" font-size="12">Y</text>
+        </svg>
+        <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.875rem;">
+          The Bloch sphere: Every point on the surface represents a possible qubit state
+        </p>
+      </div>
+
+      <h2>Measurement: Superposition Collapses</h2>
+      <p>
+        When you measure a qubit, something remarkable happens: the superposition <strong>collapses</strong> 
+        to either |0⟩ or |1⟩.
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>You get result |0⟩ with probability |α|²</li>
+        <li>You get result |1⟩ with probability |β|²</li>
+        <li>After measurement, the qubit is now definitely in the measured state</li>
+      </ul>
+
+      <div class="info-box" style="background: rgba(255, 107, 107, 0.1); border-left-color: var(--accent);">
+        <h4>⚠️ Important</h4>
+        <p>
+          You cannot "peek" at a qubit's superposition state without disturbing it. Measurement is 
+          irreversible and destroys the superposition. This is why quantum computing is so different 
+          from classical computing!
+        </p>
+      </div>
+
+      <h2>Physical Implementations</h2>
+      <p>
+        Qubits can be implemented using various physical systems:
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>Superconducting circuits:</strong> Used by IBM and Google</li>
+        <li><strong>Trapped ions:</strong> Individual atoms held by electromagnetic fields</li>
+        <li><strong>Photons:</strong> Particles of light with different polarizations</li>
+        <li><strong>Topological qubits:</strong> Microsoft's approach using exotic quasiparticles</li>
+        <li><strong>Quantum dots:</strong> Semiconductor nanostructures</li>
+      </ul>
+
+      <h2>Comparison: Bit vs Qubit</h2>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; margin: 32px 0; background: var(--bg-card); border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: var(--bg-tertiary);">
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Property</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Classical Bit</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Qubit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">States</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">0 or 1</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">|0⟩, |1⟩, or superposition</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Simultaneous States</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">No</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Yes (superposition)</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Measurement</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Doesn't change state</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Collapses superposition</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; color: var(--primary);">Information Capacity</td>
+              <td style="padding: 16px; color: var(--text-secondary);">1 bit per bit</td>
+              <td style="padding: 16px; color: var(--text-secondary);">Exponentially more with entanglement</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Why Qubits Matter</h2>
+      <p>
+        The power of quantum computing comes from having many qubits working together:
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>2 qubits</strong> can be in a superposition of 4 states (00, 01, 10, 11)</li>
+        <li><strong>3 qubits</strong> can be in a superposition of 8 states</li>
+        <li><strong>n qubits</strong> can be in a superposition of 2ⁿ states simultaneously!</li>
+      </ul>
+      <p>
+        This exponential scaling is what gives quantum computers their potential advantage for certain problems.
+      </p>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>A qubit is the quantum version of a classical bit</li>
+          <li>Qubits can exist in superposition: α|0⟩ + β|1⟩</li>
+          <li>The Bloch sphere visualizes all possible qubit states</li>
+          <li>Measurement collapses superposition to |0⟩ or |1⟩</li>
+          <li>Multiple qubits enable exponential information capacity</li>
+        </ul>
+      </div>
+
+      <h2>Next Steps</h2>
+      <p>
+        Now that you understand what a qubit is, we'll dive deeper into <strong>superposition</strong> 
+        and explore how quantum gates manipulate qubits.
+      </p>
+
+      <div class="lesson-nav">
+        <a href="lesson1.html" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Previous: Wave-Particle Duality</span>
+        </a>
+        <a href="lesson3.html" class="lesson-nav-btn">
+          <span>Next: Superposition</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+
