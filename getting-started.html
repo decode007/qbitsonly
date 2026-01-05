@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get started with quantum computing - tools, simulators, and access to real quantum computers." />
+  <title>Getting Started Guide | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#lessons">Lessons</a>
+        <a href="quirk.html">Playground</a>
+        <a href="glossary.html">Glossary</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <h1>Getting Started with Quantum Computing</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        Your path from zero to running circuits on real quantum computers
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <h2>🎯 Your Learning Path</h2>
+      
+      <div class="info-box">
+        <h4>📍 Start Here</h4>
+        <p style="margin-bottom: 12px;"><strong>If you're brand new to quantum:</strong></p>
+        <ol style="margin-left: 20px;">
+          <li>Read <a href="lessons/phase0-1.html" style="color: var(--primary);">Phase 0: Destroy Your Assumptions</a></li>
+          <li>Use our <a href="quirk.html" style="color: var(--primary);">Quantum Playground</a> (Quirk simulator)</li>
+          <li>Progress through Phase 1 lessons</li>
+          <li>Then try real quantum hardware!</li>
+        </ol>
+      </div>
+
+      <h2>🛠️ Tools You'll Need</h2>
+
+      <h3>1. Start with Browser-Based Tools (No Install)</h3>
+
+      <div class="feature-card" style="margin: 24px 0;">
+        <h4 style="color: var(--primary); margin-bottom: 12px;">Quirk Quantum Simulator</h4>
+        <p>
+          <strong>What:</strong> Interactive drag-and-drop circuit builder<br>
+          <strong>Why:</strong> Instant visual feedback, no coding required<br>
+          <strong>Best for:</strong> Building intuition, experimenting with gates
+        </p>
+        <p style="margin-top: 12px;">
+          <a href="quirk.html" class="btn btn-secondary" style="margin-right: 12px;">Open Quirk Playground</a>
+          <a href="https://algassert.com/quirk" target="_blank" rel="noopener" class="btn btn-secondary">Official Quirk Site →</a>
+        </p>
+      </div>
+
+      <div class="feature-card" style="margin: 24px 0;" id="ibm">
+        <h4 style="color: var(--primary); margin-bottom: 12px;">IBM Quantum Composer</h4>
+        <p>
+          <strong>What:</strong> Visual circuit composer + real quantum hardware access<br>
+          <strong>Why:</strong> Run circuits on actual quantum computers (for free!)<br>
+          <strong>Best for:</strong> Experiencing real quantum behavior
+        </p>
+        <p style="margin-top: 12px;">
+          <a href="#ibm-setup" class="btn btn-primary">Setup Guide Below ↓</a>
+        </p>
+      </div>
+
+      <h3>2. Install Python Tools (For Serious Learning)</h3>
+
+      <div class="feature-card" style="margin: 24px 0;">
+        <h4 style="color: var(--primary); margin-bottom: 12px;">Qiskit (IBM's Framework)</h4>
+        <p>
+          <strong>What:</strong> Python library for quantum computing<br>
+          <strong>Why:</strong> Industry standard, great documentation, free cloud access<br>
+          <strong>Best for:</strong> Building real quantum applications
+        </p>
+        <pre style="margin-top: 12px;"><code>pip install qiskit qiskit-ibm-runtime</code></pre>
+        <p style="margin-top: 12px;">
+          <a href="https://qiskit.org/documentation/getting_started.html" target="_blank" rel="noopener" class="btn btn-secondary">Qiskit Docs →</a>
+        </p>
+      </div>
+
+      <h2 id="ibm-setup">🚀 IBM Quantum Setup (Free Access to Real Quantum Computers!)</h2>
+
+      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+        <h4>💎 This is HUGE</h4>
+        <p>
+          IBM gives you FREE access to real quantum computers. Not simulators—actual quantum hardware.
+          You can run your circuits on superconducting qubits cooled to near absolute zero.
+        </p>
+      </div>
+
+      <h3>Step 1: Create IBM Quantum Account</h3>
+      <ol style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Go to <a href="https://quantum.ibm.com/" target="_blank" rel="noopener" style="color: var(--primary);">https://quantum.ibm.com/</a></li>
+        <li>Click "Sign in" → "Create an IBMid"</li>
+        <li>Fill out the form (takes 2 minutes)</li>
+        <li>Verify your email</li>
+        <li>You're in! 🎉</li>
+      </ol>
+
+      <h3>Step 2: Explore the Dashboard</h3>
+      <p>Once logged in, you'll see:</p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>Composer:</strong> Visual circuit builder (like Quirk but connected to real hardware)</li>
+        <li><strong>Lab:</strong> Jupyter notebooks in your browser</li>
+        <li><strong>Systems:</strong> See available quantum computers and their specs</li>
+        <li><strong>Jobs:</strong> Track your submitted circuits</li>
+      </ul>
+
+      <h3>Step 3: Run Your First Circuit</h3>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Simple Superposition Experiment</h4>
+        <ol style="color: var(--text-secondary); margin-left: 24px; line-height: 1.8;">
+          <li>Open <strong>Composer</strong></li>
+          <li>Drag a <code>H</code> gate onto qubit q0</li>
+          <li>Add a <strong>Measure</strong> gate</li>
+          <li>Click <strong>"Run"</strong> → Select a backend:
+            <ul style="margin-top: 8px; margin-left: 24px;">
+              <li><strong>Simulator:</strong> Instant results (classical simulation)</li>
+              <li><strong>Real device:</strong> Waits in queue, runs on actual quantum hardware!</li>
+            </ul>
+          </li>
+          <li>Check results: Should see ~50% |0⟩, ~50% |1⟩</li>
+        </ol>
+      </div>
+
+      <h3>Step 4: Run on Real Hardware</h3>
+      
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent);">
+        <h4>⚠️ Real Quantum = Real Noise</h4>
+        <p>
+          Real quantum computers have errors (decoherence, gate errors, measurement errors). 
+          If your results aren't perfect 50/50, that's normal! This is why quantum error correction matters.
+        </p>
+      </div>
+
+      <p>What you'll notice on real hardware:</p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Results might be 48% / 52% instead of perfect 50/50</li>
+        <li>Queue times vary (1 second to 10 minutes depending on system load)</li>
+        <li>Different quantum computers have different error rates</li>
+        <li>Short circuits work better (less time for decoherence)</li>
+      </ul>
+
+      <h2>📊 Understanding Your Results</h2>
+
+      <h3>Interpreting Histograms</h3>
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 12px;"><strong>Simulator results (ideal):</strong></p>
+        <pre><code>|0⟩: 50%  ████████████████████████
+|1⟩: 50%  ████████████████████████</code></pre>
+
+        <p style="margin-top: 24px; margin-bottom: 12px;"><strong>Real quantum computer results (noisy):</strong></p>
+        <pre><code>|0⟩: 48%  ███████████████████████
+|1⟩: 52%  █████████████████████████</code></pre>
+        
+        <p style="margin-top: 16px; color: var(--text-muted);">
+          The noise is REAL quantum noise—not a bug. This is what current quantum hardware looks like.
+        </p>
+      </div>
+
+      <h2>💻 Qiskit Code Example</h2>
+
+      <p>If you've installed Qiskit, here's the same circuit in code:</p>
+
+      <pre style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;"><code>from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+# Create circuit
+qc = QuantumCircuit(1, 1)
+qc.h(0)          # Hadamard gate
+qc.measure(0, 0) # Measure qubit 0 → classical bit 0
+
+# Run on simulator
+from qiskit.primitives import Sampler as LocalSampler
+sampler = LocalSampler()
+result = sampler.run(qc, shots=1000).result()
+print(result.quasi_dists)
+
+# OR run on real IBM quantum computer:
+# service = QiskitRuntimeService(channel="ibm_quantum", token="YOUR_TOKEN")
+# backend = service.least_busy(operational=True, simulator=False)
+# sampler = Sampler(backend)
+# job = sampler.run(qc, shots=1000)
+# print(job.result())</code></pre>
+
+      <h2>🎓 Suggested Learning Order</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">1️⃣</div>
+          <h4>Week 1: Intuition</h4>
+          <p>Complete Phase 0 lessons. Use Quirk to play with H gates, X gates, measurement. Don't worry about math yet.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">2️⃣</div>
+          <h4>Week 2: Gates & Bloch Sphere</h4>
+          <p>Learn Phase 1 lessons. Create IBM Quantum account. Run simple circuits on simulator.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">3️⃣</div>
+          <h4>Week 3: Real Hardware</h4>
+          <p>Run circuits on real quantum computer. Compare simulator vs hardware results. Understand noise.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">4️⃣</div>
+          <h4>Week 4+: Algorithms</h4>
+          <p>Learn Phase 2 algorithms. Install Qiskit. Build your own quantum programs.</p>
+        </div>
+      </div>
+
+      <h2>📚 Additional Resources</h2>
+
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><a href="https://learning.quantum.ibm.com/" target="_blank" rel="noopener" style="color: var(--primary);">IBM Quantum Learning</a> - Interactive courses</li>
+        <li><a href="https://qiskit.org/textbook/" target="_blank" rel="noopener" style="color: var(--primary);">Qiskit Textbook</a> - Comprehensive guide</li>
+        <li><a href="https://quantum.country/" target="_blank" rel="noopener" style="color: var(--primary);">Quantum Country</a> - Spaced repetition learning</li>
+        <li><a href="https://github.com/Qiskit/qiskit-tutorials" target="_blank" rel="noopener" style="color: var(--primary);">Qiskit Tutorials</a> - Code examples</li>
+      </ul>
+
+      <div class="cta-box" style="margin-top: 64px;">
+        <h4>Ready to Start Your Quantum Journey? 🚀</h4>
+        <p>Begin by destroying your classical assumptions, then build up quantum intuition step by step.</p>
+        <a class="btn btn-primary" href="lessons/phase0-1.html">Start Phase 0</a>
+        <a class="btn btn-secondary" style="margin-left: 16px;" href="quirk.html">Open Playground</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

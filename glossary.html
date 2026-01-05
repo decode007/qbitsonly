@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Quantum computing terminology glossary - clear definitions for qubits, superposition, entanglement, and more." />
+  <title>Quantum Glossary | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#lessons">Lessons</a>
+        <a href="quirk.html">Playground</a>
+        <a href="glossary.html" class="active">Glossary</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <h1>Quantum Computing Glossary</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        Quick reference for key quantum terms and concepts
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <div class="info-box">
+        <h4>💡 How to Use This Glossary</h4>
+        <p>
+          These definitions assume you've completed Phase 0 (Mental Model Reset). 
+          If terms still don't make sense, go back and destroy your classical assumptions first!
+        </p>
+      </div>
+
+      <h2 id="q">Q</h2>
+      
+      <h3>Qubit</h3>
+      <p>
+        A <strong>quantum bit</strong>—the fundamental unit of quantum information. Unlike a classical bit 
+        (which is 0 or 1), a qubit can exist in superposition of both states. Physically implemented using 
+        two-level quantum systems like electron spin, photon polarization, or superconducting circuits.
+      </p>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        📖 See: <a href="lessons/lesson2.html" style="color: var(--primary);">Lesson 2: What is a Qubit?</a>
+      </p>
+
+      <h3>Quantum State</h3>
+      <p>
+        The complete description of a quantum system. For a single qubit: |ψ⟩ = α|0⟩ + β|1⟩. 
+        It describes <em>what can happen</em>, not <em>what is stored</em>. The state determines 
+        probabilities of measurement outcomes.
+      </p>
+
+      <h3>Quantum Gate</h3>
+      <p>
+        An operation that transforms a quantum state. Unlike classical logic gates, quantum gates are 
+        <strong>rotations on the Bloch sphere</strong>. Common gates: H (Hadamard), X (NOT), Z (phase flip), 
+        CNOT (controlled-NOT).
+      </p>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        📖 See: <a href="lessons/phase1-2.html" style="color: var(--primary);">Phase 1: Quantum Gates = Rotations</a>
+      </p>
+
+      <h2 id="s">S</h2>
+
+      <h3>Superposition</h3>
+      <p>
+        A quantum state that is a combination of multiple basis states simultaneously. 
+        <strong>NOT</strong> "the qubit is both 0 and 1"—rather, it's in a <em>direction</em> on the 
+        Bloch sphere. When measured, it collapses to one outcome probabilistically.
+      </p>
+      <p style="color: var(--accent); font-weight: 500; margin-top: 8px;">
+        ⚠️ Common misconception: Superposition ≠ classical probability. The outcome doesn't exist before measurement.
+      </p>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        📖 See: <a href="lessons/lesson3.html" style="color: var(--primary);">Lesson 3: Superposition Explained</a>
+      </p>
+
+      <h3>State Vector</h3>
+      <p>
+        The mathematical representation of a quantum state as a complex vector. For n qubits, the state vector 
+        has 2<sup>n</sup> complex amplitudes that sum to 1 (when squared).
+      </p>
+
+      <h2 id="m">M</h2>
+
+      <h3>Measurement</h3>
+      <p>
+        An <strong>irreversible physical interaction</strong> that forces a quantum system to collapse from 
+        superposition into a classical outcome. Measurement is NOT passive observation—it fundamentally changes 
+        the state.
+      </p>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        📖 See: <a href="lessons/phase0-3.html" style="color: var(--primary);">Phase 0: Measurement Creates Reality</a>
+      </p>
+
+      <h2 id="e">E</h2>
+
+      <h3>Entanglement</h3>
+      <p>
+        A quantum correlation where the joint state of multiple qubits is well-defined, but individual qubits 
+        are not. Measuring one entangled qubit instantly affects the measurement statistics of the other, 
+        regardless of distance.
+      </p>
+      <p style="color: var(--accent); font-weight: 500; margin-top: 8px;">
+        ⚠️ Does NOT enable faster-than-light communication (no information is transmitted).
+      </p>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        📖 See: <a href="lessons/phase1-3.html" style="color: var(--primary);">Phase 1: Entanglement Without Mysticism</a>
+      </p>
+
+      <h2 id="b">B</h2>
+
+      <h3>Bloch Sphere</h3>
+      <p>
+        A geometric representation where every pure single-qubit state corresponds to a point on a sphere's surface. 
+        North pole = |0⟩, South pole = |1⟩, equator = superposition states. Quantum gates are rotations on this sphere.
+      </p>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        📖 See: <a href="lessons/phase1-1.html" style="color: var(--primary);">Phase 1: The Bloch Sphere</a>
+      </p>
+
+      <h3>Bell State</h3>
+      <p>
+        One of four maximally entangled two-qubit states. Example: (|00⟩ + |11⟩)/√2. 
+        Used to demonstrate quantum correlations and as building blocks for quantum protocols.
+      </p>
+
+      <h2 id="c">C</h2>
+
+      <h3>Collapse</h3>
+      <p>
+        The transition from a superposition state to a definite classical outcome upon measurement. 
+        The state "collapses" to one of the basis states with probability determined by the amplitudes.
+      </p>
+
+      <h3>Circuit</h3>
+      <p>
+        A sequence of quantum gates applied to qubits, followed by measurements. Quantum algorithms are 
+        expressed as circuits. Unlike classical circuits, quantum circuits are reversible (until measurement).
+      </p>
+
+      <h3>Classical Bit</h3>
+      <p>
+        The fundamental unit of classical information. Always in a definite state: 0 or 1. 
+        Can be copied, read without disturbance, and exists in a fixed value.
+      </p>
+
+      <h2 id="a">A</h2>
+
+      <h3>Amplitude</h3>
+      <p>
+        A complex number in a quantum state's superposition. The <em>probability</em> of measuring an outcome 
+        is |amplitude|². Amplitudes can interfere constructively or destructively—key to quantum algorithms.
+      </p>
+
+      <h2 id="i">I</h2>
+
+      <h3>Interference</h3>
+      <p>
+        When quantum amplitudes combine, they can cancel (destructive interference) or reinforce (constructive interference). 
+        This is how quantum algorithms work: amplify correct answers, cancel wrong answers.
+      </p>
+
+      <h2 id="o">O</h2>
+
+      <h3>Oracle</h3>
+      <p>
+        A black-box quantum gate that encodes a problem's solution. Used in algorithms like Deutsch-Jozsa and Grover's 
+        to demonstrate quantum advantage without specifying implementation details.
+      </p>
+
+      <h2 id="d">D</h2>
+
+      <h3>Decoherence</h3>
+      <p>
+        Loss of quantum properties due to environmental interaction. Qubits lose superposition and behave classically. 
+        This is why quantum computers need extreme cooling and isolation.
+      </p>
+
+      <h2 id="h">H</h2>
+
+      <h3>Hadamard Gate (H)</h3>
+      <p>
+        The most important single-qubit gate. Creates equal superposition from |0⟩ or |1⟩. 
+        H|0⟩ = (|0⟩ + |1⟩)/√2. Essential for most quantum algorithms.
+      </p>
+
+      <h2 id="p">P</h2>
+
+      <h3>Phase</h3>
+      <p>
+        The complex angle of a quantum amplitude. Two states with same probabilities but different phases 
+        behave differently in interference. Phase is global (invisible to measurement) or relative (affects interference).
+      </p>
+
+      <div class="info-box" style="margin-top: 64px;">
+        <h4>📚 Missing a Term?</h4>
+        <p>
+          This glossary covers the essentials. As you progress through lessons, more advanced terms 
+          (like fidelity, tomography, variational circuits) will be introduced in context.
+        </p>
+      </div>
+
+      <div style="margin-top: 48px; text-align: center;">
+        <a href="index.html#lessons" class="btn btn-primary">Start Learning</a>
+        <a href="getting-started.html" class="btn btn-secondary" style="margin-left: 16px;">Getting Started Guide</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
