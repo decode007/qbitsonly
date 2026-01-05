@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Bloch sphere - the most important visualization tool in quantum computing. Learn why quantum gates are rotations, not logic." />
+  <title>Phase 1.1: The Bloch Sphere | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </div>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Phase 1</span>
+        <span class="lesson-tag">Lesson 03</span>
+        <span class="lesson-tag">15 min read</span>
+      </div>
+      <h1>The Bloch Sphere</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        The MOST important visualization tool in quantum computing
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+        <h4>🎯 Why This Lesson Matters</h4>
+        <p>
+          The Bloch sphere will be your mental model for EVERYTHING in quantum computing. 
+          Master this, and quantum gates will finally make intuitive sense.
+        </p>
+      </div>
+
+      <h2>Forget Equations (For Now)</h2>
+      <p>
+        Most quantum tutorials drown you in linear algebra immediately. We're doing the opposite.
+      </p>
+      <p>
+        The Bloch sphere gives you <strong>geometric intuition</strong> first. Math comes later, 
+        once you understand what's actually happening.
+      </p>
+
+      <h2>What Exactly is a Qubit?</h2>
+      <p>
+        A qubit is a <strong>controllable two-level quantum system</strong>.
+      </p>
+      
+      <h3>Physical Examples:</h3>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>Electron spin:</strong> ↑ (up) or ↓ (down)</li>
+        <li><strong>Photon polarization:</strong> ↕ (vertical) or ↔ (horizontal)</li>
+        <li><strong>Superconducting circuits:</strong> Current flowing clockwise or counterclockwise</li>
+        <li><strong>Ion trap:</strong> Ground state or excited state of an ion</li>
+      </ul>
+
+      <div style="overflow-x: auto; margin: 32px 0;">
+        <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: var(--bg-tertiary);">
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Property</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Classical Bit</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Qubit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">States</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">0 or 1</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">State vector |ψ⟩</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Storage</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Voltage, charge, etc.</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">The state IS the data</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Prepared, not stored</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">N/A</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">System put in specific state</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; color: var(--primary);">Reading</td>
+              <td style="padding: 16px; color: var(--text-secondary);">Read anytime, no change</td>
+              <td style="padding: 16px; color: var(--text-secondary);">Measurement destroys state</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The Bloch Sphere: Your Mental Model</h2>
+      
+      <div class="info-box">
+        <h4>💡 Key Idea</h4>
+        <p>
+          <strong>Every pure single-qubit state is a point on a sphere.</strong>
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 48px; border-radius: 12px; margin: 32px 0; text-align: center;">
+        <svg width="400" height="400" viewBox="0 0 400 400" style="max-width: 100%; height: auto;">
+          <!-- Sphere -->
+          <circle cx="200" cy="200" r="120" fill="none" stroke="var(--border)" stroke-width="2"/>
+          
+          <!-- Equator -->
+          <ellipse cx="200" cy="200" rx="120" ry="35" fill="none" stroke="var(--border)" stroke-width="1.5" opacity="0.4"/>
+          
+          <!-- Vertical circle (longitude) -->
+          <ellipse cx="200" cy="200" rx="35" ry="120" fill="none" stroke="var(--border)" stroke-width="1.5" opacity="0.4"/>
+          
+          <!-- Z axis (vertical) -->
+          <line x1="200" y1="320" x2="200" y2="80" stroke="var(--text-secondary)" stroke-width="3" marker-end="url(#arrowhead)"/>
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="var(--text-secondary)" />
+            </marker>
+          </defs>
+          
+          <!-- X axis (horizontal) -->
+          <line x1="80" y1="200" x2="320" y2="200" stroke="var(--text-secondary)" stroke-width="2.5" opacity="0.6"/>
+          
+          <!-- Y axis (into page, shown as diagonal) -->
+          <line x1="200" y1="200" x2="270" y2="255" stroke="var(--text-secondary)" stroke-width="2.5" opacity="0.6"/>
+          
+          <!-- State labels -->
+          <text x="200" y="65" fill="var(--primary)" font-size="24" font-weight="bold" text-anchor="middle">|0⟩</text>
+          <text x="200" y="350" fill="var(--primary)" font-size="24" font-weight="bold" text-anchor="middle">|1⟩</text>
+          
+          <!-- Equator labels -->
+          <text x="335" y="205" fill="var(--secondary)" font-size="18" text-anchor="start">|+⟩</text>
+          <text x="60" y="205" fill="var(--secondary)" font-size="18" text-anchor="end">|−⟩</text>
+          <text x="280" y="270" fill="var(--secondary)" font-size="18">|+i⟩</text>
+          
+          <!-- Sample state vector -->
+          <line x1="200" y1="200" x2="250" y2="130" stroke="var(--accent)" stroke-width="4"/>
+          <circle cx="250" cy="130" r="6" fill="var(--accent)"/>
+          <text x="265" y="125" fill="var(--accent)" font-size="16" font-weight="bold">|ψ⟩</text>
+          
+          <!-- Axis labels -->
+          <text x="205" y="70" fill="var(--text-muted)" font-size="14">Z</text>
+          <text x="330" y="200" fill="var(--text-muted)" font-size="14">X</text>
+          <text x="280" y="265" fill="var(--text-muted)" font-size="14">Y</text>
+        </svg>
+        <p style="color: var(--text-muted); margin-top: 24px; font-size: 0.875rem;">
+          The Bloch sphere: Every point on the surface represents a possible qubit state
+        </p>
+      </div>
+
+      <h3>Understanding the Sphere</h3>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 8px; margin: 24px 0;">
+        <p style="margin-bottom: 12px;"><strong style="color: var(--primary);">North Pole (top):</strong> State |0⟩</p>
+        <p style="margin-bottom: 12px;"><strong style="color: var(--primary);">South Pole (bottom):</strong> State |1⟩</p>
+        <p style="margin-bottom: 12px;"><strong style="color: var(--secondary);">Equator:</strong> Equal superposition states</p>
+        <ul style="margin-left: 24px; margin-top: 12px; color: var(--text-secondary);">
+          <li>Right side (X+): |+⟩ = (|0⟩ + |1⟩) / √2</li>
+          <li>Left side (X−): |−⟩ = (|0⟩ − |1⟩) / √2</li>
+          <li>Front (Y+): |+i⟩ = (|0⟩ + i|1⟩) / √2</li>
+          <li>Back (Y−): |−i⟩ = (|0⟩ − i|1⟩) / √2</li>
+        </ul>
+        <p style="margin-top: 16px;"><strong style="color: var(--accent);">Any other point:</strong> A superposition with specific probabilities and phase</p>
+      </div>
+
+      <h2>Superposition is NOT "Mixing" — It's Direction</h2>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent);">
+        <h4>❌ Wrong Mental Model</h4>
+        <p>"A qubit in superposition contains both 0 and 1 mixed together"</p>
+      </div>
+
+      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+        <h4>✅ Correct Mental Model</h4>
+        <p>"A qubit state is a <strong>direction</strong> on the Bloch sphere"</p>
+      </div>
+
+      <h3>Think of it Like This:</h3>
+      <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 12px;"><strong>Classical bit:</strong> A coin lying flat</p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>Heads = 0</li>
+          <li>Tails = 1</li>
+          <li>Always one or the other</li>
+        </ul>
+
+        <p style="margin-top: 24px; margin-bottom: 12px;"><strong style="color: var(--primary);">Qubit:</strong> An arrow pointing somewhere on a sphere</p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>Pointing straight up = |0⟩</li>
+          <li>Pointing straight down = |1⟩</li>
+          <li>Pointing sideways = superposition</li>
+          <li>Angle determines probabilities</li>
+        </ul>
+      </div>
+
+      <h2>Why This Changes Everything</h2>
+
+      <h3>Quantum Gates = Rotations on the Bloch Sphere</h3>
+
+      <p>
+        This is the key insight that makes quantum computing click:
+      </p>
+
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--primary);">
+        <p style="font-size: 1.25rem; font-weight: 600; margin-bottom: 16px; color: var(--primary);">
+          Quantum gates don't produce outputs — they rotate the state vector.
+        </p>
+        <p style="color: var(--text-secondary);">
+          There is no "if-else" logic here. Gates are geometric transformations.
+        </p>
+      </div>
+
+      <h3>Common Single-Qubit Gates</h3>
+
+      <div style="overflow-x: auto; margin: 32px 0;">
+        <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: var(--bg-tertiary);">
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Gate</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">What It Really Does</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Bloch Sphere Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary); font-family: var(--font-mono);">X</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Quantum NOT (flip)</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Rotate 180° around X axis</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary); font-family: var(--font-mono);">H</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Hadamard (create superposition)</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Rotate to equator (|0⟩ → |+⟩)</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary); font-family: var(--font-mono);">Z</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Phase flip</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">Rotate 180° around Z axis</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; color: var(--primary); font-family: var(--font-mono);">Y</td>
+              <td style="padding: 16px; color: var(--text-secondary);">Combined rotation</td>
+              <td style="padding: 16px; color: var(--text-secondary);">Rotate 180° around Y axis</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Measurement: Collapsing to Poles</h2>
+
+      <p>When you measure a qubit:</p>
+      <ol style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>The Bloch sphere state <strong>collapses</strong> to either north pole (|0⟩) or south pole (|1⟩)</li>
+        <li>Probability of getting |0⟩ = (projection onto north pole)²</li>
+        <li>After measurement, the quantum state is gone — you have a classical bit</li>
+      </ol>
+
+      <div style="background: var(--bg-tertiary); padding: 32px; border-radius: 12px; margin: 32px 0; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 16px;">🎯 → 💥 → ⬆️ or ⬇️</div>
+        <p style="color: var(--text-secondary);">
+          Point on sphere → Measurement → North or South pole<br>
+          <span style="color: var(--text-muted); font-size: 0.875rem;">(Quantum advantage is now lost)</span>
+        </p>
+      </div>
+
+      <h2>Why This Matters for QA Mindset 💡</h2>
+
+      <div class="info-box">
+        <h4>🎯 Key Insight for Testing</h4>
+        <p style="margin-bottom: 12px;">
+          <strong>Gates don't produce outputs — they transform states.</strong>
+        </p>
+        <p>So in quantum testing:</p>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>You don't test output values</li>
+          <li>You test <strong>state evolution</strong></li>
+          <li>This will matter for QA frameworks (coming in Phase 2)</li>
+        </ul>
+      </div>
+
+      <h2>Try It Yourself!</h2>
+
+      <p>
+        Go to the <a href="../quirk.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Quantum Playground</a> 
+        and try these experiments:
+      </p>
+
+      <ol style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li><strong>H gate:</strong> Apply to |0⟩ — watch it move to the equator (50/50 superposition)</li>
+        <li><strong>X gate:</strong> Apply to |0⟩ — watch it flip to |1⟩</li>
+        <li><strong>H-H:</strong> Apply H twice — returns to |0⟩ (rotation cancels out)</li>
+        <li><strong>X-H-X-H:</strong> Complex rotations — see where it ends up</li>
+      </ol>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>The Bloch sphere is your go-to mental model for qubits</li>
+          <li>Every qubit state = a point on the sphere</li>
+          <li>Superposition is a <strong>direction</strong>, not "both values"</li>
+          <li>Quantum gates = <strong>rotations</strong> on the sphere</li>
+          <li>Measurement collapses state to north or south pole</li>
+          <li>There is no "if-else" — only geometry</li>
+        </ul>
+      </div>
+
+      <h2>Next: Quantum Gates as Rotations</h2>
+      <p>
+        Now that you understand the Bloch sphere, let's dive deeper into how specific gates work 
+        and why thinking geometrically is the key to quantum intuition.
+      </p>
+
+      <div class="lesson-nav">
+        <a href="phase0-3.html" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Previous: Measurement Creates Reality</span>
+        </a>
+        <a href="phase1-2.html" class="lesson-nav-btn">
+          <span>Next: Quantum Gates = Rotations</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+
