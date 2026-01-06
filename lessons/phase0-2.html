@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Why a qubit is NOT just a faster bit. Understanding what quantum computers are actually good at." />
+  <title>Phase 0.2: Why a Qubit ≠ Faster Bit | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../index.html" class="logo" style="text-decoration: none; color: inherit;">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Phase 0</span>
+        <span class="lesson-tag">Lesson 01</span>
+        <span class="lesson-tag">Mental Model Reset</span>
+      </div>
+      <h1>Why a Qubit ≠ Faster Bit</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        The fundamental difference that changes everything (and why quantum computers suck at arithmetic)
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent);">
+        <h4>🚨 Common Misconception</h4>
+        <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 12px;">
+          "Quantum computers are just really fast classical computers!"
+        </p>
+        <p>
+          <strong>WRONG.</strong> This is like saying a submarine is just a really fast car. 
+          They solve fundamentally different types of problems.
+        </p>
+      </div>
+
+      <h2>The Big Confusion</h2>
+      <p>
+        When people hear "quantum computer," they usually imagine:
+      </p>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>"A computer that can do calculations really, really fast"</li>
+        <li>"Like my laptop, but 1000x faster"</li>
+        <li>"It can crack my password instantly"</li>
+        <li>"It can render movies in seconds"</li>
+      </ul>
+
+      <p style="font-size: 1.25rem; color: var(--accent); font-weight: 600; margin: 24px 0;">
+        ❌ All of these are WRONG.
+      </p>
+
+      <h2>The Truth: Quantum Computers Are Terrible at Normal Computing</h2>
+
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--accent);">
+        <h3 style="margin-top: 0; color: var(--accent);">Example: Adding Two Numbers</h3>
+        <p style="margin-bottom: 16px;"><strong>Task:</strong> Calculate 1,234 + 5,678</p>
+        
+        <p style="margin-bottom: 8px;"><strong style="color: var(--primary);">Your laptop:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Time: ~0.0000001 seconds</li>
+          <li>Answer: 6,912</li>
+          <li>Correct: ✅ Always</li>
+        </ul>
+
+        <p style="margin-bottom: 8px;"><strong style="color: var(--accent);">IBM's quantum computer:</strong></p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>Time: ~5 seconds (plus queue wait)</li>
+          <li>Answer: 6,912... maybe 6,911... or 6,913... 🤷</li>
+          <li>Correct: ❌ Only about 95% of the time (due to noise)</li>
+        </ul>
+
+        <p style="margin-top: 24px; font-size: 1.125rem; color: var(--primary);">
+          <strong>For simple arithmetic, your laptop wins. Every time.</strong>
+        </p>
+      </div>
+
+      <div class="info-box">
+        <h4>✅ You're Correct!</h4>
+        <p>
+          Yes, classical computers are MUCH better at simple, deterministic tasks like:
+        </p>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>Adding numbers</li>
+          <li>Sorting lists</li>
+          <li>Playing videos</li>
+          <li>Running spreadsheets</li>
+          <li>Most everyday computing</li>
+        </ul>
+        <p style="margin-top: 12px;">
+          <strong>Your understanding is correct.</strong> Quantum computers are NOT general-purpose machines.
+        </p>
+      </div>
+
+      <h2>So... What ARE Quantum Computers Good For?</h2>
+
+      <p>
+        Quantum computers excel at a very specific type of problem:
+      </p>
+
+      <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="font-size: 1.125rem; color: var(--primary); font-weight: 600; margin-bottom: 12px;">
+          Problems where you need to explore MANY possibilities simultaneously.
+        </p>
+      </div>
+
+      <h3>Real-World Example 1: Finding Your Keys 🔑</h3>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 16px;"><strong>Problem:</strong> You lost your keys somewhere in your house (100 rooms).</p>
+
+        <p style="margin-bottom: 8px;"><strong style="color: var(--text-secondary);">Classical approach:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Check room 1... not here</li>
+          <li>Check room 2... not here</li>
+          <li>Check room 3... not here</li>
+          <li>...</li>
+          <li>Average: Check 50 rooms before you find them</li>
+        </ul>
+
+        <p style="margin-bottom: 8px;"><strong style="color: var(--primary);">Quantum approach (conceptually):</strong></p>
+        <ul style="margin-left: 24px; color: var(--primary);">
+          <li>Create a superposition of "checking all 100 rooms at once"</li>
+          <li>Use quantum interference to amplify the correct answer</li>
+          <li>Average: Check only ~10 rooms (Grover's algorithm)</li>
+        </ul>
+
+        <p style="margin-top: 16px; color: var(--text-muted); font-size: 0.875rem;">
+          Note: This is a conceptual analogy. Real quantum search is more complex, but the principle holds.
+        </p>
+      </div>
+
+      <h3>Real-World Example 2: Password Cracking 🔐</h3>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 16px;"><strong>Problem:</strong> Try all possible 8-character passwords (218 trillion combinations)</p>
+
+        <p style="margin-bottom: 8px;"><strong style="color: var(--text-secondary);">Classical computer:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Try: "aaaaaaaa" ❌</li>
+          <li>Try: "aaaaaaab" ❌</li>
+          <li>Try: "aaaaaaac" ❌</li>
+          <li>...</li>
+          <li>Time: Years (on average)</li>
+        </ul>
+
+        <p style="margin-bottom: 8px;"><strong style="color: var(--primary);">Quantum computer (with Grover's algorithm):</strong></p>
+        <ul style="margin-left: 24px; color: var(--primary);">
+          <li>Test all passwords "simultaneously" via superposition</li>
+          <li>Use interference to find the correct one</li>
+          <li>Time: Minutes to hours (quadratic speedup)</li>
+        </ul>
+      </div>
+
+      <h2>Why Quantum = Different, Not Faster</h2>
+
+      <div style="overflow-x: auto; margin: 32px 0;">
+        <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: var(--bg-tertiary);">
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Task Type</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Classical Computer</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Quantum Computer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Simple Arithmetic</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">✅ Excellent</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">❌ Terrible</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Sorting Data</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">✅ Excellent</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">❌ Worse</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Playing Videos</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">✅ Excellent</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">❌ Impossible</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Searching Unsorted Database</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">⚠️ Slow (N steps)</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">✅ Faster (√N steps)</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Factoring Large Numbers</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">❌ Essentially impossible</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">✅ Feasible (Shor's algorithm)</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">Simulating Molecules</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">❌ Exponentially hard</td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">✅ Natural fit</td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; color: var(--primary);">Optimization Problems</td>
+              <td style="padding: 16px; color: var(--text-secondary);">⚠️ Slow for complex cases</td>
+              <td style="padding: 16px; color: var(--text-secondary);">✅ Potentially much faster</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>What Makes Quantum Computing "Faster"?</h2>
+
+      <p>
+        It's not that quantum computers execute instructions faster. It's that they can:
+      </p>
+
+      <h3>1. Explore Multiple Paths Simultaneously</h3>
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p><strong>Think of a maze:</strong></p>
+        <ul style="margin-left: 24px; margin-top: 12px; color: var(--text-secondary);">
+          <li><strong>Classical:</strong> Try one path at a time. If wrong, backtrack and try another.</li>
+          <li><strong>Quantum:</strong> Superposition lets you explore ALL paths at once, then collapse to the correct answer.</li>
+        </ul>
+      </div>
+
+      <h3>2. Use Interference to Amplify Correct Answers</h3>
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p>Quantum algorithms are designed so that:</p>
+        <ul style="margin-left: 24px; margin-top: 12px; color: var(--text-secondary);">
+          <li><strong>Wrong answers:</strong> Cancel out (destructive interference)</li>
+          <li><strong>Right answers:</strong> Reinforce (constructive interference)</li>
+        </ul>
+        <p style="margin-top: 12px;">This is why quantum computers can find needles in haystacks faster than classical ones.</p>
+      </div>
+
+      <h3>3. Exploit Entanglement for Correlations</h3>
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p>Entangled qubits can represent correlations that would require exponentially more classical bits.</p>
+        <p style="margin-top: 12px;"><strong>Example:</strong></p>
+        <ul style="margin-left: 24px; margin-top: 8px; color: var(--text-secondary);">
+          <li>300 entangled qubits can represent more states than there are atoms in the universe</li>
+          <li>Classical computer would need 2<sup>300</sup> bits to track the same information</li>
+        </ul>
+      </div>
+
+      <h2>The Layman's Analogy</h2>
+
+      <div style="background: var(--bg-tertiary); padding: 32px; border-radius: 12px; margin: 32px 0;">
+        <h3 style="margin-top: 0;">Classical Computer = Single Worker</h3>
+        <p style="color: var(--text-secondary);">
+          Imagine you need to find a specific book in a library with 1,000,000 books.
+          A single worker checks one book at a time.
+        </p>
+
+        <h3 style="margin-top: 32px;">Parallel Classical Computer = Many Workers</h3>
+        <p style="color: var(--text-secondary);">
+          You hire 1,000 workers. Each checks 1,000 books. Much faster, but you need 1,000 workers 
+          (expensive and physical).
+        </p>
+
+        <h3 style="margin-top: 32px; color: var(--primary);">Quantum Computer = Supernatural Detective</h3>
+        <p style="color: var(--text-secondary);">
+          Instead of physically checking books, the quantum detective uses a "magic spell" (superposition) 
+          that lets them simultaneously sense all books, then uses interference to narrow down to the right one 
+          much faster than checking linearly—but the spell ONLY works for specific types of searches.
+        </p>
+        <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.875rem;">
+          If you ask them to just "add 2+2," they're confused and slow. They're built for a different kind of task.
+        </p>
+      </div>
+
+      <h2>Why NOT General Purpose?</h2>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent);">
+        <h4>🎯 The Limitations</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li><strong>Measurement destroys superposition:</strong> You can only "peek" once</li>
+          <li><strong>Noise and errors:</strong> Current quantum computers are very noisy</li>
+          <li><strong>Limited qubit count:</strong> Today's quantum computers have ~100-1000 qubits</li>
+          <li><strong>Cooling requirements:</strong> Must operate at near absolute zero</li>
+          <li><strong>Algorithm design:</strong> Must carefully design interference patterns</li>
+        </ul>
+      </div>
+
+      <h2>The Practical Reality Today</h2>
+
+      <p>
+        In 2025, here's what quantum computers can and can't do:
+      </p>
+
+      <h3 style="color: var(--primary);">✅ What They CAN Do:</h3>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Simulate small quantum systems (chemistry, materials)</li>
+        <li>Demonstrate quantum advantage on specific toy problems</li>
+        <li>Provide research insights into quantum behavior</li>
+        <li>Run small instances of quantum algorithms</li>
+      </ul>
+
+      <h3 style="color: var(--accent);">❌ What They CAN'T Do (Yet):</h3>
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Replace your laptop</li>
+        <li>Run Excel or Photoshop</li>
+        <li>Browse the web</li>
+        <li>Break all encryption (need more qubits + error correction)</li>
+        <li>Solve all problems faster</li>
+      </ul>
+
+      <h2>The Future: Hybrid Computing</h2>
+
+      <p>
+        The real future is <strong>not</strong> replacing classical computers. It's:
+      </p>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 16px; color: var(--primary);">
+          Classical + Quantum = Hybrid Systems
+        </p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>Your laptop handles normal computing (UI, data processing, etc.)</li>
+          <li>When you hit a quantum-suitable problem (optimization, simulation, search), send it to a quantum processor</li>
+          <li>Quantum processor returns the answer</li>
+          <li>Laptop continues with classical tasks</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>A qubit is NOT a faster bit—it's a fundamentally different computational unit</li>
+          <li>Quantum computers are TERRIBLE at simple arithmetic and deterministic tasks</li>
+          <li>They excel at exploring MANY possibilities simultaneously</li>
+          <li>Quantum advantage comes from superposition + interference, not raw speed</li>
+          <li>Most everyday computing will ALWAYS be classical</li>
+          <li>The future is hybrid: classical + quantum working together</li>
+        </ul>
+      </div>
+
+      <h2>The Bottom Line</h2>
+
+      <div style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(168, 85, 247, 0.1)); border: 2px solid var(--primary); padding: 32px; border-radius: 12px; margin: 32px 0;">
+        <p style="font-size: 1.25rem; font-weight: 600; margin-bottom: 16px;">
+          Quantum computers don't make bits faster.
+        </p>
+        <p style="font-size: 1.125rem; color: var(--text-secondary);">
+          They use superposition and interference to solve specific types of problems in ways 
+          that classical computers fundamentally cannot match—but only for those specific problems.
+        </p>
+        <p style="font-size: 1rem; color: var(--text-muted); margin-top: 16px;">
+          For everything else? Your laptop wins.
+        </p>
+      </div>
+
+      <div class="lesson-nav">
+        <a href="phase0-1.html" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Previous: Destroy Your Assumptions</span>
+        </a>
+        <a href="phase0-3.html" class="lesson-nav-btn">
+          <span>Next: Measurement Creates Reality</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
+
