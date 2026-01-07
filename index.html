@@ -331,10 +331,32 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+          <div style="display: flex; align-items: center; gap: 24px; color: var(--text-muted); font-size: 0.875rem;">
+            <span>Built with HTML/CSS/JS</span>
+            <span>•</span>
+            <span>Hosted on GitHub Pages</span>
+            <span>•</span>
+            <span id="view-count" style="color: var(--primary);">Loading views...</span>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
+
+  <!-- Simple Page View Counter -->
+  <script>
+    // Simple view counter using API (free, privacy-friendly)
+    fetch('https://api.countapi.xyz/hit/qbitsonly.com/visits')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('view-count').textContent = `${data.value.toLocaleString()} views`;
+      })
+      .catch(() => {
+        document.getElementById('view-count').textContent = 'Views counter unavailable';
+      });
+  </script>
 
   <script src="js/main.js"></script>
 </body>
