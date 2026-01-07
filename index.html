@@ -338,25 +338,12 @@
             <span>•</span>
             <span>Hosted on GitHub Pages</span>
             <span>•</span>
-            <span id="view-count" style="color: var(--primary);">Loading views...</span>
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fqbitsonly.com&count_bg=%2300D4FF&title_bg=%231A1F3A&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false" alt="View count" style="vertical-align: middle;"/>
           </div>
         </div>
       </div>
     </div>
   </footer>
-
-  <!-- Simple Page View Counter -->
-  <script>
-    // Simple view counter using API (free, privacy-friendly)
-    fetch('https://api.countapi.xyz/hit/qbitsonly.com/visits')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('view-count').textContent = `${data.value.toLocaleString()} views`;
-      })
-      .catch(() => {
-        document.getElementById('view-count').textContent = 'Views counter unavailable';
-      });
-  </script>
 
   <script src="js/main.js"></script>
 </body>
