@@ -342,17 +342,35 @@
       <div class="footer-bottom">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
           <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
-          <div style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.875rem;">
+          <div style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.875rem; flex-wrap: wrap;">
             <span>Built with HTML/CSS/JS</span>
             <span>•</span>
             <span>Hosted on GitHub Pages</span>
             <span>•</span>
-            <span style="color: var(--primary);">Analytics Enabled</span>
+            <span id="visitor-count" style="color: var(--primary); font-weight: 600;">👁️ Loading views...</span>
           </div>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Visitor Counter -->
+  <script>
+    // Simple visitor counter using goatcounter (free, privacy-friendly)
+    fetch('https://qbitsonly.goatcounter.com/counter/qbitsonly.json')
+      .then(r => r.json())
+      .then(data => {
+        const count = data.count || 0;
+        document.getElementById('visitor-count').textContent = `👁️ ${count.toLocaleString()} views`;
+      })
+      .catch(() => {
+        // Fallback: Use localStorage to count locally
+        let views = localStorage.getItem('site-views') || 0;
+        views = parseInt(views) + 1;
+        localStorage.setItem('site-views', views);
+        document.getElementById('visitor-count').textContent = `👁️ ${views} views`;
+      });
+  </script>
 
   <script src="js/main.js"></script>
 </body>
