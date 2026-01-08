@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Understanding multi-qubit gates and entanglement - practical guide for building quantum algorithms." />
+  <title>Phase 1.3: Entanglement Without Mysticism | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../index.html" class="logo" style="text-decoration: none; color: inherit;">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Phase 1</span>
+        <span class="lesson-tag">Lesson 05</span>
+        <span class="lesson-tag">15 min read</span>
+      </div>
+      <h1>Entanglement Without Mysticism</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        Practical guide to multi-qubit gates and why entanglement matters for algorithms
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+        <h4>🎯 Goal: Make This Usable</h4>
+        <p>
+          Forget the philosophy. We're learning this so you can <strong>build quantum algorithms</strong>. 
+          This lesson focuses on: What entanglement is, why you need it, and how to use it.
+        </p>
+      </div>
+
+      <h2>The Problem: Single Qubits Aren't Enough</h2>
+
+      <p>
+        With single-qubit gates (X, H, Z), each qubit operates independently:
+      </p>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 12px;"><strong>2 independent qubits:</strong></p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>Qubit 0: Can be |0⟩, |1⟩, or superposition</li>
+          <li>Qubit 1: Can be |0⟩, |1⟩, or superposition</li>
+          <li>They don't affect each other</li>
+        </ul>
+        <p style="margin-top: 16px; color: var(--accent); font-weight: 600;">
+          Problem: No way to create correlations between qubits!
+        </p>
+      </div>
+
+      <p style="font-size: 1.125rem; color: var(--primary); font-weight: 600; margin: 24px 0;">
+        Multi-qubit gates let qubits talk to each other. That's where the real power comes from.
+      </p>
+
+      <h2>The CNOT Gate: Your Most Important Tool</h2>
+
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--primary);">
+        <h3 style="margin-top: 0; color: var(--primary);">CNOT (Controlled-NOT)</h3>
+        
+        <p style="margin-bottom: 16px;"><strong>What it does:</strong></p>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+          "If control qubit is |1⟩, flip the target qubit. Otherwise, do nothing."
+        </p>
+
+        <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 8px; margin: 24px 0;">
+          <p style="margin-bottom: 12px;"><strong>Truth Table (Classical View):</strong></p>
+          <pre style="background: var(--bg-card); padding: 16px; border-radius: 8px;"><code>Control | Target | After CNOT
+--------|--------|------------
+   0    |   0    |    0, 0
+   0    |   1    |    0, 1  (nothing happens)
+   1    |   0    |    1, 1  (target flipped!)
+   1    |   1    |    1, 0  (target flipped!)</code></pre>
+        </div>
+
+        <p style="margin-bottom: 12px;"><strong>In Qiskit:</strong></p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>qc.cx(0, 1)  # CNOT with control=qubit 0, target=qubit 1</code></pre>
+
+        <p style="margin-top: 16px; color: var(--primary); font-weight: 600;">
+          🎮 Try it: <a href="../quirk.html" style="color: var(--primary);">Playground</a> → Add CNOT between 2 qubits
+        </p>
+      </div>
+
+      <h2>Creating Entanglement (The Useful Part)</h2>
+
+      <p>Here's the circuit that creates the most famous entangled state:</p>
+
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--secondary);">
+        <h3 style="margin-top: 0; color: var(--secondary);">Bell State Circuit</h3>
+        
+        <pre style="background: var(--bg-tertiary); padding: 24px; border-radius: 8px; margin: 24px 0;"><code>Qubit 0:  |0⟩ ── H ──●──
+                     │
+Qubit 1:  |0⟩ ───────X──
+
+Result: (|00⟩ + |11⟩) / √2</code></pre>
+
+        <p style="margin-bottom: 16px;"><strong>Step by step:</strong></p>
+        <ol style="margin-left: 24px; color: var(--text-secondary); line-height: 1.8;">
+          <li><strong>Start:</strong> |00⟩ (both qubits at |0⟩)</li>
+          <li><strong>Apply H to qubit 0:</strong> (|0⟩ + |1⟩)/√2 ⊗ |0⟩ = (|00⟩ + |10⟩)/√2</li>
+          <li><strong>Apply CNOT:</strong> (|00⟩ + |11⟩)/√2 ← Entangled!</li>
+        </ol>
+
+        <p style="margin-top: 24px;"><strong>In Qiskit:</strong></p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(2)  # 2 qubits
+qc.h(0)                 # Hadamard on qubit 0
+qc.cx(0, 1)             # CNOT: 0 controls, 1 is target
+
+# Now qubits are entangled!
+qc.measure_all()
+# Run this: you'll ALWAYS get 00 or 11, never 01 or 10!</code></pre>
+      </div>
+
+      <h2>What Does "Entangled" Actually Mean?</h2>
+
+      <div class="info-box">
+        <h4>🎯 Practical Definition (No Mysticism)</h4>
+        <p style="margin-bottom: 12px;">
+          <strong>Entanglement means:</strong> You can describe the <em>pair</em> precisely, 
+          but neither qubit individually has a definite state.
+        </p>
+        <p>
+          <strong>In the Bell state:</strong>
+        </p>
+        <ul style="margin-left: 20px; margin-top: 8px;">
+          <li>The pair is definitely in state (|00⟩ + |11⟩)/√2</li>
+          <li>Qubit 0 alone? Not |0⟩ or |1⟩ — undefined</li>
+          <li>Qubit 1 alone? Not |0⟩ or |1⟩ — undefined</li>
+          <li>But they're 100% correlated!</li>
+        </ul>
+      </div>
+
+      <h3>The Useful Consequence:</h3>
+
+      <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 16px;"><strong>Measure the Bell state:</strong></p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>50% chance: Both measure |0⟩</li>
+          <li>50% chance: Both measure |1⟩</li>
+          <li><strong>0% chance: One is |0⟩ and other is |1⟩</strong></li>
+        </ul>
+        <p style="margin-top: 16px; color: var(--primary); font-weight: 600;">
+          The qubits are perfectly correlated — that's what makes them useful!
+        </p>
+      </div>
+
+      <h2>Why You Need Entanglement (The Practical Reason)</h2>
+
+      <p>Without entanglement, quantum computers are just weird classical computers. Here's why:</p>
+
+      <div style="overflow-x: auto; margin: 32px 0;">
+        <table style="width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 8px; overflow: hidden;">
+          <thead>
+            <tr style="background: var(--bg-tertiary);">
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">Without Entanglement</th>
+              <th style="padding: 16px; text-align: left; border-bottom: 1px solid var(--border);">With Entanglement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary);">
+                Each qubit acts independently<br>
+                Can be simulated efficiently on classical computer
+              </td>
+              <td style="padding: 16px; border-bottom: 1px solid var(--border); color: var(--primary);">
+                Qubits are correlated<br>
+                Exponentially hard to simulate classically
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 16px; color: var(--text-secondary);">
+                N qubits = N separate superpositions<br>
+                Grows linearly
+              </td>
+              <td style="padding: 16px; color: var(--primary);">
+                N entangled qubits = 2^N correlated states<br>
+                Grows exponentially
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="font-size: 1.125rem; color: var(--accent); font-weight: 600; margin: 24px 0;">
+        Entanglement is what makes quantum computers actually "quantum" — it's where the exponential power comes from.
+      </p>
+
+      <h2>Common Multi-Qubit Gates</h2>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">CNOT (Controlled-NOT)</h4>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">Most common. Flip target if control is |1⟩.</p>
+        <p><strong>Used in:</strong> Creating entanglement, error correction, most algorithms</p>
+        <pre style="background: var(--bg-tertiary); padding: 12px; border-radius: 4px; margin-top: 8px;"><code>qc.cx(control, target)</code></pre>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">SWAP</h4>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">Swap the states of two qubits.</p>
+        <p><strong>Used in:</strong> Routing qubits, quantum communication</p>
+        <pre style="background: var(--bg-tertiary); padding: 12px; border-radius: 4px; margin-top: 8px;"><code>qc.swap(0, 1)  # Swap qubits 0 and 1</code></pre>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Toffoli (CCNOT / Controlled-Controlled-NOT)</h4>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">Flip target if BOTH controls are |1⟩.</p>
+        <p><strong>Used in:</strong> Reversible computing, Shor's algorithm</p>
+        <pre style="background: var(--bg-tertiary); padding: 12px; border-radius: 4px; margin-top: 8px;"><code>qc.ccx(control1, control2, target)</code></pre>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">CZ (Controlled-Z)</h4>
+        <p style="color: var(--text-secondary); margin-bottom: 12px;">Apply Z gate to target if control is |1⟩.</p>
+        <p><strong>Used in:</strong> Phase operations, some optimization algorithms</p>
+        <pre style="background: var(--bg-tertiary); padding: 12px; border-radius: 4px; margin-top: 8px;"><code>qc.cz(control, target)</code></pre>
+      </div>
+
+      <h2>Real Algorithm Example: Grover's Entanglement</h2>
+
+      <p>Here's how Grover's search algorithm uses entanglement (simplified):</p>
+
+      <pre style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;"><code>from qiskit import QuantumCircuit
+
+# 2-qubit search (find state |11⟩)
+qc = QuantumCircuit(2, 2)
+
+# Step 1: Create equal superposition of ALL states
+qc.h(0)
+qc.h(1)
+# Now: (|00⟩ + |01⟩ + |10⟩ + |11⟩) / 2
+
+# Step 2: Mark the target state (|11⟩) using entanglement
+qc.cz(0, 1)  # Controlled-Z: adds phase to |11⟩
+# Now: (|00⟩ + |01⟩ + |10⟩ - |11⟩) / 2  ← Notice the minus!
+
+# Step 3: Amplify the marked state (diffusion)
+qc.h(0)
+qc.h(1)
+qc.z(0)
+qc.z(1)
+qc.cz(0, 1)
+qc.h(0)
+qc.h(1)
+
+# Measure
+qc.measure([0,1], [0,1])
+
+# Result: High probability of measuring |11⟩!</code></pre>
+
+      <p style="margin-top: 24px; color: var(--text-secondary);">
+        The entanglement (via CZ gate) creates correlations that let us "mark" and amplify the correct answer.
+      </p>
+
+      <h2>How to Think About Entanglement (Practical Mindset)</h2>
+
+      <div class="info-box">
+        <h4>💡 Engineer's Mental Model</h4>
+        <p style="margin-bottom: 12px;"><strong>Don't think:</strong> "Spooky action at a distance" or "qubits communicate faster than light"</p>
+        <p style="margin-bottom: 12px;"><strong>Do think:</strong> "Entanglement creates correlations that let me encode exponentially large state spaces in linear hardware"</p>
+        <p style="margin-top: 12px;">
+          <strong>Practical use:</strong> Multi-qubit gates let you build algorithms that explore many solutions simultaneously.
+        </p>
+      </div>
+
+      <h2>Building Blocks for Algorithms</h2>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Pattern 1: Create Superposition Across Multiple Qubits</h4>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code># N qubits → 2^N states in superposition
+for i in range(n):
+    qc.h(i)</code></pre>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+          <strong>Used in:</strong> Start of Grover, Shor, Deutsch-Jozsa
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Pattern 2: Entangle to Create Correlations</h4>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code># Bell state (basic entanglement)
+qc.h(0)
+qc.cx(0, 1)</code></pre>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+          <strong>Used in:</strong> Teleportation, superdense coding, error correction
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Pattern 3: Controlled Operations for Logic</h4>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code># Apply operation only when condition met
+qc.cx(condition_qubit, result_qubit)
+# or
+qc.ccx(cond1, cond2, result)  # AND logic</code></pre>
+        <p style="margin-top: 12px; color: var(--text-secondary);">
+          <strong>Used in:</strong> Oracles, arithmetic, phase estimation
+        </p>
+      </div>
+
+      <h2>Practice: Build These Circuits</h2>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">🎯 Exercise 1: Bell State</h4>
+        <p style="margin-bottom: 12px;">Create (|00⟩ + |11⟩)/√2 and verify the correlation:</p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure_all()
+
+# Run 1000 times
+# Expected: ~500 times 00, ~500 times 11, 0 times 01 or 10</code></pre>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">🎯 Exercise 2: 3-Qubit Entanglement (GHZ State)</h4>
+        <p style="margin-bottom: 12px;">Entangle 3 qubits:</p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>qc = QuantumCircuit(3, 3)
+qc.h(0)
+qc.cx(0, 1)
+qc.cx(0, 2)  # or qc.cx(1, 2)
+
+# Result: (|000⟩ + |111⟩)/√2
+# All three qubits correlated!</code></pre>
+      </div>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">🎯 Exercise 3: SWAP Without SWAP Gate</h4>
+        <p style="margin-bottom: 12px;">Build SWAP using 3 CNOTs:</p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>qc.cx(0, 1)
+qc.cx(1, 0)
+qc.cx(0, 1)
+# Swaps the states of qubits 0 and 1!</code></pre>
+      </div>
+
+      <h2>When Entanglement Matters</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h4 style="color: var(--primary);">✅ Need Entanglement</h4>
+          <ul style="margin-top: 12px; font-size: 0.9rem;">
+            <li>Grover's search</li>
+            <li>Shor's factoring</li>
+            <li>Quantum error correction</li>
+            <li>Variational algorithms (VQE, QAOA)</li>
+            <li>Quantum teleportation</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h4 style="color: var(--accent);">❌ Don't Need Entanglement</h4>
+          <ul style="margin-top: 12px; font-size: 0.9rem;">
+            <li>Single-qubit operations only</li>
+            <li>Classical simulations</li>
+            <li>Some simple quantum walks</li>
+          </ul>
+          <p style="margin-top: 12px; font-size: 0.85rem; color: var(--text-muted);">
+            (Without entanglement, no quantum advantage)
+          </p>
+        </div>
+      </div>
+
+      <h2>Common Mistakes to Avoid</h2>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent);">
+        <h4>❌ Mistake: "Entanglement means faster communication"</h4>
+        <p><strong style="color: var(--primary);">Reality:</strong> You can't send information using entanglement. Measuring one qubit doesn't "tell" the other anything. The correlations only appear when you compare measurements.</p>
+      </div>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent); margin-top: 16px;">
+        <h4>❌ Mistake: "More entanglement = better algorithm"</h4>
+        <p><strong style="color: var(--primary);">Reality:</strong> You need the <em>right</em> entanglement for your problem. Random entanglement doesn't help. Algorithms carefully construct specific correlation patterns.</p>
+      </div>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li><strong>Multi-qubit gates</strong> create correlations between qubits</li>
+          <li><strong>CNOT</strong> is your most important tool for entanglement</li>
+          <li><strong>Entanglement</strong> = joint state defined, individual states undefined</li>
+          <li>Creates exponential state spaces with linear hardware</li>
+          <li>Essential for: Grover, Shor, error correction, VQE</li>
+          <li>Build it: H + CNOT = Bell state (basic entanglement)</li>
+          <li>Not mystical—just correlated quantum states you can engineer</li>
+        </ul>
+      </div>
+
+      <h2>Next: Building Real Algorithms</h2>
+      <p>
+        Now you have all the tools: superposition (H gate), single-qubit operations (X, Z), and entanglement (CNOT). 
+        In Phase 2, we'll combine these to build actual quantum algorithms like Deutsch-Jozsa and Grover's search!
+      </p>
+
+      <div class="lesson-nav">
+        <a href="phase1-2.html" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Previous: Quantum Gates = Rotations</span>
+        </a>
+        <a href="../index.html#lessons" class="lesson-nav-btn">
+          <span>Explore Phase 2</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+          <div style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.875rem;">
+            <span>Static Site • No Backend</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
