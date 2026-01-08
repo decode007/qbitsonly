@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Complete guide to quantum gates - understand them as rotations on the Bloch sphere with real-world applications." />
+  <title>Phase 1.2: Quantum Gates = Rotations | QbitsOnly</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="../index.html" class="logo" style="text-decoration: none; color: inherit;">
+        <div class="qubit-icon"></div>
+        <h1>QbitsOnly</h1>
+      </a>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../quirk.html">Playground</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="lesson-header">
+    <div class="container">
+      <div class="lesson-meta">
+        <span class="lesson-tag">Phase 1</span>
+        <span class="lesson-tag">Lesson 04</span>
+        <span class="lesson-tag">20 min read</span>
+      </div>
+      <h1>Quantum Gates = Rotations</h1>
+      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
+        Complete guide from basics to practical usage
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <div class="lesson-content">
+      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+        <h4>🎯 What You'll Learn</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>What quantum gates are (from absolute basics)</li>
+          <li>Why they're rotations, not logic gates</li>
+          <li>Every important single-qubit gate explained</li>
+          <li>How to use them in real circuits</li>
+          <li>Real-world applications</li>
+        </ul>
+      </div>
+
+      <h2>What is a Quantum Gate? (Absolute Basics)</h2>
+
+      <h3>Classical Gates (What You Might Know)</h3>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 16px;"><strong>In classical computing:</strong></p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li><strong>AND gate:</strong> Two inputs → One output (1 if both are 1)</li>
+          <li><strong>OR gate:</strong> Two inputs → One output (1 if either is 1)</li>
+          <li><strong>NOT gate:</strong> One input → Flip it (0→1, 1→0)</li>
+        </ul>
+        <p style="margin-top: 16px; color: var(--text-muted);">These are <strong>logic operations</strong> on bits.</p>
+      </div>
+
+      <h3 style="color: var(--primary);">Quantum Gates (Completely Different)</h3>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0; border-left: 4px solid var(--primary);">
+        <p style="font-size: 1.125rem; font-weight: 600; margin-bottom: 16px;">
+          A quantum gate is a <strong>rotation</strong> applied to a qubit's state on the Bloch sphere.
+        </p>
+        <p style="color: var(--text-secondary);">
+          It doesn't "compute" like classical logic. It <strong>transforms the quantum state</strong> geometrically.
+        </p>
+      </div>
+
+      <h2>The Key Insight: Gates Are Rotations</h2>
+
+      <p>Remember the Bloch sphere from the last lesson? Every qubit state is a point on a sphere:</p>
+
+      <ul style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>North pole = |0⟩</li>
+        <li>South pole = |1⟩</li>
+        <li>Equator = Superposition states</li>
+      </ul>
+
+      <p style="font-size: 1.125rem; color: var(--primary); font-weight: 600; margin: 24px 0;">
+        A quantum gate ROTATES this point around the sphere.
+      </p>
+
+      <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Think of it Like This:</h4>
+        <p><strong>Classical gate:</strong> "If input is 0, output 1. If input is 1, output 0."</p>
+        <p style="margin-top: 12px;"><strong style="color: var(--primary);">Quantum gate:</strong> "Rotate the state vector 180° around the X-axis."</p>
+        <p style="margin-top: 16px; color: var(--text-muted); font-style: italic;">
+          Same end result if measuring |0⟩ or |1⟩, but the quantum gate preserves superposition!
+        </p>
+      </div>
+
+      <h2>The Essential Single-Qubit Gates</h2>
+
+      <p>Let's learn each gate from scratch:</p>
+
+      <!-- X Gate -->
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--primary);">
+        <h3 style="margin-top: 0; color: var(--primary);">1. X Gate (Quantum NOT / Bit Flip)</h3>
+        
+        <p style="margin-bottom: 16px;"><strong>What it does:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Flips |0⟩ → |1⟩</li>
+          <li>Flips |1⟩ → |0⟩</li>
+          <li>Like classical NOT, but works on superposition too!</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>As a Rotation:</strong></p>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">180° rotation around the <strong>X-axis</strong> of the Bloch sphere</p>
+
+        <p style="margin-bottom: 12px;"><strong>Real-World Usage:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Initialize qubits to |1⟩ (apply X to |0⟩)</li>
+          <li>Invert states in algorithms</li>
+          <li>Create controlled operations (CNOT uses X)</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>Example:</strong></p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>Start: |0⟩
+Apply X gate
+Result: |1⟩
+
+Start: (|0⟩ + |1⟩)/√2  (superposition)
+Apply X gate
+Result: (|1⟩ + |0⟩)/√2  (still superposition, states flipped!)</code></pre>
+
+        <p style="margin-top: 16px; color: var(--primary); font-weight: 600;">
+          🎮 Try it: <a href="../quirk.html" style="color: var(--primary);">Open Playground</a> → Apply X to |0⟩ → See it flip to |1⟩
+        </p>
+      </div>
+
+      <!-- Hadamard Gate -->
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--secondary);">
+        <h3 style="margin-top: 0; color: var(--secondary);">2. H Gate (Hadamard / Superposition Creator)</h3>
+        
+        <p style="margin-bottom: 16px;"><strong>What it does:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>|0⟩ → |+⟩ = (|0⟩ + |1⟩)/√2  (equal superposition)</li>
+          <li>|1⟩ → |−⟩ = (|0⟩ − |1⟩)/√2  (equal superposition with phase)</li>
+          <li>Creates/destroys superposition</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>As a Rotation:</strong></p>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">180° rotation around an axis halfway between X and Z</p>
+
+        <p style="margin-bottom: 12px;"><strong>Real-World Usage:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li><strong>START of almost every quantum algorithm</strong></li>
+          <li>Create superposition to explore many possibilities</li>
+          <li>Used in: Grover's search, Deutsch-Jozsa, Shor's algorithm</li>
+          <li>Quantum teleportation</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>Example:</strong></p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>Start: |0⟩  (definite state)
+Apply H gate
+Result: (|0⟩ + |1⟩)/√2  (50/50 superposition)
+
+Measure: 50% chance |0⟩, 50% chance |1⟩</code></pre>
+
+        <div class="info-box" style="margin-top: 16px; background: rgba(168, 85, 247, 0.1);">
+          <h4>💡 Why H is SO Important</h4>
+          <p>
+            Quantum algorithms work by exploring many possibilities simultaneously. 
+            The H gate is what creates that "many possibilities" state. Without it, 
+            there's no quantum advantage!
+          </p>
+        </div>
+
+        <p style="margin-top: 16px; color: var(--secondary); font-weight: 600;">
+          🎮 Try it: Apply H to |0⟩ → See 50/50 probability distribution
+        </p>
+      </div>
+
+      <!-- Z Gate -->
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0; border-left: 4px solid var(--accent);">
+        <h3 style="margin-top: 0; color: var(--accent);">3. Z Gate (Phase Flip)</h3>
+        
+        <p style="margin-bottom: 16px;"><strong>What it does:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Leaves |0⟩ unchanged: |0⟩ → |0⟩</li>
+          <li>Adds a phase to |1⟩: |1⟩ → −|1⟩</li>
+          <li>Doesn't change probabilities, but affects interference!</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>As a Rotation:</strong></p>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">180° rotation around the <strong>Z-axis</strong> of the Bloch sphere</p>
+
+        <p style="margin-bottom: 12px;"><strong>Real-World Usage:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>Control quantum interference patterns</li>
+          <li>Used in Grover's algorithm (oracle marking)</li>
+          <li>Phase kickback in quantum algorithms</li>
+          <li>Building block for controlled operations</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>Example - The "Invisible" Gate:</strong></p>
+        <pre style="background: var(--bg-tertiary); padding: 16px; border-radius: 8px;"><code>Start: |1⟩
+Apply Z gate
+Result: −|1⟩
+
+Measure: Still 100% chance of |1⟩! (Phase is invisible to measurement)
+
+BUT in superposition:
+Start: (|0⟩ + |1⟩)/√2
+Apply Z
+Result: (|0⟩ − |1⟩)/√2  (probabilities same, but interference changes!)</code></pre>
+
+        <div class="info-box" style="margin-top: 16px; background: rgba(255, 71, 87, 0.1);">
+          <h4>🤯 Mind-Bender</h4>
+          <p>
+            The Z gate doesn't change measurement probabilities of |0⟩ or |1⟩ individually. 
+            But it changes how states INTERFERE with each other. This is key to quantum algorithms!
+          </p>
+        </div>
+      </div>
+
+      <!-- Y Gate -->
+      <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 32px 0;">
+        <h3 style="margin-top: 0;">4. Y Gate (Combined Flip)</h3>
+        
+        <p style="margin-bottom: 16px;"><strong>What it does:</strong></p>
+        <ul style="margin-left: 24px; margin-bottom: 16px; color: var(--text-secondary);">
+          <li>|0⟩ → i|1⟩  (flip to |1⟩ with imaginary phase)</li>
+          <li>|1⟩ → −i|0⟩  (flip to |0⟩ with imaginary phase)</li>
+          <li>Like X and Z combined</li>
+        </ul>
+
+        <p style="margin-bottom: 12px;"><strong>As a Rotation:</strong></p>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">180° rotation around the <strong>Y-axis</strong></p>
+
+        <p style="margin-bottom: 12px;"><strong>Real-World Usage:</strong></p>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li>Less common than X, Z, H</li>
+          <li>Used in specific error correction schemes</li>
+          <li>Some quantum simulation algorithms</li>
+        </ul>
+      </div>
+
+      <h2>Rotation Gates (General Purpose)</h2>
+
+      <p>The X, Y, Z gates rotate by 180°. What if you want smaller rotations?</p>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">Rotation Gates: Rx, Ry, Rz</h4>
+        <ul style="margin-left: 24px; color: var(--text-secondary);">
+          <li><strong>Rx(θ):</strong> Rotate θ degrees around X-axis</li>
+          <li><strong>Ry(θ):</strong> Rotate θ degrees around Y-axis</li>
+          <li><strong>Rz(θ):</strong> Rotate θ degrees around Z-axis</li>
+        </ul>
+
+        <p style="margin-top: 16px; color: var(--text-muted);">
+          <strong>Example:</strong> Rx(90°) = half of an X gate rotation
+        </p>
+
+        <p style="margin-top: 12px;"><strong>Real-World Usage:</strong></p>
+        <ul style="margin-left: 24px; margin-top: 8px; color: var(--text-secondary);">
+          <li>Variational quantum algorithms (VQE, QAOA)</li>
+          <li>Quantum machine learning</li>
+          <li>Fine-tuning quantum states</li>
+          <li>Optimizing circuits</li>
+        </ul>
+      </div>
+
+      <h2>Why "No If-Else" in Quantum</h2>
+
+      <div style="background: var(--bg-tertiary); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <p style="margin-bottom: 12px;"><strong>Classical programming:</strong></p>
+        <pre style="background: var(--bg-card); padding: 16px; border-radius: 8px; margin-bottom: 16px;"><code>if (bit == 0) {
+    output = 1;
+} else {
+    output = 0;
+}</code></pre>
+
+        <p style="margin-bottom: 12px;"><strong style="color: var(--primary);">Quantum "programming":</strong></p>
+        <pre style="background: var(--bg-card); padding: 16px; border-radius: 8px;"><code>Apply X gate  // Rotates state 180° around X-axis
+
+// No if-else. The rotation happens to the ENTIRE quantum state,
+// whether it's |0⟩, |1⟩, or superposition.</code></pre>
+
+        <p style="margin-top: 16px; color: var(--text-muted); font-style: italic;">
+          This is why quantum algorithms look so different from classical code!
+        </p>
+      </div>
+
+      <h2>Building Circuits: Combining Gates</h2>
+
+      <p>Real quantum algorithms use sequences of gates:</p>
+
+      <h3>Example 1: Create Superposition, Then Flip</h3>
+      <pre style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;"><code>Start: |0⟩
+Apply H: (|0⟩ + |1⟩)/√2
+Apply X: (|1⟩ + |0⟩)/√2  (same state, but flipped notation)
+Apply H: |1⟩  (back to definite state!)
+
+Result: Always |1⟩</code></pre>
+
+      <p style="color: var(--primary); font-weight: 600; margin: 16px 0;">
+        This is quantum interference in action! The paths through the circuit interfere.
+      </p>
+
+      <h3>Example 2: Phase Flip Before Hadamard</h3>
+      <pre style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;"><code>Start: |0⟩
+Apply H: (|0⟩ + |1⟩)/√2
+Apply Z: (|0⟩ − |1⟩)/√2  (phase flip on |1⟩)
+Apply H: |1⟩
+
+Result: Always |1⟩</code></pre>
+
+      <p>Different circuit, same result! Multiple ways to achieve outcomes in quantum computing.</p>
+
+      <h2>Real-World Applications</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h4>Grover's Search Algorithm</h4>
+          <p><strong>Uses:</strong> H gates (create superposition), Z gates (mark correct answer), X gates (inversion)</p>
+          <p style="margin-top: 8px;"><strong>Real use:</strong> Database search, optimization</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h4>Shor's Factoring Algorithm</h4>
+          <p><strong>Uses:</strong> H gates, controlled rotations, phase gates</p>
+          <p style="margin-top: 8px;"><strong>Real use:</strong> Breaking RSA encryption</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧬</div>
+          <h4>Quantum Chemistry Simulation</h4>
+          <p><strong>Uses:</strong> Rotation gates (Rx, Ry, Rz) to simulate molecular vibrations</p>
+          <p style="margin-top: 8px;"><strong>Real use:</strong> Drug discovery, materials science</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h4>Quantum Machine Learning</h4>
+          <p><strong>Uses:</strong> Parametrized rotation gates that "learn" optimal angles</p>
+          <p style="margin-top: 8px;"><strong>Real use:</strong> Classification, optimization</p>
+        </div>
+      </div>
+
+      <h2>How to Actually Use Quantum Gates</h2>
+
+      <h3>Option 1: Visual (Quirk Simulator)</h3>
+      <ol style="color: var(--text-secondary); margin-left: 24px; margin-bottom: 24px; line-height: 1.8;">
+        <li>Go to <a href="../quirk.html" style="color: var(--primary);">Quantum Playground</a></li>
+        <li>Drag gates from toolbox onto circuit</li>
+        <li>See probability distributions update in real-time</li>
+        <li>Experiment with different combinations</li>
+      </ol>
+
+      <h3>Option 2: Code (Qiskit)</h3>
+      <pre style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;"><code>from qiskit import QuantumCircuit
+
+# Create circuit with 1 qubit
+qc = QuantumCircuit(1)
+
+# Apply gates
+qc.h(0)     # Hadamard on qubit 0
+qc.x(0)     # X gate on qubit 0
+qc.z(0)     # Z gate on qubit 0
+qc.ry(1.5, 0)  # Rotate 1.5 radians around Y-axis
+
+# Measure
+qc.measure_all()
+
+# Run on simulator or real quantum computer
+print(qc.draw())</code></pre>
+
+      <h3>Option 3: IBM Quantum Composer</h3>
+      <p>Visual circuit builder with access to real quantum hardware!</p>
+      <p style="margin-top: 12px;">See: <a href="../getting-started.html" style="color: var(--primary);">Getting Started Guide</a></p>
+
+      <h2>Practice Exercises</h2>
+
+      <div style="background: var(--bg-card); padding: 24px; border-radius: 12px; margin: 24px 0;">
+        <h4 style="margin-bottom: 16px;">🎯 Try These in the Playground:</h4>
+        <ol style="margin-left: 24px; color: var(--text-secondary); line-height: 1.8;">
+          <li><strong>H-H identity:</strong> Apply H twice to |0⟩ → Returns to |0⟩</li>
+          <li><strong>X-X identity:</strong> Apply X twice → Returns to original state</li>
+          <li><strong>Create |−⟩ state:</strong> Apply X, then H to |0⟩</li>
+          <li><strong>Interference:</strong> H-X-H vs H-Z-H → Different results!</li>
+          <li><strong>Phase effect:</strong> Compare H alone vs Z-H → See phase matter</li>
+        </ol>
+      </div>
+
+      <h2>Common Beginner Mistakes</h2>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent);">
+        <h4>❌ Mistake 1: Thinking Gates "Check" the State</h4>
+        <p style="margin-bottom: 8px;"><strong>Wrong:</strong> "The X gate checks if the bit is 0, then outputs 1"</p>
+        <p><strong style="color: var(--primary);">Right:</strong> "The X gate rotates the state vector 180° around X-axis, regardless of what state it's in"</p>
+      </div>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent); margin-top: 16px;">
+        <h4>❌ Mistake 2: Ignoring Phase</h4>
+        <p style="margin-bottom: 8px;"><strong>Wrong:</strong> "Z gate does nothing because probabilities don't change"</p>
+        <p><strong style="color: var(--primary);">Right:</strong> "Z gate changes the phase, which affects interference in multi-gate circuits"</p>
+      </div>
+
+      <div class="info-box" style="background: rgba(255, 71, 87, 0.1); border-left-color: var(--accent); margin-top: 16px;">
+        <h4>❌ Mistake 3: Expecting Classical Logic</h4>
+        <p style="margin-bottom: 8px;"><strong>Wrong:</strong> "I'll use if-else to handle different qubit states"</p>
+        <p><strong style="color: var(--primary);">Right:</strong> "Quantum gates operate on the entire quantum state—superposition and all"</p>
+      </div>
+
+      <div class="info-box">
+        <h4>🎯 Key Takeaways</h4>
+        <ul style="margin-left: 20px; margin-top: 12px;">
+          <li>Quantum gates are <strong>rotations</strong> on the Bloch sphere, not logic operations</li>
+          <li><strong>H gate</strong> creates superposition (start of most algorithms)</li>
+          <li><strong>X gate</strong> flips states (quantum NOT)</li>
+          <li><strong>Z gate</strong> adds phase (controls interference)</li>
+          <li><strong>No if-else</strong> - gates transform the entire quantum state</li>
+          <li>Real algorithms combine multiple gates to create interference patterns</li>
+          <li>Used in: search, factoring, chemistry, machine learning</li>
+        </ul>
+      </div>
+
+      <h2>Next: Multi-Qubit Gates & Entanglement</h2>
+      <p>
+        Now you understand single-qubit gates. Next, we'll explore how gates can connect multiple qubits 
+        to create <strong>entanglement</strong>—the truly "spooky" quantum phenomenon!
+      </p>
+
+      <div class="lesson-nav">
+        <a href="phase1-1.html" class="lesson-nav-btn">
+          <span>←</span>
+          <span>Previous: The Bloch Sphere</span>
+        </a>
+        <a href="phase1-3.html" class="lesson-nav-btn">
+          <span>Next: Entanglement Without Mysticism</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
+          <div style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.875rem;">
+            <span>Static Site • No Backend</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
