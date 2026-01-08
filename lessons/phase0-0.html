@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 0.0: Wave-Particle Duality | QbitsOnly</title>
+    <meta name="description" content="The double-slit experiment reveals the quantum foundation - particles that behave like waves.">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#lessons">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 0.0</span>
+                <h1>Wave-Particle Duality</h1>
+                <p class="subtitle">The quantum foundation - reality isn't what you think</p>
+            </div>
+
+            <!-- Introduction -->
+            <section class="content-section">
+                <h2>🌊 The Most Mind-Bending Discovery in Physics</h2>
+                <p>Before we talk about qubits and quantum computing, you need to see why the quantum world is so different from everyday experience.</p>
+                
+                <p><strong>Wave-particle duality</strong> is the foundation of quantum mechanics. It's not a metaphor or an approximation—it's how reality actually works at the smallest scales.</p>
+
+                <div class="insight-box">
+                    <strong>The Shocking Truth:</strong> Particles like electrons and photons don't behave like tiny balls. They exhibit properties of both particles (localized, discrete) and waves (spread out, interfering) <em>simultaneously</em>.
+                </div>
+            </section>
+
+            <!-- Classical vs Quantum -->
+            <section class="content-section">
+                <h2>🔍 The Classical View (What We Expect)</h2>
+                <p>In everyday physics, things fall into two categories:</p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Particles</h3>
+                        <p><strong>Localized objects</strong> with definite position</p>
+                        <p>Example: A baseball, a marble, a bullet</p>
+                        <p class="metric">📍 You can point to where it is</p>
+                    </div>
+                    <div class="comparison-card">
+                        <h3>Waves</h3>
+                        <p><strong>Extended patterns</strong> spread through space</p>
+                        <p>Example: Water waves, sound waves, light waves</p>
+                        <p class="metric">🌊 No single location, distributed</p>
+                    </div>
+                </div>
+
+                <p>These seemed fundamentally different. A baseball is HERE. A wave is EVERYWHERE in the pattern.</p>
+
+                <div class="warning-box">
+                    <strong>Spoiler alert:</strong> At the quantum scale, this distinction <em>breaks down completely</em>. Electrons are neither pure particles nor pure waves—they're something else entirely.
+                </div>
+            </section>
+
+            <!-- The Double-Slit Experiment -->
+            <section class="content-section">
+                <h2>🧪 The Double-Slit Experiment</h2>
+                <p>This is the <strong>most important experiment in quantum physics</strong>. It reveals the true nature of quantum reality.</p>
+
+                <h3>The Setup</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h4>1. Source</h4>
+                        <p>Shoots particles (electrons or photons) one at a time</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>2. Barrier with Two Slits</h4>
+                        <p>A wall with two narrow openings</p>
+                    </div>
+                    <div class="concept-card">
+                        <h4>3. Detection Screen</h4>
+                        <p>Behind the barrier, records where particles land</p>
+                    </div>
+                </div>
+
+                <h3>What You'd Expect (Classical Intuition)</h3>
+                <p>If electrons are tiny bullets, they should:</p>
+                <ul>
+                    <li>Pass through one slit OR the other</li>
+                    <li>Create two bright bands on the screen</li>
+                    <li>Each particle lands in one spot</li>
+                </ul>
+
+                <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 24px 0; text-align: center;">
+                    <svg width="600" height="300" viewBox="0 0 600 300" style="max-width: 100%; height: auto;">
+                        <!-- Source -->
+                        <circle cx="50" cy="150" r="15" fill="var(--primary)" opacity="0.8"/>
+                        <text x="50" y="190" fill="var(--text-muted)" font-size="14" text-anchor="middle">Particle Source</text>
+                        
+                        <!-- Barrier with slits -->
+                        <line x1="220" y1="50" x2="220" y2="115" stroke="var(--text-secondary)" stroke-width="10" stroke-linecap="round"/>
+                        <line x1="220" y1="185" x2="220" y2="250" stroke="var(--text-secondary)" stroke-width="10" stroke-linecap="round"/>
+                        <text x="220" y="30" fill="var(--text-muted)" font-size="14" text-anchor="middle">Barrier with 2 slits</text>
+                        
+                        <!-- Particle paths -->
+                        <path d="M 50 150 L 220 130" stroke="var(--primary)" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
+                        <path d="M 220 130 L 420 130" stroke="var(--primary)" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
+                        
+                        <path d="M 50 150 L 220 170" stroke="var(--primary)" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
+                        <path d="M 220 170 L 420 170" stroke="var(--primary)" stroke-width="2" opacity="0.3" stroke-dasharray="5,5"/>
+                        
+                        <!-- Screen -->
+                        <line x1="420" y1="50" x2="420" y2="250" stroke="var(--text-secondary)" stroke-width="6" opacity="0.8"/>
+                        <text x="420" y="30" fill="var(--text-muted)" font-size="14" text-anchor="middle">Detection Screen</text>
+                        
+                        <!-- Expected pattern (two bands) -->
+                        <rect x="430" y="115" width="50" height="30" fill="var(--primary)" opacity="0.7" rx="4"/>
+                        <rect x="430" y="155" width="50" height="30" fill="var(--primary)" opacity="0.7" rx="4"/>
+                        
+                        <text x="510" y="140" fill="var(--primary)" font-size="12">Classical</text>
+                        <text x="510" y="155" fill="var(--primary)" font-size="12">Expectation:</text>
+                        <text x="510" y="170" fill="var(--primary)" font-size="12">Two bands</text>
+                    </svg>
+                    <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">
+                        Expected: Particles go through one slit or the other → two bright bands
+                    </p>
+                </div>
+
+                <h3>What Actually Happens 🤯</h3>
+                <p>Instead, you see an <strong>interference pattern</strong> — multiple bright and dark bands!</p>
+
+                <div style="background: var(--bg-card); padding: 32px; border-radius: 12px; margin: 24px 0; text-align: center;">
+                    <svg width="600" height="300" viewBox="0 0 600 300" style="max-width: 100%; height: auto;">
+                        <!-- Source -->
+                        <circle cx="50" cy="150" r="15" fill="var(--primary)" opacity="0.8"/>
+                        <text x="50" y="190" fill="var(--text-muted)" font-size="14" text-anchor="middle">Particle Source</text>
+                        
+                        <!-- Barrier with slits -->
+                        <line x1="220" y1="50" x2="220" y2="115" stroke="var(--text-secondary)" stroke-width="10" stroke-linecap="round"/>
+                        <line x1="220" y1="185" x2="220" y2="250" stroke="var(--text-secondary)" stroke-width="10" stroke-linecap="round"/>
+                        <text x="220" y="30" fill="var(--text-muted)" font-size="14" text-anchor="middle">Barrier with 2 slits</text>
+                        
+                        <!-- Wave-like paths -->
+                        <path d="M 50 150 Q 135 120, 220 130" stroke="var(--secondary)" stroke-width="2" opacity="0.4"/>
+                        <path d="M 220 130 Q 320 80, 420 80" stroke="var(--secondary)" stroke-width="2" opacity="0.4"/>
+                        <path d="M 220 130 Q 320 140, 420 150" stroke="var(--secondary)" stroke-width="2" opacity="0.4"/>
+                        
+                        <path d="M 50 150 Q 135 180, 220 170" stroke="var(--secondary)" stroke-width="2" opacity="0.4"/>
+                        <path d="M 220 170 Q 320 150, 420 150" stroke="var(--secondary)" stroke-width="2" opacity="0.4"/>
+                        <path d="M 220 170 Q 320 220, 420 220" stroke="var(--secondary)" stroke-width="2" opacity="0.4"/>
+                        
+                        <!-- Screen -->
+                        <line x1="420" y1="50" x2="420" y2="250" stroke="var(--text-secondary)" stroke-width="6" opacity="0.8"/>
+                        <text x="420" y="30" fill="var(--text-muted)" font-size="14" text-anchor="middle">Detection Screen</text>
+                        
+                        <!-- Interference pattern (multiple bands) -->
+                        <rect x="430" y="140" width="60" height="20" fill="var(--primary)" opacity="0.9" rx="3"/>
+                        <rect x="430" y="105" width="45" height="18" fill="var(--primary)" opacity="0.5" rx="3"/>
+                        <rect x="430" y="175" width="45" height="18" fill="var(--primary)" opacity="0.5" rx="3"/>
+                        <rect x="430" y="75" width="30" height="15" fill="var(--primary)" opacity="0.2" rx="3"/>
+                        <rect x="430" y="205" width="30" height="15" fill="var(--primary)" opacity="0.2" rx="3"/>
+                        <rect x="430" y="50" width="15" height="12" fill="var(--primary)" opacity="0.1" rx="2"/>
+                        <rect x="430" y="230" width="15" height="12" fill="var(--primary)" opacity="0.1" rx="2"/>
+                        
+                        <text x="510" y="140" fill="var(--accent-purple)" font-size="12">Actual Result:</text>
+                        <text x="510" y="155" fill="var(--accent-purple)" font-size="12">Interference</text>
+                        <text x="510" y="170" fill="var(--accent-purple)" font-size="12">Pattern!</text>
+                    </svg>
+                    <p style="color: var(--text-muted); margin-top: 16px; font-size: 0.9rem;">
+                        Reality: Multiple bright and dark bands (interference pattern) — the signature of WAVES
+                    </p>
+                </div>
+
+                <p>This interference pattern is <strong>impossible</strong> if particles travel through just one slit. It only makes sense if each particle somehow <em>goes through both slits simultaneously</em> and interferes with itself.</p>
+
+                <div class="insight-box">
+                    <strong>The Mind-Blowing Part:</strong> This happens even when you send particles <strong>one at a time</strong>. Each individual electron somehow "knows" about both slits and creates the interference pattern over time. It's not interacting with other particles—it's interfering with <em>itself</em>.
+                </div>
+            </section>
+
+            <!-- The Observer Effect -->
+            <section class="content-section">
+                <h2>👁️ The Observer Effect (It Gets Weirder)</h2>
+                <p>Now for the truly bizarre part...</p>
+
+                <p><strong>What if we try to detect which slit the particle goes through?</strong></p>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>No Detector</h3>
+                        <p>Don't measure which slit</p>
+                        <p class="metric">→ Interference pattern (wave behavior)</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>With Detector</h3>
+                        <p>Measure which slit particle uses</p>
+                        <p class="metric">→ Two bands (particle behavior)</p>
+                    </div>
+                </div>
+
+                <p>The interference pattern <strong>disappears</strong> the moment you try to observe which path the particle took!</p>
+
+                <div class="warning-box">
+                    <strong>Measurement Changes Reality:</strong> When unobserved, particles behave like waves (going through both slits). When observed, they behave like particles (going through one slit). The act of measurement fundamentally changes the outcome.
+                </div>
+
+                <p>This isn't about the detector "disturbing" the particle. It's deeper: <strong>before measurement, the particle doesn't have a definite path</strong>. It exists in a superposition of going through both slits. Measurement forces it to "choose."</p>
+            </section>
+
+            <!-- Connection to Quantum Computing -->
+            <section class="content-section">
+                <h2>💻 What This Means for Quantum Computing</h2>
+                <p>Wave-particle duality leads directly to <strong>superposition</strong> — the core principle behind quantum computing.</p>
+
+                <h3>The Connection</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Classical Bit</h3>
+                        <p>Like a particle going through one slit</p>
+                        <p class="metric">0 OR 1 (definite state)</p>
+                    </div>
+                    <div class="comparison-card highlight">
+                        <h3>Qubit (Quantum Bit)</h3>
+                        <p>Like a particle going through both slits</p>
+                        <p class="metric">0 AND 1 (superposition)</p>
+                    </div>
+                </div>
+
+                <p>Just as the electron in the double-slit experiment exists in a superposition of "went through slit A" and "went through slit B," a qubit can exist in a superposition of |0⟩ and |1⟩.</p>
+
+                <h3>Why This Matters for Computing</h3>
+                <ul>
+                    <li><strong>Classical computer:</strong> A 3-bit system explores 1 state at a time (000, 001, 010, ...)</li>
+                    <li><strong>Quantum computer:</strong> A 3-qubit system explores all 8 states simultaneously (superposition)</li>
+                </ul>
+
+                <p>This "quantum parallelism" is what gives quantum computers their advantage for certain problems.</p>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section class="content-section">
+                <h2>🎯 Key Takeaways</h2>
+                
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>1. Wave-Particle Duality Is Real</h3>
+                        <p>Quantum objects aren't waves OR particles—they're both, depending on how you measure them</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>2. Interference Requires Superposition</h3>
+                        <p>The double-slit pattern only makes sense if particles go through both slits at once</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>3. Measurement Collapses Superposition</h3>
+                        <p>Observing which path destroys the interference—this will matter for quantum computing!</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>4. This Enables Quantum Computing</h3>
+                        <p>Qubits leverage superposition (like the wave behavior) to process multiple possibilities simultaneously</p>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 32px;">
+                    <strong>Remember:</strong> This isn't philosophy or interpretation—it's experimental fact. The double-slit experiment has been performed thousands of times with electrons, photons, atoms, and even molecules. Wave-particle duality is how the universe actually works at small scales.
+                </div>
+            </section>
+
+            <!-- Interactive -->
+            <section class="content-section">
+                <h2>🎮 Try It Yourself</h2>
+                <p>Want to explore quantum behavior hands-on? Visit our <a href="../quirk.html" style="color: var(--primary); font-weight: 600;">Quantum Circuit Playground</a> to experiment with superposition and see how measurement affects quantum states!</p>
+
+                <p>Or continue to the next lesson to understand why this means <strong>a qubit is NOT just a faster bit</strong>.</p>
+            </section>
+
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="../index.html#lessons" class="nav-button prev">← Back to Roadmap</a>
+                <a href="../index.html" class="nav-button">Home</a>
+                <a href="phase0-1.html" class="nav-button next">Next: Destroy Your Assumptions →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
+</body>
+</html>
