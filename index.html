@@ -302,6 +302,137 @@
         </div>
       </div>
     </section>
+
+    <!-- Success Criteria Section -->
+    <section id="success-criteria" class="section">
+      <div class="container">
+        <h2 class="section-title">✅ Success Criteria: Are You Ready to Move Forward?</h2>
+        <p class="section-subtitle" style="text-align: center; max-width: 800px; margin: 0 auto 48px;">
+          Here's how to know you've truly mastered each phase—not just read the content, but can actually USE quantum computing concepts.
+        </p>
+
+        <div class="criteria-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 32px; margin-top: 48px;">
+          
+          <!-- Phase 0 Success Criteria -->
+          <div class="criteria-card" style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(75, 0, 130, 0.1)); padding: 32px; border-radius: 12px; border: 2px solid rgba(138, 43, 226, 0.3);">
+            <h3 style="color: var(--accent-purple); margin-bottom: 16px;">Phase 0: Mental Model Reset</h3>
+            <p style="margin-bottom: 24px; color: var(--text-muted);">You've completed Phase 0 when you can:</p>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--accent-purple); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Explain why a qubit is <strong>not</strong> a faster bit (without using the word "superposition" as magic)</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--accent-purple); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Describe why measurement <strong>destroys</strong> quantum information (and why this matters for QA/debugging)</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--accent-purple); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Understand that quantum probability is <strong>fundamentally different</strong> from classical randomness</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--accent-purple); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Recognize when someone is misusing quantum terms (e.g., "quantum AI" marketing BS)</span>
+              </li>
+            </ul>
+            <div style="margin-top: 24px; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+              <strong style="color: var(--accent-purple);">Self-Test:</strong>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem;">Can you explain to a friend why quantum computers <em>aren't</em> just "faster at searching"? If yes, you're ready for Phase 1.</p>
+            </div>
+          </div>
+
+          <!-- Phase 1 Success Criteria -->
+          <div class="criteria-card" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 150, 199, 0.1)); padding: 32px; border-radius: 12px; border: 2px solid rgba(0, 217, 255, 0.3);">
+            <h3 style="color: var(--primary); margin-bottom: 16px;">Phase 1: Qubits & Gates</h3>
+            <p style="margin-bottom: 24px; color: var(--text-muted);">You've completed Phase 1 when you can:</p>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--primary); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Visualize any single-qubit state on the Bloch sphere (given angles θ and φ)</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--primary); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Describe what the <strong>H, X, Z, Y</strong> gates do (as rotations, not just "flip" or "phase")</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--primary); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Implement a <strong>Bell state</strong> (entangled pair) from scratch in Qiskit</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--primary); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Explain why entanglement is <strong>not</strong> "spooky action at a distance" (no faster-than-light communication)</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: var(--primary); margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Know when to use <strong>CNOT</strong> vs <strong>CZ</strong> vs <strong>SWAP</strong> gates</span>
+              </li>
+            </ul>
+            <div style="margin-top: 24px; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+              <strong style="color: var(--primary);">Self-Test:</strong>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem;">Build a 2-qubit circuit that creates superposition + entanglement, then measure. Run it on IBM Quantum. If you can predict the measurement probabilities, you're ready for Phase 2.</p>
+            </div>
+          </div>
+
+          <!-- Phase 2 Success Criteria -->
+          <div class="criteria-card" style="background: linear-gradient(135deg, rgba(255, 67, 54, 0.1), rgba(220, 38, 38, 0.1)); padding: 32px; border-radius: 12px; border: 2px solid rgba(255, 67, 54, 0.3);">
+            <h3 style="color: #ff4336; margin-bottom: 16px;">Phase 2: Quantum Algorithms</h3>
+            <p style="margin-bottom: 24px; color: var(--text-muted);">You've completed Phase 2 when you can:</p>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: #ff4336; margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Implement <strong>Deutsch-Jozsa</strong> for n=3 qubits with a custom oracle</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: #ff4336; margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Explain how <strong>Grover's algorithm</strong> amplifies target states (without hand-waving "quantum magic")</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: #ff4336; margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Calculate the optimal number of Grover iterations for a given search space size</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: #ff4336; margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Describe why <strong>Shor's algorithm</strong> threatens RSA (period finding → factoring)</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: #ff4336; margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Know when to use <strong>classical vs quantum</strong> approaches (e.g., why sorted data doesn't need Grover's)</span>
+              </li>
+              <li style="display: flex; align-items: start; margin-bottom: 16px;">
+                <span style="color: #ff4336; margin-right: 12px; font-size: 1.25rem;">✓</span>
+                <span>Build a simple oracle for Grover's search that finds a specific 3-bit string</span>
+              </li>
+            </ul>
+            <div style="margin-top: 24px; padding: 16px; background: rgba(0,0,0,0.3); border-radius: 8px;">
+              <strong style="color: #ff4336;">Self-Test:</strong>
+              <p style="margin: 8px 0 0 0; font-size: 0.9rem;">Pick a real-world problem (e.g., database search, optimization). Can you determine whether Deutsch-Jozsa, Grover's, or Shor's applies (or if classical is better)? If yes, you're ready for Phase 3.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Final Readiness Check -->
+        <div style="max-width: 900px; margin: 64px auto 0; padding: 40px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(138, 43, 226, 0.05)); border-radius: 16px; border: 2px solid rgba(0, 217, 255, 0.2); text-align: center;">
+          <h3 style="color: var(--primary); margin-bottom: 16px;">🎓 Ready for Phase 3?</h3>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">
+            Phase 3 will cover advanced topics: Quantum Error Correction, Variational Algorithms (VQE/QAOA), Quantum Machine Learning, and real-world implementations.
+          </p>
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            <strong style="color: var(--text-bright);">You're ready when:</strong><br>
+            ✓ You can <em>build</em> circuits, not just read about them<br>
+            ✓ You know <em>when</em> quantum helps vs when classical is better<br>
+            ✓ You understand the <em>math</em> isn't magic—it's rotations + interference<br>
+          </p>
+          <div style="margin-top: 32px; padding: 24px; background: rgba(0,0,0,0.3); border-radius: 12px;">
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">
+              <strong>Pro Tip:</strong> Don't rush! Most people take 2-3 months to truly master Phase 1 & 2. 
+              Build projects, break circuits, ask "why" constantly. That's how you actually learn quantum computing.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
 
   <footer>

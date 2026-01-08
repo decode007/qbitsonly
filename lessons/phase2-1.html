@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2.1: Deutsch-Jozsa Algorithm | QbitsOnly</title>
+    <meta name="description" content="Your first quantum algorithm - understand why it's faster and how to implement it.">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#phases">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 2.1</span>
+                <h1>Deutsch-Jozsa Algorithm</h1>
+                <p class="subtitle">Your first quantum algorithm - cleaner than any classical solution</p>
+            </div>
+
+            <!-- Why This Algorithm Matters -->
+            <section class="content-section">
+                <h2>🎯 Why Learn This First?</h2>
+                <p>Deutsch-Jozsa is the <strong>simplest quantum algorithm</strong> that beats classical computing. It's like the "Hello World" of quantum algorithms.</p>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Classical Approach</h3>
+                        <p>Query function multiple times (worst case: half the inputs + 1)</p>
+                        <p class="metric">⏱️ O(2^(n-1) + 1) queries</p>
+                    </div>
+                    <div class="comparison-card highlight">
+                        <h3>Quantum Approach</h3>
+                        <p>Query function exactly once using superposition</p>
+                        <p class="metric">⚡ 1 query (guaranteed)</p>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Key Insight:</strong> This is not about speed—it's about <em>query complexity</em>. You ask the question once and get the answer with certainty.
+                </div>
+            </section>
+
+            <!-- The Problem -->
+            <section class="content-section">
+                <h2>❓ The Problem We're Solving</h2>
+                <p>You're given a black box function <code>f(x)</code> that takes an n-bit input and returns 0 or 1.</p>
+                <p>The function is guaranteed to be one of two types:</p>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Constant Function</h3>
+                        <p>Returns the <strong>same output</strong> for all inputs</p>
+                        <pre><code>f(0) = 0, f(1) = 0, f(2) = 0, ... → all 0s
+f(0) = 1, f(1) = 1, f(2) = 1, ... → all 1s</code></pre>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Balanced Function</h3>
+                        <p>Returns 0 for <strong>half</strong> the inputs, 1 for the other half</p>
+                        <pre><code>f(0) = 0, f(1) = 0, f(2) = 1, f(3) = 1
+(exactly 50% zeros, 50% ones)</code></pre>
+                    </div>
+                </div>
+
+                <p class="task"><strong>Your Task:</strong> Determine whether <code>f</code> is constant or balanced.</p>
+            </section>
+
+            <!-- Classical Solution -->
+            <section class="content-section">
+                <h2>💻 Classical Solution (Why It's Slow)</h2>
+                <p>Without quantum tricks, you have to query the function multiple times:</p>
+
+                <pre><code>// For 3-bit input (8 possible values)
+results = []
+for i in range(5):  # Need to check 5 values minimum
+    results.append(f(i))
+
+if all_same(results):
+    return "Constant"
+else:
+    return "Balanced"</code></pre>
+
+                <p><strong>Why 5 queries?</strong> If you see 4 zeros, the 5th could still be 0 (constant) or 1 (balanced). You need at least half + 1 checks.</p>
+
+                <div class="warning-box">
+                    <strong>Scaling Problem:</strong> For n bits, worst case = 2^(n-1) + 1 queries
+                    <br>n=10 bits → 513 queries
+                    <br>n=20 bits → 524,289 queries
+                </div>
+            </section>
+
+            <!-- Quantum Solution -->
+            <section class="content-section">
+                <h2>⚛️ Quantum Solution (The Elegant Way)</h2>
+                <p>The quantum algorithm queries <code>f</code> exactly <strong>once</strong> using superposition.</p>
+
+                <h3>Step-by-Step Circuit</h3>
+                <ol class="step-list">
+                    <li>
+                        <strong>Initialize:</strong> Start with |0⟩ on n input qubits and |1⟩ on 1 output qubit
+                        <pre><code>|ψ₀⟩ = |0⟩ⁿ |1⟩</code></pre>
+                    </li>
+                    <li>
+                        <strong>Apply Hadamard to all qubits:</strong> Create superposition
+                        <pre><code>|ψ₁⟩ = H⊗ⁿ⁺¹ |ψ₀⟩
+     = (1/√2ⁿ) Σₓ |x⟩ · (|0⟩-|1⟩)/√2</code></pre>
+                        <p class="explanation">Now you're querying <em>all possible inputs simultaneously</em></p>
+                    </li>
+                    <li>
+                        <strong>Apply the black box function Uᶠ:</strong> Evaluate f(x) for all x at once
+                        <pre><code>|ψ₂⟩ = Uᶠ |ψ₁⟩
+     = (1/√2ⁿ) Σₓ (-1)^f(x) |x⟩</code></pre>
+                        <p class="explanation">This encodes f(x) as a <em>phase</em> (not a classical value)</p>
+                    </li>
+                    <li>
+                        <strong>Apply Hadamard again to input qubits:</strong> Extract global pattern
+                        <pre><code>|ψ₃⟩ = H⊗ⁿ |ψ₂⟩</code></pre>
+                    </li>
+                    <li>
+                        <strong>Measure input qubits:</strong>
+                        <ul>
+                            <li>If all qubits are |0⟩ → function is <strong>constant</strong></li>
+                            <li>If any qubit is |1⟩ → function is <strong>balanced</strong></li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <div class="insight-box">
+                    <strong>Why This Works:</strong> The second Hadamard layer acts as an "interference filter." For constant functions, all paths constructively interfere at |0⟩ⁿ. For balanced functions, they interfere destructively, scattering to other states.
+                </div>
+            </section>
+
+            <!-- Visual Explanation -->
+            <section class="content-section">
+                <h2>🎨 Visual Intuition</h2>
+                <p>Think of it like this:</p>
+
+                <div class="analogy-box">
+                    <h3>Classical: Sampling Strategy</h3>
+                    <p>🔍 Check box 1 → check box 2 → check box 3...</p>
+                    <p>You're peeking into individual boxes one by one.</p>
+                </div>
+
+                <div class="analogy-box quantum">
+                    <h3>Quantum: Global Pattern Detection</h3>
+                    <p>🌊 Shake all boxes at once → listen to resonance</p>
+                    <p>If they all vibrate in sync → constant</p>
+                    <p>If they cancel out → balanced</p>
+                </div>
+
+                <p>The quantum computer <em>doesn't look at individual outputs</em>. It detects the <strong>global symmetry</strong> of the function.</p>
+            </section>
+
+            <!-- Implementation -->
+            <section class="content-section">
+                <h2>💻 Implement It Yourself (Qiskit)</h2>
+                <p>Here's the complete working code:</p>
+
+                <pre><code>from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.primitives import Sampler
+
+def deutsch_jozsa(n, oracle):
+    """
+    n = number of input bits
+    oracle = function that adds the black box to the circuit
+    """
+    # Create circuit
+    qr = QuantumRegister(n + 1, 'q')
+    cr = ClassicalRegister(n, 'c')
+    qc = QuantumCircuit(qr, cr)
+    
+    # Step 1: Initialize output qubit to |1⟩
+    qc.x(qr[n])
+    
+    # Step 2: Apply Hadamard to all qubits
+    for i in range(n + 1):
+        qc.h(qr[i])
+    
+    qc.barrier()
+    
+    # Step 3: Apply the oracle (black box)
+    oracle(qc, qr)
+    
+    qc.barrier()
+    
+    # Step 4: Apply Hadamard to input qubits
+    for i in range(n):
+        qc.h(qr[i])
+    
+    # Step 5: Measure input qubits
+    for i in range(n):
+        qc.measure(qr[i], cr[i])
+    
+    return qc
+
+# Example: Constant function (always returns 0)
+def constant_oracle(qc, qr):
+    # Do nothing - this means f(x) = 0 for all x
+    pass
+
+# Example: Balanced function (returns x₀ XOR x₁)
+def balanced_oracle(qc, qr):
+    qc.cx(qr[0], qr[2])  # CNOT from first input to output
+    qc.cx(qr[1], qr[2])  # CNOT from second input to output
+
+# Run the algorithm
+n = 2  # 2 input bits
+circuit = deutsch_jozsa(n, balanced_oracle)
+
+# Execute
+sampler = Sampler()
+job = sampler.run(circuit, shots=1)
+result = job.result()
+counts = result.quasi_dists[0]
+
+# Interpret result
+measured = max(counts, key=counts.get)
+if measured == 0:
+    print("Function is CONSTANT")
+else:
+    print("Function is BALANCED")</code></pre>
+
+                <div class="tip-box">
+                    <strong>Try it:</strong> Replace <code>balanced_oracle</code> with <code>constant_oracle</code> and run again. You'll always get the correct answer in 1 shot!
+                </div>
+            </section>
+
+            <!-- When to Use -->
+            <section class="content-section">
+                <h2>🎯 When Does This Actually Matter?</h2>
+                
+                <h3>Real-World Applications (Rare)</h3>
+                <p>Honestly? Deutsch-Jozsa is mostly a <strong>teaching tool</strong>. The problem it solves is artificial.</p>
+                
+                <p>However, the <em>techniques</em> it uses appear in:</p>
+                <ul>
+                    <li>✅ <strong>Simon's Algorithm</strong> (finds hidden periodicities)</li>
+                    <li>✅ <strong>Bernstein-Vazirani</strong> (recovers hidden bit strings)</li>
+                    <li>✅ <strong>Grover's Algorithm</strong> (unstructured search)</li>
+                </ul>
+
+                <h3>What You Actually Learn</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>1. Phase Kickback</h3>
+                        <p>How to encode information in phases instead of amplitudes</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>2. Quantum Interference</h3>
+                        <p>Using Hadamard transforms to extract global patterns</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>3. Oracle-Based Algorithms</h3>
+                        <p>How to build circuits around black-box functions</p>
+                    </div>
+                </div>
+
+                <p><strong>Bottom line:</strong> Master this, and Grover/Shor will make much more sense.</p>
+            </section>
+
+            <!-- Common Mistakes -->
+            <section class="content-section">
+                <h2>⚠️ Common Mistakes</h2>
+                
+                <div class="mistake-box">
+                    <h3>❌ Mistake 1: "Quantum computer evaluates all inputs"</h3>
+                    <p><strong>Wrong.</strong> It doesn't evaluate f(0), f(1), f(2)... separately.</p>
+                    <p><strong>Correct:</strong> It evaluates the <em>global interference pattern</em> of all f(x) simultaneously.</p>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>❌ Mistake 2: "This proves quantum is always faster"</h3>
+                    <p><strong>Wrong.</strong> This is about query complexity, not runtime.</p>
+                    <p><strong>Correct:</strong> For many problems, classical algorithms are still better (e.g., sorting, matrix multiplication).</p>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>❌ Mistake 3: "I can use this to speed up database searches"</h3>
+                    <p><strong>Wrong.</strong> Real databases don't have "balanced vs constant" structure.</p>
+                    <p><strong>Correct:</strong> For unstructured search, use <strong>Grover's algorithm</strong> (next lesson).</p>
+                </div>
+            </section>
+
+            <!-- Practice Exercises -->
+            <section class="content-section">
+                <h2>🛠️ Practice Exercises</h2>
+                
+                <div class="exercise-box">
+                    <h3>Exercise 1: Constant Oracle</h3>
+                    <p><strong>Task:</strong> Create an oracle for a constant function that always returns 1.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code>def constant_one_oracle(qc, qr):
+    # Flip the output qubit
+    qc.x(qr[-1])  # Now f(x) = 1 for all x</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 2: Balanced Oracle</h3>
+                    <p><strong>Task:</strong> Create an oracle for f(x) = x₀ (just copy the first input bit).</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code>def copy_first_bit_oracle(qc, qr):
+    qc.cx(qr[0], qr[-1])  # CNOT: if x₀=1, flip output</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 3: Test Your Understanding</h3>
+                    <p><strong>Question:</strong> For n=3 bits, what's the classical worst-case vs quantum queries?</p>
+                    <details>
+                        <summary>Show Answer</summary>
+                        <p>Classical: 2^(3-1) + 1 = <strong>5 queries</strong></p>
+                        <p>Quantum: <strong>1 query</strong></p>
+                        <p>Savings: 5× reduction (modest for small n, exponential for large n)</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- What's Next -->
+            <section class="content-section">
+                <h2>🚀 What's Next?</h2>
+                <p>You've learned:</p>
+                <ul>
+                    <li>✅ How quantum algorithms use superposition + interference</li>
+                    <li>✅ Phase kickback technique</li>
+                    <li>✅ Building circuits with oracles</li>
+                </ul>
+
+                <p><strong>Next up:</strong> <a href="phase2-2.html">Grover's Search Algorithm</a> — the most practical quantum algorithm for real-world problems.</p>
+            </section>
+
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="phase1-3.html" class="nav-button prev">← Previous: Entanglement</a>
+                <a href="../index.html" class="nav-button">Back to Roadmap</a>
+                <a href="phase2-2.html" class="nav-button next">Next: Grover's Search →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2.3: Shor's Factoring Algorithm | QbitsOnly</title>
+    <meta name="description" content="The algorithm that made quantum computing famous - exponential speedup for factoring.">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#phases">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 2.3</span>
+                <h1>Shor's Factoring Algorithm</h1>
+                <p class="subtitle">The algorithm that put quantum computing on the map</p>
+            </div>
+
+            <!-- Why This Is Huge -->
+            <section class="content-section">
+                <h2>💥 Why Shor's Algorithm Changed Everything</h2>
+                <p>In 1994, Peter Shor proved that quantum computers could <strong>break RSA encryption</strong>—the system protecting most of the internet. This single result made governments and companies pour billions into quantum computing research.</p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Classical Factoring</h3>
+                        <p>Best known: General Number Field Sieve (GNFS)</p>
+                        <p class="metric">⏱️ exp(O(n^1/3)) time</p>
+                        <p>For 2048-bit RSA → billions of years</p>
+                    </div>
+                    <div class="comparison-card highlight">
+                        <h3>Shor's Algorithm</h3>
+                        <p>Quantum Fourier Transform + period finding</p>
+                        <p class="metric">⚡ O(n³) time</p>
+                        <p>For 2048-bit RSA → <strong>hours</strong> (with future quantum computers)</p>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <strong>This Is Exponential Speedup:</strong> Not just 1000×, but fundamentally different complexity classes. Classical: exponential time. Quantum: polynomial time.
+                </div>
+            </section>
+
+            <!-- The Problem -->
+            <section class="content-section">
+                <h2>❓ The Problem: Integer Factorization</h2>
+                <p><strong>Given:</strong> A large number N (e.g., 15, 21, 391, or 2048-bit RSA modulus)</p>
+                <p><strong>Goal:</strong> Find prime factors p and q such that N = p × q</p>
+
+                <h3>Why Is This Hard?</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Multiplication is Easy</h3>
+                        <p>1223 × 1987 = 2,430,101</p>
+                        <p class="metric">✅ Instant</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Factoring is Hard</h3>
+                        <p>2,430,101 = ?</p>
+                        <p class="metric">⏱️ Must try many candidates</p>
+                    </div>
+                </div>
+
+                <p>This <strong>asymmetry</strong> is what makes RSA encryption secure. You can multiply two primes easily (to create a public key), but factoring the result (to break it) is computationally infeasible.</p>
+
+                <div class="warning-box">
+                    <strong>Why RSA Dies When Quantum Arrives:</strong> Shor's algorithm breaks this asymmetry. Once large quantum computers exist (~4000 qubits), current RSA/ECC encryption becomes useless.
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section class="content-section">
+                <h2>⚛️ How Shor's Algorithm Works (High Level)</h2>
+                <p>Shor's algorithm <strong>doesn't directly factor N</strong>. Instead, it uses a clever mathematical trick:</p>
+
+                <h3>The Key Insight: Period Finding</h3>
+                <p>Factoring reduces to finding the <strong>period</strong> of a modular function.</p>
+
+                <ol class="step-list">
+                    <li>
+                        <strong>Pick a random number a</strong> (coprime to N)
+                    </li>
+                    <li>
+                        <strong>Find the period r</strong> of the function:
+                        <pre><code>f(x) = aˣ mod N</code></pre>
+                        <p class="explanation">The period r is the smallest integer where f(x+r) = f(x) for all x</p>
+                    </li>
+                    <li>
+                        <strong>Use r to find factors:</strong>
+                        <pre><code>p = gcd(a^(r/2) - 1, N)
+q = gcd(a^(r/2) + 1, N)</code></pre>
+                        <p class="explanation">If r is even and a^(r/2) ≠ -1 mod N, these give non-trivial factors</p>
+                    </li>
+                </ol>
+
+                <div class="insight-box">
+                    <strong>Why Quantum Helps:</strong> Finding the period r <em>classically</em> requires exponential time. Quantum computers can find it in <em>polynomial time</em> using the Quantum Fourier Transform (QFT).
+                </div>
+            </section>
+
+            <!-- Detailed Algorithm -->
+            <section class="content-section">
+                <h2>🔢 Step-by-Step Algorithm</h2>
+                
+                <h3>Classical Preprocessing (Steps 1-2)</h3>
+                <ol class="step-list">
+                    <li>
+                        <strong>Check if N is even:</strong> If yes, factor is 2 (trivial). Done.
+                    </li>
+                    <li>
+                        <strong>Check if N = a^b for some integers a, b:</strong> If yes, use classical methods. Done.
+                    </li>
+                    <li>
+                        <strong>Pick random a between 2 and N-1</strong>
+                    </li>
+                    <li>
+                        <strong>Compute gcd(a, N):</strong> If gcd > 1, you found a factor. Done.
+                    </li>
+                </ol>
+
+                <h3>Quantum Period Finding (Steps 3-5)</h3>
+                <ol class="step-list" start="5">
+                    <li>
+                        <strong>Initialize quantum registers:</strong>
+                        <pre><code>Register 1: n qubits in |0⟩  (for x values)
+Register 2: n qubits in |0⟩  (for f(x) = aˣ mod N)</code></pre>
+                    </li>
+                    <li>
+                        <strong>Apply Hadamard to Register 1:</strong> Create superposition
+                        <pre><code>|ψ⟩ = (1/√2ⁿ) Σₓ |x⟩|0⟩</code></pre>
+                    </li>
+                    <li>
+                        <strong>Compute f(x) in superposition:</strong>
+                        <pre><code>|ψ⟩ = (1/√2ⁿ) Σₓ |x⟩|aˣ mod N⟩</code></pre>
+                        <p class="explanation">This is done using <strong>modular exponentiation circuits</strong> (hardest part to implement)</p>
+                    </li>
+                    <li>
+                        <strong>Measure Register 2:</strong> Collapses to some result y₀
+                        <p class="explanation">Now Register 1 is left in a state containing <em>all x values</em> where f(x) = y₀. These x values are separated by the period r.</p>
+                    </li>
+                    <li>
+                        <strong>Apply Quantum Fourier Transform (QFT) to Register 1:</strong>
+                        <pre><code>QFT converts the periodic state into peaks at multiples of 2ⁿ/r</code></pre>
+                    </li>
+                    <li>
+                        <strong>Measure Register 1:</strong> Get a value close to k·2ⁿ/r for some integer k
+                    </li>
+                    <li>
+                        <strong>Extract the period r:</strong> Use continued fractions to find r from the measurement
+                    </li>
+                </ol>
+
+                <h3>Classical Postprocessing (Step 6)</h3>
+                <ol class="step-list" start="12">
+                    <li>
+                        <strong>Check if r is even and a^(r/2) ≠ -1 mod N:</strong> If not, go back to step 3 (pick new a)
+                    </li>
+                    <li>
+                        <strong>Compute factors:</strong>
+                        <pre><code>p = gcd(a^(r/2) - 1, N)
+q = gcd(a^(r/2) + 1, N)</code></pre>
+                    </li>
+                    <li>
+                        <strong>Verify:</strong> Check if p and q are non-trivial factors. Done!
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Example Walkthrough -->
+            <section class="content-section">
+                <h2>📖 Example: Factoring N = 15</h2>
+                <p>Let's factor 15 using Shor's algorithm:</p>
+
+                <div class="example-box">
+                    <h3>Step 1-4: Classical Preprocessing</h3>
+                    <ul>
+                        <li>N = 15 is odd → not divisible by 2</li>
+                        <li>15 ≠ a^b for any integers → proceed</li>
+                        <li>Pick a = 7 (random choice between 2 and 14)</li>
+                        <li>gcd(7, 15) = 1 → proceed to quantum part</li>
+                    </ul>
+                </div>
+
+                <div class="example-box">
+                    <h3>Step 5-11: Quantum Period Finding</h3>
+                    <p>We need to find the period r of f(x) = 7^x mod 15:</p>
+                    <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                        <tr style="border-bottom: 2px solid #00d9ff;">
+                            <th style="padding: 10px; text-align: left;">x</th>
+                            <th style="padding: 10px; text-align: left;">7^x mod 15</th>
+                        </tr>
+                        <tr><td style="padding: 8px;">0</td><td style="padding: 8px;">1</td></tr>
+                        <tr><td style="padding: 8px;">1</td><td style="padding: 8px;">7</td></tr>
+                        <tr><td style="padding: 8px;">2</td><td style="padding: 8px;">4</td></tr>
+                        <tr><td style="padding: 8px;">3</td><td style="padding: 8px;">13</td></tr>
+                        <tr style="background: rgba(0,217,255,0.1);"><td style="padding: 8px;">4</td><td style="padding: 8px;"><strong>1</strong> ← repeats!</td></tr>
+                        <tr><td style="padding: 8px;">5</td><td style="padding: 8px;">7</td></tr>
+                        <tr><td style="padding: 8px;">6</td><td style="padding: 8px;">4</td></tr>
+                    </table>
+                    <p><strong>Period r = 4</strong> (the function repeats every 4 steps)</p>
+                    <p class="explanation">The quantum computer finds this using QFT, not by computing the table!</p>
+                </div>
+
+                <div class="example-box">
+                    <h3>Step 12-14: Classical Postprocessing</h3>
+                    <ul>
+                        <li>r = 4 is even ✓</li>
+                        <li>a^(r/2) = 7² = 49 mod 15 = 4 ≠ -1 ✓</li>
+                        <li>Compute factors:
+                            <pre><code>p = gcd(7² - 1, 15) = gcd(48, 15) = 3
+q = gcd(7² + 1, 15) = gcd(50, 15) = 5</code></pre>
+                        </li>
+                        <li><strong>Result: 15 = 3 × 5 ✓</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Quantum Fourier Transform -->
+            <section class="content-section">
+                <h2>🌊 The Quantum Fourier Transform (QFT)</h2>
+                <p>The QFT is the <strong>heart of Shor's algorithm</strong>. It's the quantum version of the classical Fast Fourier Transform (FFT).</p>
+
+                <h3>What It Does</h3>
+                <p>The QFT transforms a quantum state from the <strong>computational basis</strong> to the <strong>frequency basis</strong>:</p>
+                <pre><code>QFT |x⟩ = (1/√N) Σₖ e^(2πixk/N) |k⟩</code></pre>
+
+                <h3>Why It Matters for Period Finding</h3>
+                <p>If you have a periodic state (like the one after measuring Register 2), the QFT <strong>concentrates amplitude at frequencies corresponding to the period</strong>.</p>
+
+                <div class="analogy-box quantum">
+                    <h3>Intuition: Listening to Music</h3>
+                    <p>🎵 You hear a sound wave (time domain)</p>
+                    <p>📊 FFT converts it to frequencies (which notes are playing)</p>
+                    <p>🎯 QFT does the same for quantum states—finds the "frequency" (period) hidden in the superposition</p>
+                </div>
+
+                <h3>Complexity Advantage</h3>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Classical FFT</h3>
+                        <p class="metric">O(N log N) operations</p>
+                        <p>For N = 2^2048 → impractical</p>
+                    </div>
+                    <div class="comparison-card highlight">
+                        <h3>Quantum QFT</h3>
+                        <p class="metric">O(n²) gates (n = log N)</p>
+                        <p>For N = 2^2048 → ~4 million gates</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Implementation -->
+            <section class="content-section">
+                <h2>💻 Implement It (Qiskit)</h2>
+                <p>Full implementation of Shor's algorithm is complex (~500 lines). Here's a simplified version using Qiskit's built-in Shor function:</p>
+
+                <pre><code>from qiskit.algorithms import Shor
+from qiskit.utils import QuantumInstance
+from qiskit import Aer
+
+# Number to factor
+N = 15
+
+# Create a Shor instance
+shor = Shor()
+
+# Use the simulator backend
+backend = Aer.get_backend('aer_simulator')
+quantum_instance = QuantumInstance(backend, shots=1024)
+
+# Run Shor's algorithm
+result = shor.factor(N, quantum_instance=quantum_instance)
+
+print(f"Factoring N = {N}")
+print(f"Factors: {result.factors}")
+print(f"Successful factorization: {N} = {result.factors[0][0]} × {result.factors[0][1]}")
+
+# Output:
+# Factoring N = 15
+# Factors: [(3, 5)]
+# Successful factorization: 15 = 3 × 5</code></pre>
+
+                <h3>Building QFT from Scratch (Educational)</h3>
+                <pre><code>from qiskit import QuantumCircuit
+import numpy as np
+
+def qft(circuit, qubits):
+    """Apply Quantum Fourier Transform to qubits."""
+    n = len(qubits)
+    
+    for i in range(n):
+        # Apply Hadamard
+        circuit.h(qubits[i])
+        
+        # Apply controlled phase rotations
+        for j in range(i + 1, n):
+            angle = 2 * np.pi / (2 ** (j - i + 1))
+            circuit.cp(angle, qubits[j], qubits[i])
+    
+    # Reverse the order (optional, depends on convention)
+    for i in range(n // 2):
+        circuit.swap(qubits[i], qubits[n - i - 1])
+
+# Example: 3-qubit QFT
+qc = QuantumCircuit(3)
+qft(qc, [0, 1, 2])
+print(qc)</code></pre>
+
+                <div class="tip-box">
+                    <strong>Note:</strong> Implementing full Shor's algorithm requires modular exponentiation circuits, which are very complex. Use Qiskit's built-in <code>Shor</code> class for real experiments.
+                </div>
+            </section>
+
+            <!-- Real-World Impact -->
+            <section class="content-section">
+                <h2>🌍 Real-World Impact</h2>
+                
+                <h3>What's at Risk</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>RSA Encryption</h3>
+                        <p>Used by: HTTPS, VPNs, SSH, PGP email</p>
+                        <p class="metric">🛡️ → 💥 Broken by Shor's</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Elliptic Curve Crypto (ECC)</h3>
+                        <p>Used by: Bitcoin, SSL certificates</p>
+                        <p class="metric">🛡️ → 💥 Also broken</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Diffie-Hellman Key Exchange</h3>
+                        <p>Used by: TLS, Signal, WhatsApp</p>
+                        <p class="metric">🛡️ → 💥 Broken</p>
+                    </div>
+                </div>
+
+                <h3>What's Safe (Post-Quantum Cryptography)</h3>
+                <ul>
+                    <li><strong>Lattice-based crypto</strong> (NTRU, Kyber) — no known quantum attack</li>
+                    <li><strong>Hash-based signatures</strong> (SPHINCS+) — quantum-resistant</li>
+                    <li><strong>Code-based crypto</strong> (McEliece) — safe from Shor's</li>
+                </ul>
+
+                <div class="insight-box">
+                    <strong>Current Status:</strong> NIST standardized post-quantum algorithms in 2024. Migration is underway, but billions of devices still use vulnerable RSA/ECC.
+                </div>
+
+                <h3>Timeline Estimate</h3>
+                <div class="warning-box">
+                    <strong>When Will Quantum Computers Break RSA?</strong>
+                    <ul>
+                        <li><strong>Current quantum computers:</strong> ~1,000 qubits (not enough, too noisy)</li>
+                        <li><strong>Needed for RSA-2048:</strong> ~4,000 logical qubits (= ~1 million physical qubits with error correction)</li>
+                        <li><strong>Optimistic timeline:</strong> 10-15 years</li>
+                        <li><strong>Realistic timeline:</strong> 20-30 years</li>
+                    </ul>
+                    <p><strong>Action needed now:</strong> Organizations with long-term secrets (governments, healthcare, finance) must migrate to post-quantum crypto <em>today</em> because of "harvest now, decrypt later" attacks.</p>
+                </div>
+            </section>
+
+            <!-- Common Mistakes -->
+            <section class="content-section">
+                <h2>⚠️ Common Mistakes</h2>
+                
+                <div class="mistake-box">
+                    <h3>❌ Mistake 1: "Shor's algorithm directly factors numbers"</h3>
+                    <p><strong>Wrong.</strong> It finds the <em>period</em> of a modular function, then uses classical math to extract factors.</p>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>❌ Mistake 2: "Quantum computers break all encryption"</h3>
+                    <p><strong>Wrong.</strong> Only <em>public-key</em> crypto (RSA, ECC) is broken.</p>
+                    <p><strong>AES-256 (symmetric)</strong> remains secure (Grover's only provides quadratic speedup → use AES-256 instead of AES-128).</p>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>❌ Mistake 3: "Shor's algorithm works on any large number"</h3>
+                    <p><strong>Catch:</strong> It requires <strong>error-corrected qubits</strong>. Current quantum computers lack the qubit count and coherence time.</p>
+                    <p><strong>Largest number factored by Shor's to date:</strong> 21 = 3 × 7 (in 2012, using simplifications)</p>
+                </div>
+            </section>
+
+            <!-- Practice Exercises -->
+            <section class="content-section">
+                <h2>🛠️ Practice Exercises</h2>
+                
+                <div class="exercise-box">
+                    <h3>Exercise 1: Period Finding by Hand</h3>
+                    <p><strong>Task:</strong> Find the period of f(x) = 2^x mod 21.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <p>Compute: 2^0 = 1, 2^1 = 2, 2^2 = 4, 2^3 = 8, 2^4 = 16, 2^5 = 11, 2^6 = 1 (mod 21)</p>
+                        <p><strong>Period r = 6</strong></p>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 2: Extract Factors</h3>
+                    <p><strong>Given:</strong> N = 21, a = 2, r = 6. Find the factors.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code>p = gcd(2^(6/2) - 1, 21) = gcd(8 - 1, 21) = gcd(7, 21) = 7
+q = gcd(2^(6/2) + 1, 21) = gcd(8 + 1, 21) = gcd(9, 21) = 3</code></pre>
+                        <p><strong>Result: 21 = 3 × 7 ✓</strong></p>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 3: Run Shor's in Qiskit</h3>
+                    <p><strong>Task:</strong> Factor N = 21 using Qiskit's Shor implementation.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code>from qiskit.algorithms import Shor
+from qiskit.utils import QuantumInstance
+from qiskit import Aer
+
+N = 21
+shor = Shor()
+backend = Aer.get_backend('aer_simulator')
+quantum_instance = QuantumInstance(backend, shots=1024)
+
+result = shor.factor(N, quantum_instance=quantum_instance)
+print(f"21 = {result.factors[0][0]} × {result.factors[0][1]}")</code></pre>
+                    </details>
+                </div>
+            </section>
+
+            <!-- What's Next -->
+            <section class="content-section">
+                <h2>🚀 What's Next?</h2>
+                <p>You've learned:</p>
+                <ul>
+                    <li>✅ Why Shor's algorithm is revolutionary (exponential speedup)</li>
+                    <li>✅ How period finding leads to factoring</li>
+                    <li>✅ The role of QFT in extracting periodicity</li>
+                    <li>✅ Real-world implications for cryptography</li>
+                </ul>
+
+                <div class="success-box">
+                    <h3>🎉 You've Completed Phase 2!</h3>
+                    <p>You now understand the three most important quantum algorithms:</p>
+                    <ul>
+                        <li><strong>Deutsch-Jozsa:</strong> Foundational techniques (interference, oracles)</li>
+                        <li><strong>Grover's Search:</strong> Practical speedup for unstructured search</li>
+                        <li><strong>Shor's Factoring:</strong> Exponential advantage, cryptographic impact</li>
+                    </ul>
+                    <p><strong>Next step:</strong> See the <a href="../index.html#success-criteria">Success Criteria</a> to assess your readiness for Phase 3.</p>
+                </div>
+            </section>
+
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="phase2-2.html" class="nav-button prev">← Previous: Grover's Search</a>
+                <a href="../index.html" class="nav-button">Back to Roadmap</a>
+                <a href="../index.html#success-criteria" class="nav-button next">View Success Criteria →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
+</body>
+</html>

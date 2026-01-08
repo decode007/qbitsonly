@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2.2: Grover's Search Algorithm | QbitsOnly</title>
+    <meta name="description" content="The most practical quantum algorithm - quadratic speedup for unstructured search.">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#phases">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 2.2</span>
+                <h1>Grover's Search Algorithm</h1>
+                <p class="subtitle">The most practical quantum algorithm you'll actually use</p>
+            </div>
+
+            <!-- Why This Matters -->
+            <section class="content-section">
+                <h2>🎯 Why This Is The Big Deal</h2>
+                <p>Grover's algorithm is the <strong>most widely applicable</strong> quantum algorithm. Unlike Deutsch-Jozsa (which solves a toy problem), Grover's solves a real problem: <strong>searching unsorted data</strong>.</p>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>Classical Search</h3>
+                        <p>Check items one by one until you find the target</p>
+                        <p class="metric">⏱️ O(N) time</p>
+                        <p>For N=1,000,000 items → ~500,000 checks on average</p>
+                    </div>
+                    <div class="comparison-card highlight">
+                        <h3>Grover's Search</h3>
+                        <p>Use quantum interference to amplify the target</p>
+                        <p class="metric">⚡ O(√N) time</p>
+                        <p>For N=1,000,000 items → ~1,000 iterations</p>
+                    </div>
+                </div>
+
+                <div class="insight-box">
+                    <strong>Quadratic Speedup:</strong> Not exponential like Shor's, but still significant for large databases. Going from N to √N means 1000× faster for million-item searches.
+                </div>
+            </section>
+
+            <!-- The Problem -->
+            <section class="content-section">
+                <h2>❓ The Problem We're Solving</h2>
+                <p>You have an <strong>unsorted database</strong> of N items. Exactly one item satisfies your search condition.</p>
+                <p><strong>Goal:</strong> Find that item.</p>
+
+                <h3>Real-World Examples</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Database Query</h3>
+                        <p>Find the record where <code>user_id = "abc123"</code> in an unsorted table</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Password Cracking</h3>
+                        <p>Find the password that matches a given hash</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Optimization</h3>
+                        <p>Find the configuration that satisfies a complex constraint</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Collision Detection</h3>
+                        <p>Find two inputs that produce the same output</p>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <strong>Key Constraint:</strong> The data must be <em>unsorted</em> or have <em>no structure</em>. If it's sorted, classical binary search (O(log N)) is faster than Grover's (O(√N)).
+                </div>
+            </section>
+
+            <!-- How It Works -->
+            <section class="content-section">
+                <h2>⚛️ How Grover's Algorithm Works</h2>
+                <p>The algorithm has two main components that repeat ~√N times:</p>
+
+                <h3>1. Oracle: Mark the Target</h3>
+                <p>A quantum circuit that <strong>flips the phase</strong> of the target state.</p>
+                <pre><code>Oracle: |x⟩ → -|x⟩  if x is the target
+             |x⟩ →  |x⟩  otherwise</code></pre>
+
+                <h3>2. Diffusion Operator: Amplify the Target</h3>
+                <p>A circuit that <strong>inverts amplitudes around the mean</strong>, amplifying the marked state.</p>
+                <pre><code>Diffusion: Reflects amplitudes around average
+           → Marked state gets boosted
+           → Others get suppressed</code></pre>
+
+                <div class="analogy-box quantum">
+                    <h3>Intuition: Shining a Spotlight</h3>
+                    <p>🔦 <strong>Oracle:</strong> "That's the one!" (marks it)</p>
+                    <p>📢 <strong>Diffusion:</strong> "Everyone, look over here!" (amplifies it)</p>
+                    <p>Repeat ~√N times, and the target's amplitude approaches 1.</p>
+                </div>
+            </section>
+
+            <!-- Step-by-Step Algorithm -->
+            <section class="content-section">
+                <h2>🔢 Step-by-Step Algorithm</h2>
+                
+                <ol class="step-list">
+                    <li>
+                        <strong>Initialize:</strong> Create equal superposition over all N states
+                        <pre><code>|ψ⟩ = H⊗ⁿ |0⟩ⁿ = (1/√N) Σₓ |x⟩</code></pre>
+                        <p class="explanation">Each state has amplitude 1/√N (all equally likely)</p>
+                    </li>
+                    <li>
+                        <strong>Repeat ~π√N/4 times:</strong>
+                        <ol style="list-style-type: lower-alpha; margin-top: 10px;">
+                            <li><strong>Apply Oracle Oᵩ:</strong> Flip phase of target state
+                                <pre><code>Oᵩ |w⟩ = -|w⟩  (w = target)
+Oᵩ |x⟩ =  |x⟩  (x ≠ w)</code></pre>
+                            </li>
+                            <li><strong>Apply Diffusion D:</strong> Invert around average
+                                <pre><code>D = 2|ψ⟩⟨ψ| - I</code></pre>
+                                <p class="explanation">This boosts amplitudes above average, suppresses below average</p>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <strong>Measure:</strong> The target state |w⟩ will be measured with high probability (~100%)
+                    </li>
+                </ol>
+
+                <div class="insight-box">
+                    <strong>Why ~√N iterations?</strong> Each iteration rotates the state vector closer to the target. Too few → not close enough. Too many → you "overshoot" and rotate past it.
+                </div>
+            </section>
+
+            <!-- Visual Explanation -->
+            <section class="content-section">
+                <h2>🎨 Geometric Picture</h2>
+                <p>Grover's algorithm is a <strong>rotation in 2D space</strong>:</p>
+
+                <div class="code-block" style="background: #1a1a2e; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <pre style="color: #00d9ff; font-family: monospace;">
+Start state: Equal superposition
+│
+│  ●  ← All states have equal amplitude
+│ ╱│╲
+│╱ │ ╲
+───────────────
+
+After Oracle: Target marked (phase flip)
+│
+│  ●  ← Target now has negative amplitude
+│ ╱│╲
+│╱ │ ╲ (one bar flipped down)
+───────────────
+
+After Diffusion: Target amplified
+│    ●  ← Target amplitude increased
+│   ╱│
+│  ╱ │
+│ ╱  │ (other amplitudes decreased)
+───────────────
+
+After ~√N iterations: Target dominates
+│
+│       ●  ← Target amplitude ≈ 1
+│      ╱│
+│     ╱ │
+│    ╱  │
+───────────────
+                    </pre>
+                </div>
+
+                <p>Each Grover iteration rotates the state by ~θ ≈ 2/√N radians toward the target. After ~π√N/4 iterations, you're almost exactly at the target.</p>
+            </section>
+
+            <!-- Implementation -->
+            <section class="content-section">
+                <h2>💻 Implement It Yourself (Qiskit)</h2>
+                <p>Let's search for <code>|11⟩</code> in a 2-qubit system (4 possible states):</p>
+
+                <pre><code>from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.primitives import Sampler
+import numpy as np
+
+def grover_oracle(qc, qubits, target):
+    """
+    Mark the target state by flipping its phase.
+    For target = '11', we want to flip phase of |11⟩.
+    """
+    # Multi-controlled Z gate: flips phase only if all qubits are |1⟩
+    # For target '11': apply CZ
+    # For other targets: add X gates before/after to handle |0⟩ bits
+    
+    # Convert target string to actions
+    for i, bit in enumerate(target):
+        if bit == '0':
+            qc.x(qubits[i])  # Flip if we want to target a 0
+    
+    # Multi-controlled Z (phase flip)
+    if len(qubits) == 2:
+        qc.cz(qubits[0], qubits[1])
+    else:
+        # For more qubits, use MCZ gate
+        qc.mcp(np.pi, qubits[:-1], qubits[-1])
+    
+    # Flip back
+    for i, bit in enumerate(target):
+        if bit == '0':
+            qc.x(qubits[i])
+
+def grover_diffusion(qc, qubits):
+    """
+    Diffusion operator: 2|ψ⟩⟨ψ| - I
+    This inverts amplitudes around the mean.
+    """
+    # H gates
+    for qubit in qubits:
+        qc.h(qubit)
+    
+    # Apply X gates
+    for qubit in qubits:
+        qc.x(qubit)
+    
+    # Multi-controlled Z
+    if len(qubits) == 2:
+        qc.cz(qubits[0], qubits[1])
+    else:
+        qc.mcp(np.pi, qubits[:-1], qubits[-1])
+    
+    # Apply X gates
+    for qubit in qubits:
+        qc.x(qubit)
+    
+    # H gates
+    for qubit in qubits:
+        qc.h(qubit)
+
+def grover_search(n_qubits, target):
+    """
+    Complete Grover's search algorithm.
+    n_qubits: number of qubits (searches 2^n states)
+    target: binary string to search for (e.g., '11')
+    """
+    qr = QuantumRegister(n_qubits, 'q')
+    cr = ClassicalRegister(n_qubits, 'c')
+    qc = QuantumCircuit(qr, cr)
+    
+    # Step 1: Initialize superposition
+    for qubit in qr:
+        qc.h(qubit)
+    
+    qc.barrier()
+    
+    # Step 2: Apply Grover iterations
+    # Optimal iterations ≈ π/4 * √(2^n)
+    n_states = 2 ** n_qubits
+    n_iterations = int(np.pi / 4 * np.sqrt(n_states))
+    
+    for _ in range(n_iterations):
+        # Oracle
+        grover_oracle(qc, qr, target)
+        qc.barrier()
+        
+        # Diffusion
+        grover_diffusion(qc, qr)
+        qc.barrier()
+    
+    # Step 3: Measure
+    qc.measure(qr, cr)
+    
+    return qc
+
+# Example: Search for |11⟩ in 2-qubit system
+n = 2
+target = '11'
+circuit = grover_search(n, target)
+
+# Execute
+sampler = Sampler()
+job = sampler.run(circuit, shots=100)
+result = job.result()
+counts = result.quasi_dists[0]
+
+# Print results
+print(f"Searching for: {target}")
+print("Measurement results:")
+for state, prob in sorted(counts.items(), key=lambda x: -x[1]):
+    binary = format(state, f'0{n}b')
+    print(f"  |{binary}⟩: {prob:.1%}")</code></pre>
+
+                <div class="tip-box">
+                    <strong>Expected output:</strong> |11⟩ measured ~95-100% of the time (the rest is quantum noise)
+                </div>
+            </section>
+
+            <!-- Real-World Applications -->
+            <section class="content-section">
+                <h2>🌍 Real-World Applications</h2>
+                
+                <h3>Where Grover's Actually Helps</h3>
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>1. Cryptography (Breaking AES)</h3>
+                        <p>Search for the correct encryption key</p>
+                        <p class="metric">Classical: 2^256 tries → Quantum: 2^128 tries</p>
+                        <p><em>This is why post-quantum crypto doubles key sizes</em></p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>2. Constraint Satisfaction (SAT)</h3>
+                        <p>Find variable assignments that satisfy Boolean formulas</p>
+                        <p>Used in circuit design, planning, scheduling</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>3. Database Search</h3>
+                        <p>Find records matching complex queries in unsorted data</p>
+                        <p>Useful for graph databases, NoSQL queries</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>4. Collision Finding</h3>
+                        <p>Birthday paradox attacks, hash collisions</p>
+                        <p>Threatens SHA-256, needs SHA-3</p>
+                    </div>
+                </div>
+
+                <h3>Current Limitations</h3>
+                <div class="warning-box">
+                    <strong>Reality Check:</strong> Grover's provides <em>quadratic</em> speedup, not exponential.
+                    <ul>
+                        <li>Still needs thousands of qubits for practical database sizes</li>
+                        <li>Oracle circuit must be efficient (not always easy)</li>
+                        <li>Classical algorithms + better hardware often win today</li>
+                    </ul>
+                    <p><strong>When it matters:</strong> Large search spaces (cryptography, NP problems) where √N savings are significant.</p>
+                </div>
+            </section>
+
+            <!-- Grover's + Shor's -->
+            <section class="content-section">
+                <h2>🔗 How Grover's Fits With Other Algorithms</h2>
+                
+                <p>Grover's is a <strong>subroutine</strong> in many advanced algorithms:</p>
+
+                <ul>
+                    <li><strong>Shor's Algorithm:</strong> Uses quantum Fourier transform + Grover's for period finding</li>
+                    <li><strong>Quantum Machine Learning:</strong> Grover's speeds up nearest-neighbor search</li>
+                    <li><strong>Variational Algorithms (VQE, QAOA):</strong> Grover's finds optimal parameters</li>
+                </ul>
+
+                <p>Think of Grover's as the "for loop" of quantum computing—it's a building block, not always the final product.</p>
+            </section>
+
+            <!-- Common Mistakes -->
+            <section class="content-section">
+                <h2>⚠️ Common Mistakes</h2>
+                
+                <div class="mistake-box">
+                    <h3>❌ Mistake 1: "Grover's makes search instant"</h3>
+                    <p><strong>Wrong.</strong> It still takes O(√N) time—better than O(N), but not O(1).</p>
+                    <p><strong>Correct:</strong> For N=1 billion, you still need ~31,000 iterations.</p>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>❌ Mistake 2: "I can use Grover's to search Google"</h3>
+                    <p><strong>Wrong.</strong> Google's database is <em>indexed and sorted</em>—classical algorithms are faster.</p>
+                    <p><strong>Correct:</strong> Grover's only helps with <em>unstructured</em> or <em>unsorted</em> data.</p>
+                </div>
+
+                <div class="mistake-box">
+                    <h3>❌ Mistake 3: "More iterations = better results"</h3>
+                    <p><strong>Wrong.</strong> Too many iterations <em>overshoot</em> the target.</p>
+                    <p><strong>Correct:</strong> Optimal iterations ≈ π√N/4. More than that actually decreases success probability.</p>
+                </div>
+            </section>
+
+            <!-- Practice Exercises -->
+            <section class="content-section">
+                <h2>🛠️ Practice Exercises</h2>
+                
+                <div class="exercise-box">
+                    <h3>Exercise 1: Calculate Iterations</h3>
+                    <p><strong>Task:</strong> How many Grover iterations for a 3-qubit system (8 states)?</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <p>N = 2^3 = 8 states</p>
+                        <p>Iterations ≈ π√8/4 ≈ 2.22 → <strong>2 iterations</strong></p>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 2: Search for |000⟩</h3>
+                    <p><strong>Task:</strong> Modify the code to search for <code>|000⟩</code> instead of <code>|11⟩</code>.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code># Just change the target string:
+target = '000'
+circuit = grover_search(3, target)  # 3 qubits now
+
+# The oracle will automatically handle the X gates
+# to flip phases correctly for |000⟩</code></pre>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 3: Understand Diffusion</h3>
+                    <p><strong>Question:</strong> Why does the diffusion operator use H-X-CZ-X-H?</p>
+                    <details>
+                        <summary>Show Answer</summary>
+                        <p><strong>H:</strong> Converts computational basis to Hadamard basis</p>
+                        <p><strong>X:</strong> Flips |0⟩ ↔ |1⟩ (now |0...0⟩ becomes |1...1⟩)</p>
+                        <p><strong>CZ:</strong> Flips phase of |1...1⟩</p>
+                        <p><strong>X:</strong> Flips back</p>
+                        <p><strong>H:</strong> Converts back to computational basis</p>
+                        <p>Net effect: Flips phase of |0...0⟩ in the <em>Hadamard basis</em>, which is the equal superposition state.</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- What's Next -->
+            <section class="content-section">
+                <h2>🚀 What's Next?</h2>
+                <p>You've learned:</p>
+                <ul>
+                    <li>✅ How to amplify a target state using quantum interference</li>
+                    <li>✅ Oracle + Diffusion pattern (used in many algorithms)</li>
+                    <li>✅ When Grover's helps vs when classical is better</li>
+                </ul>
+
+                <p><strong>Next up:</strong> <a href="phase2-3.html">Shor's Factoring Algorithm</a> — the algorithm that made quantum computing famous.</p>
+            </section>
+
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="phase2-1.html" class="nav-button prev">← Previous: Deutsch-Jozsa</a>
+                <a href="../index.html" class="nav-button">Back to Roadmap</a>
+                <a href="phase2-3.html" class="nav-button next">Next: Shor's Algorithm →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
+</body>
+</html>
