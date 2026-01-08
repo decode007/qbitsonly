@@ -13,36 +13,28 @@
 </head>
 <body>
   <header>
-    <div class="container">
-      <a href="../index.html" class="logo" style="text-decoration: none; color: inherit;">
-        <div class="qubit-icon"></div>
-        <h1>QbitsOnly</h1>
-      </a>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="../index.html#lessons">Lessons</a>
-        <a href="../quirk.html">Playground</a>
-      </nav>
-    </div>
-  </header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#lessons">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <div class="lesson-header">
-    <div class="container">
-      <div class="lesson-meta">
-        <span class="lesson-tag">Phase 1</span>
-        <span class="lesson-tag">Lesson 04</span>
-        <span class="lesson-tag">20 min read</span>
-      </div>
-      <h1>Quantum Gates = Rotations</h1>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
-        Complete guide from basics to practical usage
-      </p>
-    </div>
-  </div>
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 1.2</span>
+                <h1>Quantum Gates = Rotations</h1>
+                <p class="subtitle">Complete guide from basics to practical usage</p>
+            </div>
 
-  <main>
-    <div class="lesson-content">
-      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+      <section class="content-section">
         <h4>🎯 What You'll Learn</h4>
         <ul style="margin-left: 20px; margin-top: 12px;">
           <li>What quantum gates are (from absolute basics)</li>
@@ -445,23 +437,31 @@ print(qc.draw())</code></pre>
           <span>Next: Entanglement Without Mysticism</span>
           <span>→</span>
         </a>
-      </div>
-    </div>
-  </main>
+      </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-bottom">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-          <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
-          <div style="display: flex; align-items: center; gap: 16px; color: var(--text-muted); font-size: 0.875rem;">
-            <span>Static Site • No Backend</span>
-          </div>
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="phase1-1.html" class="nav-button prev">← Previous: The Bloch Sphere</a>
+                <a href="../index.html" class="nav-button">Back to Roadmap</a>
+                <a href="phase1-3.html" class="nav-button next">Next: Entanglement Without Mysticism →</a>
+            </div>
         </div>
-      </div>
-    </div>
-  </footer>
+    </main>
 
-  <script src="../js/main.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
 </body>
 </html>

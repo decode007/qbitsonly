@@ -13,36 +13,28 @@
 </head>
 <body>
   <header>
-    <div class="container">
-      <a href="../index.html" class="logo" style="text-decoration: none; color: inherit;">
-        <div class="qubit-icon"></div>
-        <h1>QbitsOnly</h1>
-      </a>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="../index.html#lessons">Lessons</a>
-        <a href="../quirk.html">Playground</a>
-      </nav>
-    </div>
-  </header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#lessons">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <div class="lesson-header">
-    <div class="container">
-      <div class="lesson-meta">
-        <span class="lesson-tag">Phase 1</span>
-        <span class="lesson-tag">Lesson 03</span>
-        <span class="lesson-tag">15 min read</span>
-      </div>
-      <h1>The Bloch Sphere</h1>
-      <p style="font-size: 1.25rem; color: var(--text-secondary); margin-top: 16px;">
-        The MOST important visualization tool in quantum computing
-      </p>
-    </div>
-  </div>
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 1.1</span>
+                <h1>The Bloch Sphere</h1>
+                <p class="subtitle">The MOST important visualization tool in quantum computing</p>
+            </div>
 
-  <main>
-    <div class="lesson-content">
-      <div class="info-box" style="background: rgba(0, 240, 255, 0.1); border-left-color: var(--primary);">
+      <section class="content-section">
         <h4>🎯 Why This Lesson Matters</h4>
         <p>
           The Bloch sphere will be your mental model for EVERYTHING in quantum computing. 
@@ -336,18 +328,32 @@
           <span>→</span>
         </a>
       </div>
-    </div>
-  </main>
+      </section>
 
-  <footer>
-    <div class="container">
-      <div class="footer-bottom">
-        <p>&copy; 2025 QbitsOnly | Open Source & Free to Use</p>
-      </div>
-    </div>
-  </footer>
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="phase0-3.html" class="nav-button prev">← Previous: Measurement Creates Reality</a>
+                <a href="../index.html" class="nav-button">Back to Roadmap</a>
+                <a href="phase1-2.html" class="nav-button next">Next: Quantum Gates = Rotations →</a>
+            </div>
+        </div>
+    </main>
 
-  <script src="../js/main.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
 </body>
 </html>
 
