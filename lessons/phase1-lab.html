@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 1 Lab: What If I Measure Too Early? | QbitsOnly</title>
+    <meta name="description" content="Hands-on experiment showing why measurement destroys quantum advantage.">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="../index.html" style="text-decoration: none; color: inherit;">
+                <h1 class="logo">QbitsOnly</h1>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#phases">Roadmap</a></li>
+                <li><a href="../glossary.html">Glossary</a></li>
+                <li><a href="../getting-started.html">Get Started</a></li>
+                <li><a href="../quantum-nature.html">Nature</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="lesson-content">
+        <div class="container">
+            <div class="lesson-header">
+                <span class="phase-label">Phase 1 Lab</span>
+                <h1>What If I Measure Too Early?</h1>
+                <p class="subtitle">Hands-on experiment showing why measurement destroys quantum advantage</p>
+            </div>
+
+            <!-- Introduction -->
+            <section class="content-section">
+                <h2>🔬 The Most Important Quantum Lesson</h2>
+                <p>This lab teaches you something critical: <strong>measurement is irreversible</strong>.</p>
+                
+                <p>In classical computing, you can check intermediate values without affecting the final result. In quantum computing, <strong>every measurement collapses the state</strong>.</p>
+
+                <div class="insight-box">
+                    <strong>What You'll Learn:</strong>
+                    <ul style="margin: 12px 0 0 0; padding-left: 20px;">
+                        <li>Why you can't "peek" at quantum states mid-computation</li>
+                        <li>How early measurement destroys superposition</li>
+                        <li>Why debugging quantum circuits is fundamentally different</li>
+                        <li>When measurement timing matters (and when it doesn't)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- The Setup -->
+            <section class="content-section">
+                <h2>🎯 The Experiment Setup</h2>
+                <p>We'll build a simple quantum circuit in <strong>three variations</strong>:</p>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>Circuit A: Correct Way</h3>
+                        <p>Apply gates → Measure at the end</p>
+                        <p class="metric">✅ Quantum advantage preserved</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Circuit B: Wrong Way</h3>
+                        <p>Apply gates → Measure too early → Continue</p>
+                        <p class="metric">❌ Superposition destroyed</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>Circuit C: Classical Simulation</h3>
+                        <p>No superposition at all</p>
+                        <p class="metric">📊 Compare to quantum results</p>
+                    </div>
+                </div>
+
+                <p><strong>The Question:</strong> Will Circuit B give the same results as Circuit A, or will it behave like Circuit C?</p>
+            </section>
+
+            <!-- Experiment 1: Simple Interference -->
+            <section class="content-section">
+                <h2>🧪 Experiment 1: The Hadamard Sandwich</h2>
+                <p>The simplest example showing measurement timing matters.</p>
+
+                <h3>Circuit A: Correct Way (H → H → Measure)</h3>
+                <pre><code>from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit.primitives import Sampler
+
+# Circuit A: Two Hadamards in a row
+qr = QuantumRegister(1, 'q')
+cr = ClassicalRegister(1, 'c')
+circuit_a = QuantumCircuit(qr, cr)
+
+# Start with |0⟩
+circuit_a.h(qr[0])  # Now in superposition: (|0⟩ + |1⟩)/√2
+circuit_a.h(qr[0])  # Apply H again → back to |0⟩
+circuit_a.measure(qr[0], cr[0])
+
+# Run
+sampler = Sampler()
+job = sampler.run(circuit_a, shots=1000)
+result = job.result()
+counts = result.quasi_dists[0]
+
+print("Circuit A Results:")
+print(counts)
+# Expected: {0: 1.0} (100% |0⟩)</code></pre>
+
+                <div class="tip-box">
+                    <strong>Why this works:</strong> Two Hadamards cancel out (H² = I). The qubit returns to |0⟩ with 100% probability.
+                </div>
+
+                <h3>Circuit B: Wrong Way (H → Measure → H → Measure)</h3>
+                <pre><code># Circuit B: Measure in the middle
+qr = QuantumRegister(1, 'q')
+cr = ClassicalRegister(2, 'c')  # Need 2 classical bits now
+circuit_b = QuantumCircuit(qr, cr)
+
+circuit_b.h(qr[0])  # Superposition
+circuit_b.measure(qr[0], cr[0])  # MEASURE TOO EARLY! Collapses to 0 or 1
+
+# At this point, qubit is now |0⟩ or |1⟩ (not superposition)
+circuit_b.h(qr[0])  # Apply H to a classical state
+circuit_b.measure(qr[0], cr[1])
+
+# Run
+sampler = Sampler()
+job = sampler.run(circuit_b, shots=1000)
+result = job.result()
+counts = result.quasi_dists[0]
+
+print("Circuit B Results:")
+print(counts)
+# Expected: {0: ~50%, 2: ~50%} (random!)</code></pre>
+
+                <div class="warning-box">
+                    <strong>What happened?</strong> The early measurement collapsed the superposition. The second Hadamard acted on a <em>classical</em> state (either |0⟩ or |1⟩), not a quantum superposition. Result: 50/50 randomness instead of deterministic |0⟩.
+                </div>
+
+                <h3>Results Comparison</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr style="border-bottom: 2px solid #00d9ff;">
+                        <th style="padding: 12px; text-align: left;">Circuit</th>
+                        <th style="padding: 12px; text-align: left;">Measurement Timing</th>
+                        <th style="padding: 12px; text-align: left;">Result</th>
+                    </tr>
+                    <tr style="background: rgba(0,217,255,0.1);">
+                        <td style="padding: 10px;"><strong>A (Correct)</strong></td>
+                        <td style="padding: 10px;">Measure at end</td>
+                        <td style="padding: 10px;">100% |0⟩ (deterministic)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>B (Wrong)</strong></td>
+                        <td style="padding: 10px;">Measure in middle</td>
+                        <td style="padding: 10px;">50% |0⟩, 50% |1⟩ (random)</td>
+                    </tr>
+                </table>
+
+                <p><strong>Takeaway:</strong> Early measurement destroyed the interference pattern. The quantum advantage vanished.</p>
+            </section>
+
+            <!-- Experiment 2: Entanglement Breaking -->
+            <section class="content-section">
+                <h2>🧪 Experiment 2: Breaking Entanglement</h2>
+                <p>Now let's see what happens when we measure an entangled pair too early.</p>
+
+                <h3>Circuit A: Correct Way (Create Bell State → Measure)</h3>
+                <pre><code>from qiskit import QuantumCircuit
+
+# Circuit A: Create and measure Bell state
+circuit_a = QuantumCircuit(2, 2)
+
+# Create Bell state |Φ+⟩ = (|00⟩ + |11⟩)/√2
+circuit_a.h(0)      # Qubit 0 in superposition
+circuit_a.cx(0, 1)  # Entangle with qubit 1
+
+# Measure both at the end
+circuit_a.measure([0, 1], [0, 1])
+
+# Run
+sampler = Sampler()
+job = sampler.run(circuit_a, shots=1000)
+result = job.result()
+counts = result.quasi_dists[0]
+
+print("Circuit A (Entangled):")
+print(counts)
+# Expected: {0: ~50%, 3: ~50%} (00 or 11, always correlated)</code></pre>
+
+                <div class="tip-box">
+                    <strong>Perfect correlation:</strong> You get either |00⟩ or |11⟩, never |01⟩ or |10⟩. The qubits are entangled.
+                </div>
+
+                <h3>Circuit B: Wrong Way (Measure One Qubit Early)</h3>
+                <pre><code># Circuit B: Measure qubit 0 too early
+circuit_b = QuantumCircuit(2, 2)
+
+circuit_b.h(0)
+circuit_b.cx(0, 1)
+
+# MEASURE QUBIT 0 TOO EARLY
+circuit_b.measure(0, 0)  # Collapses entanglement!
+
+# Try to measure qubit 1 later
+circuit_b.measure(1, 1)
+
+# Run
+sampler = Sampler()
+job = sampler.run(circuit_b, shots=1000)
+result = job.result()
+counts = result.quasi_dists[0]
+
+print("Circuit B (Early Measurement):")
+print(counts)
+# Expected: {0: ~50%, 3: ~50%} (still correlated, but entanglement is gone)</code></pre>
+
+                <div class="warning-box">
+                    <strong>What happened?</strong> When you measured qubit 0, the <em>entire entangled state</em> collapsed. Qubit 1 instantly became either |0⟩ or |1⟩ (depending on qubit 0's result). The correlation survived, but the <strong>superposition is dead</strong>.
+                </div>
+
+                <h3>How to See the Difference</h3>
+                <p>Add operations <em>after</em> the measurement:</p>
+
+                <pre><code># Circuit C: Try to use "entanglement" after measurement
+circuit_c = QuantumCircuit(2, 2)
+
+circuit_c.h(0)
+circuit_c.cx(0, 1)
+
+# Measure qubit 0
+circuit_c.measure(0, 0)
+
+# Try to apply interference on qubit 1
+circuit_c.h(1)  # This now acts on a classical state!
+circuit_c.measure(1, 1)
+
+# Result: Random, no quantum advantage</code></pre>
+
+                <p><strong>Takeaway:</strong> Measuring one qubit of an entangled pair <strong>collapses the entire system</strong>. You can't "save" part of the entanglement.</p>
+            </section>
+
+            <!-- Experiment 3: Algorithm Failure -->
+            <section class="content-section">
+                <h2>🧪 Experiment 3: Breaking Deutsch-Jozsa</h2>
+                <p>Let's see what happens if we measure too early in a real quantum algorithm.</p>
+
+                <h3>Circuit A: Correct Deutsch-Jozsa</h3>
+                <pre><code>from qiskit import QuantumCircuit
+
+def deutsch_jozsa_correct(n=2):
+    """Correct implementation - measure at the end."""
+    qc = QuantumCircuit(n + 1, n)
+    
+    # Initialize
+    qc.x(n)  # Ancilla to |1⟩
+    for i in range(n + 1):
+        qc.h(i)
+    
+    # Oracle (constant function: f(x) = 0)
+    # Do nothing
+    
+    # Final Hadamards
+    for i in range(n):
+        qc.h(i)
+    
+    # Measure at the end
+    qc.measure(range(n), range(n))
+    
+    return qc
+
+circuit_a = deutsch_jozsa_correct()
+sampler = Sampler()
+job = sampler.run(circuit_a, shots=100)
+result = job.result()
+counts = result.quasi_dists[0]
+
+print("Correct Deutsch-Jozsa:")
+print(counts)
+# Expected: {0: 1.0} (100% deterministic answer)</code></pre>
+
+                <h3>Circuit B: Broken Deutsch-Jozsa (Early Measurement)</h3>
+                <pre><code>def deutsch_jozsa_broken(n=2):
+    """Broken - measure in the middle!"""
+    qc = QuantumCircuit(n + 1, n)
+    
+    # Initialize
+    qc.x(n)
+    for i in range(n + 1):
+        qc.h(i)
+    
+    # MEASURE TOO EARLY (before oracle)
+    qc.measure(range(n), range(n))
+    
+    # Oracle (constant function)
+    # (doesn't matter now, superposition is dead)
+    
+    # Final Hadamards (acting on classical state)
+    for i in range(n):
+        qc.h(i)
+    
+    return qc
+
+circuit_b = deutsch_jozsa_broken()
+sampler = Sampler()
+job = sampler.run(circuit_b, shots=100)
+result = job.result()
+counts = result.quasi_dists[0]
+
+print("Broken Deutsch-Jozsa:")
+print(counts)
+# Expected: Random results (quantum advantage destroyed)</code></pre>
+
+                <div class="warning-box">
+                    <strong>Algorithm Failed!</strong> The early measurement collapsed the superposition that Deutsch-Jozsa relies on. Instead of querying all inputs simultaneously, you now have a classical algorithm with random behavior.
+                </div>
+
+                <p><strong>Takeaway:</strong> Quantum algorithms are <strong>choreographed</strong>. Measuring at the wrong time is like stopping a dance mid-move—everything falls apart.</p>
+            </section>
+
+            <!-- Why This Matters -->
+            <section class="content-section">
+                <h2>💡 Why This Matters for Real Quantum Computing</h2>
+
+                <h3>1. Debugging Quantum Circuits Is Hard</h3>
+                <p>In classical programming, you can add <code>print()</code> statements everywhere to debug. In quantum computing, <strong>you can't</strong>.</p>
+
+                <div class="analogy-box">
+                    <h4>Classical Debugging:</h4>
+                    <pre><code>x = 10
+print(f"x = {x}")  # Check intermediate value
+x = x * 2
+print(f"x = {x}")  # Still works!</code></pre>
+                </div>
+
+                <div class="analogy-box quantum">
+                    <h4>Quantum "Debugging":</h4>
+                    <pre><code>qc.h(0)  # Superposition
+qc.measure(0, 0)  # ❌ "Debugging" measure → collapses state!
+qc.h(0)  # Now acting on classical state → wrong results</code></pre>
+                </div>
+
+                <p><strong>Solution:</strong> Use <strong>statevector simulators</strong> to inspect states without measuring (only works in simulation, not on real hardware).</p>
+
+                <h3>2. Error Detection in Quantum Computing</h3>
+                <p>This is why <strong>quantum error correction</strong> is so hard. You can't directly check if a qubit is correct without destroying the computation.</p>
+
+                <p><strong>Quantum Error Correction Strategy:</strong> Encode one logical qubit across multiple physical qubits, then measure <em>parity</em> (relationships between qubits) instead of individual values.</p>
+
+                <h3>3. When Measurement Timing Doesn't Matter</h3>
+                <p>If you're done with a qubit and won't use it again, early measurement is fine:</p>
+
+                <pre><code># This is OK - qubit 0 is no longer needed
+qc.h(0)
+qc.cx(0, 1)
+qc.measure(0, 0)  # ✓ Fine if we're done with qubit 0
+
+# Continue with qubit 1 (unaffected)
+qc.h(1)
+qc.measure(1, 1)</code></pre>
+
+                <p><strong>Key Question:</strong> Will you need the quantum state of this qubit later? If yes, don't measure. If no, measuring early is safe.</p>
+            </section>
+
+            <!-- Practical Exercises -->
+            <section class="content-section">
+                <h2>🛠️ Your Turn: Practice Exercises</h2>
+
+                <div class="exercise-box">
+                    <h3>Exercise 1: Predict the Outcome</h3>
+                    <p><strong>Circuit:</strong></p>
+                    <pre><code>qc = QuantumCircuit(1, 2)
+qc.h(0)
+qc.measure(0, 0)
+qc.x(0)
+qc.measure(0, 1)</code></pre>
+                    <p><strong>Question:</strong> What are the possible outcomes for the two measurements?</p>
+                    <details>
+                        <summary>Show Answer</summary>
+                        <p><strong>First measurement:</strong> 50% |0⟩, 50% |1⟩ (Hadamard creates superposition)</p>
+                        <p><strong>Second measurement:</strong> 
+                            <ul style="margin: 8px 0; padding-left: 20px;">
+                                <li>If first was 0 → X gate flips to 1 → measure 1</li>
+                                <li>If first was 1 → X gate flips to 0 → measure 0</li>
+                            </ul>
+                        </p>
+                        <p><strong>Possible outcomes:</strong> 01 or 10 (always opposite bits)</p>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 2: Fix the Circuit</h3>
+                    <p><strong>Broken circuit:</strong></p>
+                    <pre><code>qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.measure(0, 0)  # Too early!
+qc.cx(0, 1)
+qc.measure(1, 1)</code></pre>
+                    <p><strong>Task:</strong> Remove the early measurement to preserve entanglement.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code>qc = QuantumCircuit(2, 2)
+qc.h(0)
+# Remove early measurement
+qc.cx(0, 1)
+qc.measure([0, 1], [0, 1])  # Measure both at end</code></pre>
+                        <p>Now you get a proper Bell state: 50% |00⟩, 50% |11⟩ (correlated)</p>
+                    </details>
+                </div>
+
+                <div class="exercise-box">
+                    <h3>Exercise 3: Debug Without Breaking</h3>
+                    <p><strong>Challenge:</strong> You want to check if your circuit creates equal superposition (50/50) without measuring.</p>
+                    <p><strong>Task:</strong> Use Qiskit's statevector simulator to inspect the state.</p>
+                    <details>
+                        <summary>Show Solution</summary>
+                        <pre><code>from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+
+qc = QuantumCircuit(1)
+qc.h(0)
+
+# Get statevector (only works in simulation!)
+state = Statevector.from_instruction(qc)
+print(state)
+# Output: [0.707+0j, 0.707+0j] = (|0⟩ + |1⟩)/√2
+
+# Check probabilities
+probs = state.probabilities()
+print(probs)  # [0.5, 0.5] = 50/50</code></pre>
+                        <p><strong>Note:</strong> This only works in simulation. On real hardware, you can't peek without measuring!</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section class="content-section">
+                <h2>📚 Key Takeaways</h2>
+
+                <div class="concept-grid">
+                    <div class="concept-card">
+                        <h3>1. Measurement Is Irreversible</h3>
+                        <p>Once you measure, the superposition is gone forever. You can't "undo" it.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>2. Timing Matters</h3>
+                        <p>Measuring at the wrong time destroys quantum advantage. Always measure at the end (unless you're done with that qubit).</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>3. Debugging Is Different</h3>
+                        <p>You can't "peek" at quantum states mid-computation. Use statevector simulators for debugging, not measurements.</p>
+                    </div>
+                    <div class="concept-card">
+                        <h3>4. Entanglement Collapses Together</h3>
+                        <p>Measuring one qubit of an entangled pair collapses the <em>entire</em> system. No partial measurements!</p>
+                    </div>
+                </div>
+
+                <div class="insight-box" style="margin-top: 32px;">
+                    <strong>The Golden Rule:</strong> If you need quantum advantage, <strong>delay all measurements until the very end</strong>. The longer you keep qubits in superposition, the more quantum parallelism you get.
+                </div>
+            </section>
+
+            <!-- What's Next -->
+            <section class="content-section">
+                <h2>🚀 What's Next?</h2>
+                <p>You've learned:</p>
+                <ul>
+                    <li>✅ Why measurement destroys superposition</li>
+                    <li>✅ How early measurement breaks quantum algorithms</li>
+                    <li>✅ Why debugging quantum circuits is fundamentally different</li>
+                    <li>✅ When measurement timing matters (and when it doesn't)</li>
+                </ul>
+
+                <p><strong>Practice:</strong> Go back to Phase 1 lessons and try adding measurements at different points. See what breaks!</p>
+
+                <p><strong>Next up:</strong> <a href="phase2-1.html">Phase 2: Quantum Algorithms</a> — Apply this knowledge to Deutsch-Jozsa, Grover's, and Shor's algorithms.</p>
+            </section>
+
+            <!-- Navigation -->
+            <div class="lesson-nav">
+                <a href="phase1-3.html" class="nav-button prev">← Previous: Entanglement</a>
+                <a href="../index.html" class="nav-button">Back to Roadmap</a>
+                <a href="phase2-1.html" class="nav-button next">Next: Quantum Algorithms →</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 QbitsOnly. MIT License. Built with HTML/CSS/JS.</p>
+            <p>Analytics: Google Analytics enabled</p>
+        </div>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7J31XJJQLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-7J31XJJQLF');
+    </script>
+</body>
+</html>
